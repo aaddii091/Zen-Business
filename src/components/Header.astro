@@ -1,0 +1,186 @@
+---
+---
+
+<header class="zg-header">
+  <nav class="zg-nav">
+    <!-- Logo -->
+    <a href="/" class="zg-logo" aria-label="Zengarden home">
+      <img src="/images/zengarden-logo.png" alt="Zengarden" width="160" height="30" />
+    </a>
+
+    <!-- Nav links -->
+    <ul class="zg-nav-links">
+      <li><a href="#clinical">Clinical Oversight</a></li>
+      <li><a href="#data">Data Protection</a></li>
+      <li><a href="#responsible">Responsible Use</a></li>
+    </ul>
+
+    <!-- CTA buttons -->
+    <div class="zg-nav-actions">
+      <a href="/login" class="zg-btn-ghost">Login</a>
+      <a href="#demo" class="zg-btn-primary">Book a Demo</a>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <button class="zg-hamburger" id="zg-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="zg-mobile-menu" id="zg-mobile-menu" hidden>
+    <a href="#clinical">Clinical Oversight</a>
+    <a href="#data">Data Protection</a>
+    <a href="#responsible">Responsible Use</a>
+    <a href="/login" class="zg-btn-ghost">Login</a>
+    <a href="#demo" class="zg-btn-primary">Book a Demo</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('zg-menu-toggle');
+  const menu = document.getElementById('zg-mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.hidden === false;
+    if (menu) menu.hidden = open;
+    toggle.setAttribute('aria-expanded', String(!open));
+  });
+</script>
+
+<style>
+  .zg-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--zg-nav-bg);
+    border-bottom: 1px solid #E8E8E8;
+  }
+
+  .zg-nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .zg-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .zg-nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .zg-nav-links a {
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--zg-dark);
+    border-radius: 6px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .zg-nav-links a:hover {
+    background: #EEEEF9;
+    color: var(--zg-blue);
+  }
+
+  .zg-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .zg-btn-ghost {
+    padding: 7px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--zg-blue);
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  .zg-btn-ghost:hover {
+    background: #EEEEF9;
+  }
+
+  .zg-btn-primary {
+    padding: 7px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: var(--zg-blue);
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+
+  .zg-btn-primary:hover {
+    opacity: 0.88;
+  }
+
+  .zg-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+
+  .zg-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--zg-dark);
+    border-radius: 2px;
+  }
+
+  .zg-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 24px 20px;
+    border-top: 1px solid #E8E8E8;
+  }
+
+  .zg-mobile-menu a {
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--zg-dark);
+    border-radius: 6px;
+  }
+
+  .zg-mobile-menu .zg-btn-primary,
+  .zg-mobile-menu .zg-btn-ghost {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .zg-nav-links,
+    .zg-nav-actions {
+      display: none;
+    }
+
+    .zg-hamburger {
+      display: flex;
+    }
+  }
+</style>

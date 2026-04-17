@@ -1,0 +1,31 @@
+---
+const today = new Date();
+---
+
+<footer class="zg-footer">
+  <div class="zg-footer-inner">
+    <p class="zg-footer-copy">&copy; {today.getFullYear()} Zengarden. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .zg-footer {
+    background: white;
+    padding: 32px 0;
+    border-top: 1px solid #E8E8E8;
+  }
+
+  .zg-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .zg-footer-copy {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--zg-muted);
+    margin: 0;
+  }
+</style>

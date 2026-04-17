@@ -1,0 +1,847 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const checkinCards = [
+  {
+    title: 'Student Check-in',
+    subtitle: 'No preparation required',
+    desc: 'Personality and well-being questionnaire',
+    icon: 'form',
+  },
+  {
+    title: 'Instant insights',
+    subtitle: 'Immediate understanding',
+    desc: 'Initial insights generated instantly',
+    icon: 'verified',
+    cta: 'Immediate understanding',
+  },
+  {
+    title: 'Professional Review',
+    subtitle: 'Responsible interpretation',
+    desc: 'Detailed reports reviewed by licensed Psychologists',
+    icon: 'star-verified',
+    cta: 'Responsible Interpretation',
+  },
+  {
+    title: 'Guided Direction',
+    subtitle: 'Based on each questionnaire',
+    desc: 'Recommended next-step support',
+    icon: 'compass',
+  },
+  {
+    title: "Student's Choice",
+    subtitle: 'Mentor or certified Psychologist',
+    desc: 'Connect with your preferred professional',
+    icon: 'choices',
+  },
+  {
+    title: 'Sessions',
+    subtitle: 'Book, track, and attend sessions',
+    desc: 'Continue your support seamlessly',
+    icon: 'calendar',
+  },
+];
+
+const principles = [
+  {
+    title: 'Right Support',
+    desc: 'Every student deserves guidance that fits their needs. The right kind of support, delivered at the right time, makes all the difference.',
+  },
+  {
+    title: 'Responsible Care',
+    desc: 'Support should always be timely, structured, confidential, and professionally handled — never left to chance.',
+  },
+  {
+    title: 'Human-led Scale',
+    desc: 'Technology should help institutions support more students efficiently, without losing the human touch that makes care meaningful.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <!-- ═══════════════════════════════════════════
+           HERO SECTION
+      ═══════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <p class="hero-eyebrow">Emotional Infrastructure for Students</p>
+            <h1 class="hero-heading">Every student deserves guidance, not limited choices</h1>
+            <p class="hero-desc">
+              Zengarden helps educational institutions support students through personality insights, mentorship, and professional psychological care.
+            </p>
+            <a href="#flow" class="btn-teal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Live Student Flow
+            </a>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-images">
+              <img
+                src="/images/hero-mockup.png"
+                alt="Zengarden dashboard on laptop"
+                class="hero-img-laptop"
+                width="594"
+                height="281"
+                loading="eager"
+              />
+              <img
+                src="/images/hero-side.png"
+                alt="Zengarden app on mobile"
+                class="hero-img-mobile"
+                width="160"
+                height="326"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPLETE SUPPORT SECTION -->
+      <section class="support-section">
+        <div class="container">
+          <div class="support-layout">
+            <!-- LEFT: heading + subtitle + Self Awareness content -->
+            <div class="support-left">
+              <h2 class="support-main-heading">Complete support at the right level</h2>
+              <p class="support-main-sub">Students move through support based on their needs, not limitations.</p>
+
+              <div class="support-left-header">
+                <img src="/images/icon-clipboard.png" alt="" width="48" height="48" aria-hidden="true" />
+                <h3 class="support-left-title">Self Awareness</h3>
+              </div>
+              <p class="support-left-body">
+                Students gain clarity through structured psychological questionnaires based on globally recognised frameworks like Big Five (OCEAN) and 16PF
+              </p>
+              <p class="support-left-body">
+                Scientifically grounded to guide students to the right support
+              </p>
+              <a href="#" class="support-know-more">
+                Know more
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+            <!-- RIGHT: 2 stacked cards (start from top) -->
+            <div class="support-right">
+              <div class="support-card">
+                <div class="support-card-icon">
+                  <img src="/images/icon-growth.png" alt="" width="36" height="36" aria-hidden="true" />
+                </div>
+                <h3 class="support-card-title">Guidance & Mentorship</h3>
+                <span class="support-card-tag">For guidance and growth</span>
+                <p class="support-card-desc">Study habits, confidence, growth, goals, and academic pressure.</p>
+              </div>
+              <div class="support-card">
+                <div class="support-card-badge-row">
+                  <img src="/images/icon-star-verified.png" alt="" width="36" height="36" aria-hidden="true" />
+                  <span class="support-badge">MPhil, RCI Certified</span>
+                </div>
+                <h3 class="support-card-title">Qualified Psychologists</h3>
+                <span class="support-card-tag">For deeper support needs</span>
+                <p class="support-card-desc">Access to certified professionals for deeper emotional support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FROM CHECK-IN TO SUPPORT -->
+      <section class="checkin-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-heading">From Check-in to Support</h2>
+            <p class="section-sub">Designed to reduce delays and help institutions act with clarity, speed, and care.</p>
+          </div>
+          <div class="checkin-grid">
+            {checkinCards.map((card) => (
+              <div class="cflow-card">
+                <div class="cflow-card-inner">
+                  <img src={`/images/icon-${card.icon}.png`} alt="" width="52" height="52" aria-hidden="true" />
+                  <h3 class="cflow-title">{card.title}</h3>
+                  <p class="cflow-sub">{card.subtitle}</p>
+                  <p class="cflow-desc">{card.desc}</p>
+                  {card.cta && (
+                    <a href="#" class="cflow-cta">
+                      {card.cta}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           PRINCIPLES SECTION
+      ═══════════════════════════════════════════ -->
+      <section class="principles-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-heading">The Principles that Guide Zengarden</h2>
+            <p class="section-sub">Your emotional headquarters for structured student support.</p>
+          </div>
+          <div class="principles-grid">
+            {principles.map((p, i) => (
+              <div class="principle-card">
+                <div class="principle-num">{String(i + 1).padStart(2, '0')}</div>
+                <h3 class="principle-title">{p.title}</h3>
+                <p class="principle-desc">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           CONTACT / FAQ SECTION
+      ═══════════════════════════════════════════ -->
+      <section class="contact-section" id="demo">
+        <div class="container">
+          <div class="contact-inner">
+            <div class="contact-header">
+              <h2 class="contact-heading">Looking For Answers?</h2>
+              <p class="contact-sub">No question is too small. Ask away.</p>
+            </div>
+            <form class="contact-form" action="#" method="post">
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <div class="form-input-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 4h16v16H4V4zm0 0l8 9 8-9" stroke="#A3A3A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    placeholder="johndoe@gmail.com"
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="question" class="form-label">Ask anything on your mind</label>
+                <div class="form-textarea-wrap">
+                  <textarea
+                    id="question"
+                    name="question"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="Why do I feel overwhelmed even when nothing is wrong?"
+                  ></textarea>
+                </div>
+              </div>
+              <button type="submit" class="form-submit">
+                Submit
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           BOTTOM CTA BANNER
+      ═══════════════════════════════════════════ -->
+      <section class="cta-banner">
+        <div class="container">
+          <a href="#demo" class="btn-blue-lg">
+            Book a Demo
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  /* ─── Layout ─────────────────────────────── */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ─── Shared section headers ─────────────── */
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  /* ─── Buttons ────────────────────────────── */
+  .btn-teal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    background: var(--zg-teal);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+
+  .btn-teal:hover { opacity: 0.88; }
+
+  .btn-blue-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 32px;
+    background: var(--zg-blue);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+
+  .btn-blue-lg:hover { opacity: 0.88; }
+
+  /* ─── HERO ───────────────────────────────── */
+  .hero {
+    padding: 80px 0 60px;
+    background: white;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--zg-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: #EEEEF9;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin: 0 0 20px;
+  }
+
+  .hero-heading {
+    font-size: 47px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    line-height: 1.15;
+    margin: 0 0 20px;
+  }
+
+  .hero-desc {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--zg-dark);
+    line-height: 1.65;
+    margin: 0 0 36px;
+    max-width: 460px;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .hero-images {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .hero-img-laptop {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 12px 48px rgba(60,80,224,0.12);
+    display: block;
+  }
+
+  .hero-img-mobile {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    width: 130px;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  }
+
+/* ─── SUPPORT SECTION ────────────────────── */
+  .support-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .support-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .support-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .support-main-heading {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .support-main-sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--zg-mid);
+    margin: 0 0 8px;
+  }
+
+  .support-left-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .support-left-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .support-left-body {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--zg-dark);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .support-know-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    padding: 8px 20px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--zg-blue);
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 8px;
+    transition: background 0.15s;
+    margin-top: 4px;
+  }
+
+  .support-know-more:hover {
+    background: #EEEEF9;
+  }
+
+  .support-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .support-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .support-card-icon {
+    width: 52px;
+    height: 52px;
+    background: #F0FDF9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+
+  .support-card-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .support-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .support-card-tag {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--zg-muted);
+  }
+
+  .support-card-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--zg-dark);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .support-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--zg-teal);
+    gap: 4px;
+  }
+
+  /* ─── CHECK-IN SECTION ───────────────────── */
+  .checkin-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .checkin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* Blue-offset depth card matching Figma's two-frame stacked design */
+  .cflow-card {
+    position: relative;
+  }
+
+  .cflow-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--zg-blue);
+    border-radius: 10px;
+    transform: translate(6px, 6px);
+    z-index: 0;
+  }
+
+  .cflow-card-inner {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 200px;
+  }
+
+  .cflow-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .cflow-sub {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--zg-dark);
+    margin: 0;
+  }
+
+  .cflow-desc {
+    font-size: 16px;
+    color: var(--zg-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .cflow-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 7px 16px;
+    background: var(--zg-teal);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+
+  .cflow-cta:hover { opacity: 0.88; }
+
+  /* ─── PRINCIPLES SECTION ─────────────────── */
+  .principles-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    border-top: 1px solid #DDE2EF;
+    padding-top: 48px;
+  }
+
+  .principle-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .principle-num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--zg-blue);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .principle-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .principle-desc {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--zg-dark);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── CONTACT SECTION ────────────────────── */
+  .contact-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .contact-inner {
+    background: white;
+    border-radius: 16px;
+    padding: 56px;
+    max-width: 860px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  .contact-heading {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0 0 8px;
+  }
+
+  .contact-sub {
+    font-size: 20px;
+    color: var(--zg-mid);
+    margin: 0 0 40px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--zg-mid);
+  }
+
+  .form-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1.5px solid #DDE2EF;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+
+  .form-input-wrap:focus-within {
+    border-color: var(--zg-blue);
+    outline: 2px solid rgba(60,80,224,0.15);
+  }
+
+  .form-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--zg-dark);
+    background: transparent;
+  }
+
+  .form-input::placeholder { color: #A3A3A3; }
+
+  .form-textarea-wrap {
+    background: white;
+    border: 1.5px solid #DDE2EF;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .form-textarea-wrap:focus-within {
+    border-color: var(--zg-blue);
+    outline: 2px solid rgba(60,80,224,0.15);
+  }
+
+  .form-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--zg-dark);
+    background: transparent;
+    min-height: 100px;
+  }
+
+  .form-textarea::placeholder { color: #A3A3A3; }
+
+  .form-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    padding: 12px 32px;
+    background: var(--zg-blue);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .form-submit:hover { opacity: 0.88; }
+
+  /* ─── BOTTOM CTA BANNER ──────────────────── */
+  .cta-banner {
+    padding: 48px 0;
+    background: white;
+    text-align: center;
+    border-top: 1px solid #E8ECF5;
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 1024px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+
+    .support-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 20px;
+    }
+
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .hero-heading {
+      font-size: 32px;
+    }
+
+    .section-heading {
+      font-size: 28px;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-inner {
+      padding: 32px 24px;
+    }
+  }
+</style>
