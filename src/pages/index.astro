@@ -41,12 +41,7 @@ const principles = [
             <p class="hero-desc">
               Zengarden helps educational institutions support students through personality insights, mentorship, and professional psychological care.
             </p>
-            <a href="#flow" class="btn-teal">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Live Student Flow
-            </a>
+            <a href="#demo" class="btn-blue-lg hero-demo-btn">Book a Demo</a>
           </div>
           <div class="hero-visual">
             <div class="hero-images">
@@ -67,6 +62,7 @@ const principles = [
                 loading="eager"
               />
             </div>
+            <a href="#demo" class="btn-blue-lg hero-demo-mobile-under">Book a Demo</a>
           </div>
         </div>
       </section>
@@ -131,8 +127,9 @@ const principles = [
           </div>
           <div class="flow-grid">
             <!-- Row 1: Student Check-in → Instant insights -->
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-checkin">
+              <div class="cflow-card-inner" data-step="01">
+                <span class="cflow-step-badge" aria-hidden="true">01</span>
                 <img src="/images/icon-form.png" alt="" width="52" height="52" aria-hidden="true" />
                 <h3 class="cflow-title">Student Check-in</h3>
                 <p class="cflow-sub">No preparation required</p>
@@ -144,8 +141,9 @@ const principles = [
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-insights">
+              <div class="cflow-card-inner" data-step="02">
+                <span class="cflow-step-badge" aria-hidden="true">02</span>
                 <img src="/images/icon-verified.png" alt="" width="52" height="52" aria-hidden="true" />
                 <h3 class="cflow-title">Instant insights</h3>
                 <p class="cflow-sub">Immediate understanding</p>
@@ -164,8 +162,9 @@ const principles = [
             </div>
 
             <!-- Row 2 (snake): Guided Direction ← Professional Review -->
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-guided">
+              <div class="cflow-card-inner" data-step="04">
+                <span class="cflow-step-badge" aria-hidden="true">04</span>
                 <img src="/images/icon-compass.png" alt="" width="52" height="52" aria-hidden="true" />
                 <h3 class="cflow-title">Guided Direction</h3>
                 <p class="cflow-sub">Based on each questionnaire</p>
@@ -177,8 +176,9 @@ const principles = [
                 <path d="M19 12H5M11 18l-6-6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-review">
+              <div class="cflow-card-inner" data-step="03">
+                <span class="cflow-step-badge" aria-hidden="true">03</span>
                 <img src="/images/icon-star-verified.png" alt="" width="52" height="52" aria-hidden="true" />
                 <h3 class="cflow-title">Professional Review</h3>
                 <p class="cflow-sub">Responsible interpretation</p>
@@ -197,8 +197,9 @@ const principles = [
             <div class="flow-gap-cell"></div>
 
             <!-- Row 3: Student's Choice → Sessions -->
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-choice">
+              <div class="cflow-card-inner" data-step="05">
+                <span class="cflow-step-badge" aria-hidden="true">05</span>
                 <img src="/images/icon-choices.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
                 <h3 class="cflow-title">Student's Choice</h3>
                 <p class="cflow-sub">Mentor or certified Psychologist</p>
@@ -210,8 +211,9 @@ const principles = [
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <div class="cflow-card">
-              <div class="cflow-card-inner">
+            <div class="cflow-card step-sessions">
+              <div class="cflow-card-inner" data-step="06">
+                <span class="cflow-step-badge" aria-hidden="true">06</span>
                 <img src="/images/icon-calendar.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
                 <h3 class="cflow-title">Sessions</h3>
                 <p class="cflow-sub">Book, track, and attend sessions</p>
@@ -253,7 +255,7 @@ const principles = [
               <h2 class="contact-heading">Looking For Answers?</h2>
               <p class="contact-sub">No question is too small. Ask away.</p>
             </div>
-            <form class="contact-form" action="#" method="post">
+            <form class="contact-form" action="#" method="get">
               <div class="form-group">
                 <label for="email" class="form-label">Email</label>
                 <div class="form-input-wrap">
@@ -310,7 +312,7 @@ const principles = [
   }
 
   .section-heading {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0 0 12px;
@@ -318,7 +320,7 @@ const principles = [
   }
 
   .section-sub {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 400;
     color: var(--zg-mid);
     margin: 0;
@@ -332,7 +334,7 @@ const principles = [
     padding: 10px 24px;
     background: var(--zg-teal);
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 6px;
     transition: opacity 0.15s;
@@ -343,13 +345,16 @@ const principles = [
   .btn-blue-lg {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 32px;
-    background: var(--zg-blue);
+    justify-content: center;
+    gap: 8px;
+    width: 207px;
+    height: 48px;
+    padding: 12px 20px;
+    background: #3C50E0;
     color: white;
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: 600;
-    border-radius: 6px;
+    border-radius: 24px;
     transition: opacity 0.15s;
   }
 
@@ -370,7 +375,7 @@ const principles = [
 
   .hero-eyebrow {
     display: inline-block;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
     font-weight: 700;
     color: var(--zg-blue);
     letter-spacing: 0.08em;
@@ -382,7 +387,7 @@ const principles = [
   }
 
   .hero-heading {
-    font-size: 47px;
+    font-size: clamp(2rem, 5vw, 2.9375rem);
     font-weight: 700;
     color: var(--zg-mid);
     line-height: 1.15;
@@ -390,7 +395,7 @@ const principles = [
   }
 
   .hero-desc {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 500;
     color: var(--zg-dark);
     line-height: 1.65;
@@ -427,6 +432,15 @@ const principles = [
     border-radius: 18px;
   }
 
+  .hero-demo-btn {
+    display: inline-flex !important;
+    margin-top: 4px;
+  }
+
+  .hero-demo-mobile-under {
+    display: none;
+  }
+
 /* ─── SUPPORT SECTION ────────────────────── */
   .support-section {
     padding: 80px 0;
@@ -450,7 +464,7 @@ const principles = [
   }
 
   .support-main-heading {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0;
@@ -458,7 +472,7 @@ const principles = [
   }
 
   .support-main-sub {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 400;
     color: var(--zg-mid);
     margin: 0 0 8px;
@@ -471,14 +485,14 @@ const principles = [
   }
 
   .support-left-title {
-    font-size: 26px;
+    font-size: clamp(1.35rem, 2.4vw, 1.625rem);
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0;
   }
 
   .support-left-body {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 400;
     color: var(--zg-dark);
     line-height: 1.65;
@@ -491,7 +505,7 @@ const principles = [
     gap: 8px;
     align-self: flex-start;
     padding: 8px 20px;
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--zg-blue);
     border: 1.5px solid var(--zg-blue);
@@ -539,20 +553,20 @@ const principles = [
   }
 
   .support-card-title {
-    font-size: 22px;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0;
   }
 
   .support-card-tag {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--zg-muted);
   }
 
   .support-card-desc {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--zg-dark);
     margin: 0;
@@ -562,7 +576,7 @@ const principles = [
   .support-badge {
     display: inline-flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--zg-teal);
     gap: 4px;
@@ -615,11 +629,12 @@ const principles = [
   /* Blue-offset depth card */
   .cflow-card {
     align-self: stretch;
+    width: 100%;
   }
 
   .cflow-card-inner {
-    position: relative;
-    z-index: 1;
+      position: relative;
+      z-index: 1;
     background: white;
     border-radius: 10px;
     padding: 18px 20px;
@@ -631,22 +646,26 @@ const principles = [
     box-shadow: 0px 4px 4px 0px #00000040;
   }
 
+  .cflow-step-badge {
+    display: none;
+  }
+
   .cflow-title {
-    font-size: 22px;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 600;
     color: var(--zg-mid);
     margin: 0;
   }
 
   .cflow-sub {
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 400;
     color: var(--zg-dark);
     margin: 0;
   }
 
   .cflow-desc {
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--zg-muted);
     margin: 0;
     line-height: 1.5;
@@ -657,14 +676,14 @@ const principles = [
     filter: brightness(0) invert(63%) sepia(87%) saturate(456%) hue-rotate(119deg) brightness(72%) contrast(102%);
   }
 
-  .cflow-cta {
-    display: inline-block;
-    align-self: flex-start;
+    .cflow-cta {
+      display: inline-block;
+      align-self: flex-start;
     margin-top: auto;
     padding: 7px 16px;
     background: var(--zg-teal);
     color: white;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
     border-radius: 6px;
   }
@@ -700,7 +719,7 @@ const principles = [
   }
 
   .principle-num {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     color: var(--zg-blue);
     opacity: 0.3;
@@ -708,14 +727,14 @@ const principles = [
   }
 
   .principle-title {
-    font-size: 26px;
+    font-size: clamp(1.35rem, 2.4vw, 1.625rem);
     font-weight: 600;
     color: var(--zg-mid);
     margin: 0;
   }
 
   .principle-desc {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 400;
     color: var(--zg-dark);
     margin: 0;
@@ -735,14 +754,14 @@ const principles = [
   }
 
   .contact-heading {
-    font-size: 36px;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0 0 8px;
   }
 
   .contact-sub {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     color: var(--zg-mid);
     margin: 0 0 40px;
   }
@@ -760,7 +779,7 @@ const principles = [
   }
 
   .form-label {
-    font-size: 22px;
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 600;
     color: var(--zg-mid);
   }
@@ -785,7 +804,7 @@ const principles = [
     border: none;
     outline: none;
     font-family: 'Nunito', sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
     color: var(--zg-dark);
     background: transparent;
@@ -811,7 +830,7 @@ const principles = [
     outline: none;
     resize: vertical;
     font-family: 'Nunito', sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
     color: var(--zg-dark);
     background: transparent;
@@ -827,7 +846,7 @@ const principles = [
     background: var(--zg-blue);
     color: white;
     font-family: 'Nunito', sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     border: none;
     border-radius: 100px;
@@ -835,7 +854,7 @@ const principles = [
     transition: opacity 0.15s;
   }
 
-  .form-submit:hover { opacity: 0.88; }
+    .form-submit:hover { opacity: 0.88; }
 
   /* ─── BOTTOM CTA BANNER ──────────────────── */
   .cta-banner {
@@ -852,7 +871,19 @@ const principles = [
     }
 
     .hero-visual {
-      display: none;
+      display: flex;
+      margin-top: 12px;
+    }
+
+    .hero-images {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .hero-img-mobile {
+      right: -12px;
+      bottom: -18px;
+      width: 112px;
     }
 
     .support-layout {
@@ -862,31 +893,266 @@ const principles = [
     .principles-grid {
       grid-template-columns: 1fr 1fr;
     }
+
   }
 
   @media (max-width: 768px) {
+    main > section {
+      padding-top: 40px !important;
+      padding-bottom: 40px !important;
+    }
+
     .container {
-      padding: 0 20px;
+      padding: 0px 15px;
     }
 
     .hero {
-      padding: 48px 0 40px;
+      padding: 36px 0 28px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      margin-bottom: 6px;
+    }
+
+    .hero-desc {
+      margin-bottom: 10px;
+    }
+
+    .hero-visual {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-images {
+      max-width: 320px;
+    }
+
+    .hero-demo-btn {
+      display: none !important;
+    }
+
+    .hero-demo-mobile-under {
+      display: inline-flex;
+      margin: 16px auto 0;
+    }
+
+    .hero-img-mobile {
+      right: -8px;
+      bottom: -12px;
+      width: 92px;
+      border-radius: 14px;
     }
 
     .hero-heading {
-      font-size: 32px;
+      font-size: 2rem;
     }
 
-    .section-heading {
-      font-size: 28px;
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .support-layout {
+      gap: 24px;
+      padding: 28px 24px;
+    }
+
+    .support-left,
+    .support-right {
+      gap: 10px;
+    }
+
+    .support-main-sub {
+      margin: 0 0 4px;
+    }
+
+    .support-card {
+      gap: 4px;
+    }
+
+    .cflow-card-inner {
+      gap: 3px;
+    }
+
+    .flow-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow-gap-cell,
+    .flow-harrow,
+    .flow-varrow {
+      display: none;
+    }
+
+    .step-checkin { order: 1; }
+    .step-insights { order: 2; }
+    .step-review { order: 3; }
+    .step-guided { order: 4; }
+    .step-choice { order: 5; }
+    .step-sessions { order: 6; }
+
+    .cflow-card-inner {
+      padding-top: 38px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .cflow-step-badge {
+      display: grid;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(60, 80, 224, 0.12);
+      color: var(--zg-blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      line-height: 1;
+    }
+
+    .cflow-card.is-active .cflow-card-inner {
+      transform: translateY(-2px);
+      border-color: rgba(60, 80, 224, 0.35);
+      box-shadow: 0 10px 22px rgba(60, 80, 224, 0.18);
+    }
+
+    .cflow-card.is-active .cflow-step-badge {
+      background: var(--zg-blue);
+      color: white;
+    }
+
+    .principle-card {
+      gap: 6px;
+      padding: 0 15px;
+      margin-bottom: 10px;
+    }
+
+    .principle-card:first-child,
+    .principle-card:last-child {
+      padding: 0 15px;
+    }
+
+    .principle-card + .principle-card {
+      border-left: none;
     }
 
     .principles-grid {
       grid-template-columns: 1fr;
     }
 
+    .section-heading {
+      font-size: 1.75rem;
+    }
+
     .contact-inner {
-      padding: 32px 24px;
+      padding: 16px 12px;
+    }
+
+    .contact-sub {
+      margin: 0 0 20px;
+    }
+
+    .contact-form {
+      gap: 14px;
+    }
+
+    .form-group {
+      gap: 4px;
+    }
+
+    .form-input-wrap {
+      padding: 8px 16px;
+    }
+
+    .form-textarea-wrap {
+      padding: 12px 16px;
+    }
+
+    .form-submit {
+      padding: 12px 48px;
     }
   }
 </style>
+
+<script>
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+  const flowCards = Array.from(document.querySelectorAll('.flow-grid .cflow-card'));
+  let observer;
+  let rafId;
+
+  const clearActiveCards = () => {
+    flowCards.forEach((card) => card.classList.remove('is-active'));
+  };
+
+  const pickCardClosestToCenter = () => {
+    if (!flowCards.length) return;
+
+    const viewportCenter = window.innerHeight * 0.45;
+    let closest = flowCards[0];
+    let minDistance = Number.POSITIVE_INFINITY;
+
+    flowCards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const distance = Math.abs(center - viewportCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = card;
+      }
+    });
+
+    clearActiveCards();
+    closest.classList.add('is-active');
+  };
+
+  const onScrollOrResize = () => {
+    if (!mobileQuery.matches) return;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(pickCardClosestToCenter);
+  };
+
+  const initMobileCardActivation = () => {
+    if (!flowCards.length) return;
+
+    if (!mobileQuery.matches) {
+      clearActiveCards();
+      if (observer) observer.disconnect();
+      observer = undefined;
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
+      return;
+    }
+
+    if (observer) observer.disconnect();
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visible.length) return;
+        clearActiveCards();
+        visible[0].target.classList.add('is-active');
+      },
+      { threshold: [0.45, 0.65, 0.85], rootMargin: '-10% 0px -30% 0px' },
+    );
+
+    flowCards.forEach((card) => observer.observe(card));
+    flowCards[0].classList.add('is-active');
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    onScrollOrResize();
+  };
+
+  initMobileCardActivation();
+  mobileQuery.addEventListener('change', initMobileCardActivation);
+</script>

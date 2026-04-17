@@ -44,7 +44,7 @@ const posts = (await getCollection('blog')).sort(
 				width: 100%;
 			}
 			ul li:first-child .title {
-				font-size: 2.369rem;
+				font-size: clamp(1.5rem, 4vw, 2.369rem);
 			}
 			ul li img {
 				margin-bottom: 0.5rem;
@@ -79,9 +79,6 @@ const posts = (await getCollection('blog')).sort(
 				}
 				ul li:first-child {
 					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
 				}
 			}
 		</style>
