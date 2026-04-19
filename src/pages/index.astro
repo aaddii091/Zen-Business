@@ -2,6 +2,8 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 
@@ -41,7 +43,7 @@ const principles = [
             <p class="hero-desc">
               Zengarden helps educational institutions support students through personality insights, mentorship, and professional psychological care.
             </p>
-            <a href="https://calendly.com/aaddii091" class="btn-blue-lg hero-demo-btn" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+            <Button href="https://calendly.com/aaddii091" size="lg" class="hero-demo-btn" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
           </div>
           <div class="hero-visual">
             <div class="hero-images">
@@ -62,7 +64,7 @@ const principles = [
                 loading="eager"
               />
             </div>
-            <a href="https://calendly.com/aaddii091" class="btn-blue-lg hero-demo-mobile-under" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+            <Button href="https://calendly.com/aaddii091" size="lg" class="hero-demo-mobile-under" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
           </div>
         </div>
       </section>
@@ -86,12 +88,12 @@ const principles = [
               <p class="support-left-body">
                 Scientifically grounded to guide students to the right support
               </p>
-              <a href="/responsible-use" class="support-know-more" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" href="/responsible-use" class="support-know-more" target="_blank" rel="noopener noreferrer">
                 Know more
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </a>
+              </Button>
             </div>
 
             <!-- RIGHT: 2 stacked cards (start from top) -->
@@ -121,10 +123,10 @@ const principles = [
       <!-- FROM CHECK-IN TO SUPPORT -->
       <section class="checkin-section">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-heading">From Check-in to Support</h2>
-            <p class="section-sub">Designed to reduce delays and help institutions act with clarity, speed, and care.</p>
-          </div>
+          <SectionHeader
+            heading="From Check-in to Support"
+            sub="Designed to reduce delays and help institutions act with clarity, speed, and care."
+          />
           <div class="flow-grid">
             <!-- Row 1: Student Check-in → Instant insights -->
             <div class="cflow-card step-checkin">
@@ -229,10 +231,10 @@ const principles = [
       ═══════════════════════════════════════════ -->
       <section class="principles-section">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-heading">The Principles that Guide Zengarden</h2>
-            <p class="section-sub">Your emotional headquarters for structured student support.</p>
-          </div>
+          <SectionHeader
+            heading="The Principles that Guide Zengarden"
+            sub="Your emotional headquarters for structured student support."
+          />
           <div class="principles-grid">
             {principles.map((p, i) => (
               <div class="principle-card">
@@ -306,59 +308,7 @@ const principles = [
     padding: 0 40px;
   }
 
-  /* ─── Shared section headers ─────────────── */
-  .section-header {
-    margin-bottom: 48px;
-  }
-
-  .section-heading {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    font-weight: 700;
-    color: var(--zg-mid);
-    margin: 0 0 12px;
-    line-height: 1.2;
-  }
-
-  .section-sub {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    font-weight: 400;
-    color: var(--zg-mid);
-    margin: 0;
-  }
-
   /* ─── Buttons ────────────────────────────── */
-  .btn-teal {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 24px;
-    background: var(--zg-teal);
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: opacity 0.15s;
-  }
-
-  .btn-teal:hover { opacity: 0.88; }
-
-  .btn-blue-lg {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 207px;
-    height: 48px;
-    padding: 12px 20px;
-    background: #3C50E0;
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 24px;
-    transition: opacity 0.15s;
-  }
-
-  .btn-blue-lg:hover { opacity: 0.88; }
 
   /* ─── HERO ───────────────────────────────── */
   .hero {
@@ -380,9 +330,9 @@ const principles = [
     color: var(--zg-blue);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    background: #EEEEF9;
+    background: var(--zg-hover-light);
     padding: 4px 12px;
-    border-radius: 100px;
+    border-radius: var(--zg-radius-full);
     margin: 0 0 20px;
   }
 
@@ -499,23 +449,11 @@ const principles = [
     margin: 0;
   }
 
+  /* Button component handles .support-know-more base styles */
   .support-know-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     align-self: flex-start;
-    padding: 8px 20px;
     font-size: 1.0625rem;
-    font-weight: 600;
-    color: var(--zg-blue);
-    border: 1.5px solid var(--zg-blue);
-    border-radius: 8px;
-    transition: background 0.15s;
     margin-top: 4px;
-  }
-
-  .support-know-more:hover {
-    background: #EEEEF9;
   }
 
   .support-right {
@@ -716,7 +654,7 @@ const principles = [
   }
 
   .principle-card + .principle-card {
-    border-left: 2px solid rgba(60, 80, 224, 0.25);
+    border-left: 2px solid var(--zg-blue-25);
   }
 
   .principle-num {
@@ -790,14 +728,14 @@ const principles = [
     align-items: center;
     gap: 10px;
     background: white;
-    border: 1.5px solid #DDE2EF;
+    border: 1.5px solid var(--zg-input-border);
     border-radius: 8px;
     padding: 8px 16px;
   }
 
   .form-input-wrap:focus-within {
     border-color: var(--zg-blue);
-    outline: 2px solid rgba(60,80,224,0.15);
+    outline: 2px solid var(--zg-blue-15);
   }
 
   .form-input {
@@ -815,14 +753,14 @@ const principles = [
 
   .form-textarea-wrap {
     background: white;
-    border: 1.5px solid #DDE2EF;
+    border: 1.5px solid var(--zg-input-border);
     border-radius: 8px;
     padding: 12px 16px;
   }
 
   .form-textarea-wrap:focus-within {
     border-color: var(--zg-blue);
-    outline: 2px solid rgba(60,80,224,0.15);
+    outline: 2px solid var(--zg-blue-15);
   }
 
   .form-textarea {
@@ -1010,7 +948,7 @@ const principles = [
       width: 24px;
       height: 24px;
       border-radius: 999px;
-      background: rgba(60, 80, 224, 0.12);
+      background: var(--zg-hover-light);
       color: var(--zg-blue);
       font-size: 0.75rem;
       font-weight: 700;
@@ -1021,7 +959,7 @@ const principles = [
 
     .cflow-card.is-active .cflow-card-inner {
       transform: translateY(-2px);
-      border-color: rgba(60, 80, 224, 0.35);
+      border-color: var(--zg-blue-35);
       box-shadow: 0 10px 22px rgba(60, 80, 224, 0.18);
     }
 
@@ -1086,8 +1024,8 @@ const principles = [
 <script>
   const mobileQuery = window.matchMedia('(max-width: 768px)');
   const flowCards = Array.from(document.querySelectorAll('.flow-grid .cflow-card'));
-  let observer;
-  let rafId;
+  let observer: IntersectionObserver | undefined;
+  let rafId: number | undefined;
 
   const clearActiveCards = () => {
     flowCards.forEach((card) => card.classList.remove('is-active'));

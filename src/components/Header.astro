@@ -1,4 +1,5 @@
 ---
+import Button from './Button.astro';
 ---
 
 <header class="zg-header">
@@ -39,7 +40,7 @@
           </a>
         </div>
       </div>
-      <a href="https://calendly.com/aaddii091" class="zg-btn-primary" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+      <Button href="https://calendly.com/aaddii091" size="sm" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
     </div>
 
     <!-- Mobile menu toggle -->
@@ -52,9 +53,9 @@
   <div class="zg-mobile-menu" id="zg-mobile-menu" hidden>
     <a href="/responsible-use">Responsible Use</a>
     <a href="/privacy-policy">Privacy Policy</a>
-    <a href="https://client.zengarden.co.in/" class="zg-btn-ghost" target="_blank" rel="noopener noreferrer">Login as User</a>
-    <a href="https://control.zengarden.co.in/" class="zg-btn-ghost" target="_blank" rel="noopener noreferrer">Login as Psychologist/Mentor</a>
-    <a href="https://calendly.com/aaddii091" class="zg-btn-primary" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+    <Button variant="outline" href="https://client.zengarden.co.in/" size="md" class="mobile-btn" target="_blank" rel="noopener noreferrer">Login as User</Button>
+    <Button variant="outline" href="https://control.zengarden.co.in/" size="md" class="mobile-btn" target="_blank" rel="noopener noreferrer">Login as Psychologist/Mentor</Button>
+    <Button href="https://calendly.com/aaddii091" size="md" class="mobile-btn" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
   </div>
 </header>
 
@@ -74,7 +75,7 @@
     top: 0;
     z-index: 100;
     background: var(--zg-nav-bg);
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid var(--zg-border-light);
   }
 
   .zg-nav {
@@ -113,7 +114,7 @@
   }
 
   .zg-nav-links a:hover {
-    background: #EEEEF9;
+    background: var(--zg-hover-light);
     color: var(--zg-blue);
   }
 
@@ -124,19 +125,6 @@
     flex-shrink: 0;
   }
 
-  .zg-btn-ghost {
-    padding: 7px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--zg-blue);
-    border: 1.5px solid var(--zg-blue);
-    border-radius: 6px;
-    transition: background 0.15s;
-  }
-
-  .zg-btn-ghost:hover {
-    background: #EEEEF9;
-  }
 
   .zg-login-dropdown {
     position: relative;
@@ -183,9 +171,9 @@
     right: 0;
     min-width: 260px;
     background: white;
-    border: 1px solid #DDE2EF;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--zg-input-border);
+    border-radius: var(--zg-radius-lg);
+    box-shadow: var(--zg-shadow-lg);
     padding: 8px;
     margin-top: 8px;
     display: none;
@@ -218,24 +206,10 @@
   }
 
   .zg-login-item:hover {
-    background: #EEEEF9;
+    background: var(--zg-hover-light);
     color: var(--zg-blue);
   }
 
-  .zg-btn-primary {
-    padding: 7px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    background: var(--zg-blue);
-    border: 1.5px solid var(--zg-blue);
-    border-radius: 24px;
-    transition: opacity 0.15s;
-  }
-
-  .zg-btn-primary:hover {
-    opacity: 0.88;
-  }
 
   .zg-hamburger {
     display: none;
@@ -261,7 +235,7 @@
     flex-direction: column;
     gap: 4px;
     padding: 16px 24px 20px;
-    border-top: 1px solid #E8E8E8;
+    border-top: 1px solid var(--zg-border-light);
   }
 
   .zg-mobile-menu a {
@@ -269,13 +243,14 @@
     font-size: 1rem;
     font-weight: 600;
     color: var(--zg-dark);
-    border-radius: 6px;
+    border-radius: var(--zg-radius-sm);
   }
 
-  .zg-mobile-menu .zg-btn-primary,
-  .zg-mobile-menu .zg-btn-ghost {
+  .zg-mobile-menu :global(.mobile-btn) {
     text-align: center;
     margin-top: 4px;
+    width: 100%;
+    justify-content: center;
   }
 
   @media (max-width: 900px) {

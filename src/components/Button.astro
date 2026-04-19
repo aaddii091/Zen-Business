@@ -1,0 +1,104 @@
+---
+interface Props {
+  variant?: 'primary' | 'outline' | 'teal';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel,
+  type = 'button',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const cls = ['btn', `btn--${variant}`, `btn--${size}`, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{href ? (
+  <a href={href} target={target} rel={rel} class={cls} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={cls} {...rest}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  /* ── Sizes ── */
+  .btn--sm {
+    padding: 0 20px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .btn--md {
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
+
+  .btn--lg {
+    width: 207px;
+    height: 48px;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  /* ── Variants ── */
+  .btn--primary {
+    background: var(--zg-blue);
+    color: #fff;
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 100px;
+  }
+  .btn--primary:hover {
+    opacity: 0.88;
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--zg-blue);
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 8px;
+  }
+  .btn--outline:hover {
+    background: var(--zg-hover-light);
+  }
+
+  .btn--teal {
+    background: var(--zg-teal);
+    color: #fff;
+    border-radius: 6px;
+  }
+  .btn--teal:hover {
+    opacity: 0.88;
+  }
+</style>
