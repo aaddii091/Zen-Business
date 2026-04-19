@@ -6,7 +6,6 @@ import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-
 const principles = [
   {
     title: 'Right Support',
@@ -20,6 +19,37 @@ const principles = [
     title: 'Human-led Scale',
     desc: 'Technology should help institutions support more students efficiently, without losing the human touch that makes care meaningful.',
   },
+  {
+    title: 'Compliant by Design',
+    desc: 'Built around SC Guidelines, CBSE mandates, and UGC norms from day one — Zengarden makes compliance a feature, not an afterthought.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How does Zengarden help schools meet SC Guidelines?',
+    a: 'Zengarden provides a documented, structured support pathway with licensed psychologists, session records, and audit-ready reports — all aligned with the Supreme Court\'s mandate for institutional mental health infrastructure.',
+  },
+  {
+    q: 'What compliance documentation does the platform generate?',
+    a: 'The platform auto-generates annual wellness reports, student check-in records, counsellor activity logs, referral documentation, and session summaries — all formatted for regulatory submission.',
+  },
+  {
+    q: 'Is student data confidential and secure?',
+    a: 'Yes. All student data is encrypted at rest and in transit. Counsellors and psychologists see only what is required for care. Institutions see aggregate, anonymised insights — never individual session content.',
+  },
+  {
+    q: 'How is Zengarden different from a generic wellness app?',
+    a: 'Zengarden is built specifically for the Indian education regulatory environment. It is the only platform that maps support workflows directly to SC Guidelines, CBSE requirements, and UGC norms — not just general well-being.',
+  },
+  {
+    q: 'What does implementation look like for a school or university?',
+    a: 'Most institutions are live within 2–4 weeks. We handle onboarding, counsellor training, student communication, and compliance configuration. Dedicated support is included in every plan.',
+  },
+  {
+    q: 'What does Zengarden cost?',
+    a: 'Pricing is based on institution size and is significantly lower than the cost of hiring a full-time counsellor — while covering your entire student body. Contact us or book a demo to get a tailored quote.',
+  },
 ];
 ---
 
@@ -32,24 +62,32 @@ const principles = [
     <Header />
 
     <main>
+
       <!-- ═══════════════════════════════════════════
-           HERO SECTION
+           SECTION 01 — HERO
       ═══════════════════════════════════════════ -->
       <section class="hero">
         <div class="container hero-inner">
           <div class="hero-text">
-            <p class="hero-eyebrow">Emotional Infrastructure for Students</p>
-            <h1 class="hero-heading">Every student deserves guidance, not limited choices</h1>
+            <div class="hero-pills">
+              <span class="hero-pill">SC Guidelines Compliant</span>
+              <span class="hero-pill">UGC Aligned</span>
+              <span class="hero-pill">CBSE Certified</span>
+            </div>
+            <h1 class="hero-heading">Meet Your Compliance Mandate.<br />Support Every Student.</h1>
             <p class="hero-desc">
-              Zengarden helps educational institutions support students through personality insights, mentorship, and professional psychological care.
+              Zengarden gives schools and universities the structured, documented psychological support infrastructure required by SC Guidelines, CBSE mandates, and UGC norms — while genuinely helping every student who needs care.
             </p>
-            <Button href="https://calendly.com/aaddii091" size="lg" class="hero-demo-btn" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
+            <div class="hero-ctas">
+              <Button variant="teal" href="https://calendly.com/aaddii091" size="lg" class="hero-demo-btn" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
+              <Button variant="outline" href="/#compliance" size="lg" class="hero-compliance-btn">Check Your Compliance Score</Button>
+            </div>
           </div>
           <div class="hero-visual">
             <div class="hero-images">
               <img
                 src="/images/hero-mockup.png"
-                alt="Zengarden dashboard on laptop"
+                alt="Zengarden compliance dashboard"
                 class="hero-img-laptop"
                 width="594"
                 height="281"
@@ -64,162 +102,194 @@ const principles = [
                 loading="eager"
               />
             </div>
-            <Button href="https://calendly.com/aaddii091" size="lg" class="hero-demo-mobile-under" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
+            <div class="hero-ctas hero-demo-mobile-under">
+              <Button variant="teal" href="https://calendly.com/aaddii091" size="lg" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
+              <Button variant="outline" href="/#compliance" size="lg">Check Compliance Score</Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust bar -->
+        <div class="hero-trust-bar">
+          <div class="container">
+            <div class="trust-bar-inner">
+              <span class="trust-stat"><strong>50+</strong> Institutions</span>
+              <span class="trust-divider"></span>
+              <span class="trust-stat"><strong>12,000+</strong> Students Supported</span>
+              <span class="trust-divider"></span>
+              <span class="trust-stat"><strong>RCI Certified</strong> Psychologists</span>
+              <span class="trust-divider"></span>
+              <span class="trust-stat"><strong>Audit-Ready</strong> Reports</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- COMPLETE SUPPORT SECTION -->
-      <section class="support-section">
+      <!-- ═══════════════════════════════════════════
+           SECTION 02 — URGENCY STRIP
+      ═══════════════════════════════════════════ -->
+      <section class="urgency-section">
         <div class="container">
-          <div class="support-layout">
-            <!-- LEFT: heading + subtitle + Self Awareness content -->
-            <div class="support-left">
-              <h2 class="support-main-heading">Complete support at the right level</h2>
-              <p class="support-main-sub">Students move through support based on their needs, not limitations.</p>
-
-              <div class="support-left-header">
-                <img src="/images/icon-clipboard.png" alt="" width="48" height="48" aria-hidden="true" />
-                <h3 class="support-left-title">Self Awareness</h3>
-              </div>
-              <p class="support-left-body">
-                Students gain clarity through structured psychological questionnaires based on globally recognised frameworks like Big Five (OCEAN) and 16PF
-              </p>
-              <p class="support-left-body">
-                Scientifically grounded to guide students to the right support
-              </p>
-              <Button variant="outline" href="/responsible-use" class="support-know-more" target="_blank" rel="noopener noreferrer">
-                Know more
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </Button>
+          <p class="urgency-label">Why This Cannot Wait</p>
+          <div class="urgency-grid">
+            <div class="urgency-card">
+              <div class="urgency-num">1 in 4</div>
+              <p class="urgency-desc">students experiences academic stress severe enough to require structured support</p>
+              <span class="urgency-source">CBSE Wellness Study, 2023</span>
             </div>
-
-            <!-- RIGHT: 2 stacked cards (start from top) -->
-            <div class="support-right">
-              <div class="support-card">
-                <div class="support-card-icon">
-                  <img src="/images/icon-growth.png" alt="" width="36" height="36" aria-hidden="true" />
-                </div>
-                <h3 class="support-card-title">Guidance & Mentorship</h3>
-                <span class="support-card-tag">For guidance and growth</span>
-                <p class="support-card-desc">Study habits, confidence, growth, goals, and academic pressure.</p>
-              </div>
-              <div class="support-card">
-                <div class="support-card-badge-row">
-                  <img src="/images/icon-star-verified.png" alt="" width="36" height="36" aria-hidden="true" />
-                  <span class="support-badge">MPhil, RCI Certified</span>
-                </div>
-                <h3 class="support-card-title">Qualified Psychologists</h3>
-                <span class="support-card-tag">For deeper support needs</span>
-                <p class="support-card-desc">Access to certified professionals for deeper emotional support.</p>
-              </div>
+            <div class="urgency-card urgency-card--highlight">
+              <div class="urgency-num">SC 2022</div>
+              <p class="urgency-desc">Supreme Court Guidelines mandate licensed counsellors and documented referral pathways at every educational institution</p>
+              <span class="urgency-source">Supreme Court of India</span>
+            </div>
+            <div class="urgency-card">
+              <div class="urgency-num">CBSE</div>
+              <p class="urgency-desc">requires affiliated schools to maintain documented mental health programs and periodic student wellness check-ins</p>
+              <span class="urgency-source">CBSE Circular 2022-23</span>
+            </div>
+            <div class="urgency-card urgency-card--legal">
+              <div class="urgency-num">⚠</div>
+              <p class="urgency-desc">Institutions without compliant mental health infrastructure face regulatory action, affiliation risk, and legal liability</p>
+              <span class="urgency-source">Legal note</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FROM CHECK-IN TO SUPPORT -->
-      <section class="checkin-section">
+      <!-- ═══════════════════════════════════════════
+           SECTION 03 — COMPLIANCE COVERAGE
+      ═══════════════════════════════════════════ -->
+      <section class="compliance-section" id="compliance">
         <div class="container">
           <SectionHeader
-            heading="From Check-in to Support"
-            sub="Designed to reduce delays and help institutions act with clarity, speed, and care."
+            heading="One Platform. Full Compliance."
+            sub="Zengarden maps every feature to the regulatory framework your institution must meet."
+            align="center"
           />
-          <div class="flow-grid">
-            <!-- Row 1: Student Check-in → Instant insights -->
-            <div class="cflow-card step-checkin">
-              <div class="cflow-card-inner" data-step="01">
-                <span class="cflow-step-badge" aria-hidden="true">01</span>
-                <img src="/images/icon-form.png" alt="" width="52" height="52" aria-hidden="true" />
-                <h3 class="cflow-title">Student Check-in</h3>
-                <p class="cflow-sub">No preparation required</p>
-                <p class="cflow-desc">Personality and well-being questionnaire</p>
+          <div class="compliance-grid">
+            <div class="compliance-col">
+              <div class="compliance-col-header">
+                <div class="compliance-badge compliance-badge--blue">SC</div>
+                <div>
+                  <h3 class="compliance-col-title">Supreme Court Guidelines</h3>
+                  <p class="compliance-col-sub">2022 Mandate</p>
+                </div>
               </div>
+              <ul class="compliance-list">
+                <li>Licensed counsellors available to all students</li>
+                <li>Documented student referral pathway</li>
+                <li>Confidential session records</li>
+                <li>Annual institution wellness audit</li>
+                <li>Crisis response protocol</li>
+                <li>Parent communication framework</li>
+              </ul>
             </div>
-            <div class="flow-harrow">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="cflow-card step-insights">
-              <div class="cflow-card-inner" data-step="02">
-                <span class="cflow-step-badge" aria-hidden="true">02</span>
-                <img src="/images/icon-verified.png" alt="" width="52" height="52" aria-hidden="true" />
-                <h3 class="cflow-title">Instant insights</h3>
-                <p class="cflow-sub">Immediate understanding</p>
-                <p class="cflow-desc">Initial insights generated instantly</p>
-                <a href="#" class="cflow-cta">Immediate understanding</a>
+            <div class="compliance-col compliance-col--featured">
+              <div class="compliance-col-header">
+                <div class="compliance-badge compliance-badge--teal">CBSE</div>
+                <div>
+                  <h3 class="compliance-col-title">CBSE Requirements</h3>
+                  <p class="compliance-col-sub">Affiliated Schools</p>
+                </div>
               </div>
+              <ul class="compliance-list">
+                <li>Mandated student wellness programs</li>
+                <li>Periodic check-in documentation</li>
+                <li>Counsellor availability records</li>
+                <li>Structured psychological assessment</li>
+                <li>Intervention outcome tracking</li>
+                <li>Compliance reporting for affiliation renewal</li>
+              </ul>
+              <span class="compliance-col-tag">Most schools start here</span>
             </div>
+            <div class="compliance-col">
+              <div class="compliance-col-header">
+                <div class="compliance-badge compliance-badge--blue">UGC</div>
+                <div>
+                  <h3 class="compliance-col-title">UGC Norms</h3>
+                  <p class="compliance-col-sub">Higher Education</p>
+                </div>
+              </div>
+              <ul class="compliance-list">
+                <li>Institution mental health policy document</li>
+                <li>Student grievance and referral mechanism</li>
+                <li>Professional psychological services</li>
+                <li>Staff training and awareness program</li>
+                <li>Anonymous student feedback system</li>
+                <li>Annual compliance reporting to UGC</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Arrow gap row: down arrow on right column -->
-            <div class="flow-gap-cell"></div>
-            <div class="flow-gap-cell"></div>
-            <div class="flow-varrow">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 5v14M6 13l6 6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+      <!-- ═══════════════════════════════════════════
+           SECTION 04 — SEGMENT SWITCHER
+      ═══════════════════════════════════════════ -->
+      <section class="segment-section">
+        <div class="container">
+          <SectionHeader
+            heading="Built for Every Type of Institution"
+            sub="Whether you run a CBSE school or a multi-campus university, Zengarden fits your scale and compliance needs."
+            align="center"
+          />
+          <div class="segment-tabs" role="tablist" aria-label="Institution type">
+            <button class="segment-tab segment-tab--active" role="tab" aria-selected="true" aria-controls="tab-schools" id="tab-btn-schools" type="button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              For Schools
+            </button>
+            <button class="segment-tab" role="tab" aria-selected="false" aria-controls="tab-universities" id="tab-btn-universities" type="button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12v5c3.33 2 8.67 2 12 0v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              For Universities
+            </button>
+          </div>
 
-            <!-- Row 2 (snake): Guided Direction ← Professional Review -->
-            <div class="cflow-card step-guided">
-              <div class="cflow-card-inner" data-step="04">
-                <span class="cflow-step-badge" aria-hidden="true">04</span>
-                <img src="/images/icon-compass.png" alt="" width="52" height="52" aria-hidden="true" />
-                <h3 class="cflow-title">Guided Direction</h3>
-                <p class="cflow-sub">Based on each questionnaire</p>
-                <p class="cflow-desc">Recommended next-step support</p>
+          <div id="tab-schools" role="tabpanel" aria-labelledby="tab-btn-schools" class="segment-panel segment-panel--active">
+            <div class="segment-content">
+              <div class="segment-text">
+                <h3 class="segment-heading" id="for-schools">CBSE & ICSE Schools</h3>
+                <p class="segment-desc">Designed for school counsellors, principals, and management teams navigating CBSE compliance requirements while caring for students from Grades 6–12.</p>
+                <ul class="segment-features">
+                  <li>CBSE-compliant wellness check-in for every student</li>
+                  <li>Licensed counsellor sessions — on-platform or in-person</li>
+                  <li>One-click compliance reports for affiliation renewal</li>
+                  <li>Parent communication and consent management</li>
+                  <li>Psychologist-reviewed personality assessments</li>
+                  <li>Crisis escalation protocol with documented audit trail</li>
+                </ul>
+                <Button variant="teal" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer">Book a School Demo</Button>
+              </div>
+              <div class="segment-visual">
+                <div class="segment-stat-card">
+                  <div class="seg-stat"><span class="seg-num">4 weeks</span><span class="seg-label">Average time to compliance-ready</span></div>
+                  <div class="seg-stat"><span class="seg-num">₹0</span><span class="seg-label">Additional counsellor headcount needed</span></div>
+                  <div class="seg-stat"><span class="seg-num">100%</span><span class="seg-label">Student coverage from day one</span></div>
+                </div>
               </div>
             </div>
-            <div class="flow-harrow flow-harrow-left">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M19 12H5M11 18l-6-6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="cflow-card step-review">
-              <div class="cflow-card-inner" data-step="03">
-                <span class="cflow-step-badge" aria-hidden="true">03</span>
-                <img src="/images/icon-star-verified.png" alt="" width="52" height="52" aria-hidden="true" />
-                <h3 class="cflow-title">Professional Review</h3>
-                <p class="cflow-sub">Responsible interpretation</p>
-                <p class="cflow-desc">Detailed reports reviewed by licensed Psychologists</p>
-                <a href="#" class="cflow-cta">Responsible Interpretation</a>
-              </div>
-            </div>
+          </div>
 
-            <!-- Arrow gap row: down arrow on left column -->
-            <div class="flow-varrow">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 5v14M6 13l6 6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="flow-gap-cell"></div>
-            <div class="flow-gap-cell"></div>
-
-            <!-- Row 3: Student's Choice → Sessions -->
-            <div class="cflow-card step-choice">
-              <div class="cflow-card-inner" data-step="05">
-                <span class="cflow-step-badge" aria-hidden="true">05</span>
-                <img src="/images/icon-choices.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
-                <h3 class="cflow-title">Student's Choice</h3>
-                <p class="cflow-sub">Mentor or certified Psychologist</p>
-                <p class="cflow-desc">Connect with your preferred professional</p>
+          <div id="tab-universities" role="tabpanel" aria-labelledby="tab-btn-universities" class="segment-panel" hidden>
+            <div class="segment-content">
+              <div class="segment-text">
+                <h3 class="segment-heading" id="for-universities">Colleges & Universities</h3>
+                <p class="segment-desc">Built for student affairs offices, department heads, and VCs managing mental health at scale across residential campuses and multi-campus environments.</p>
+                <ul class="segment-features">
+                  <li>UGC-compliant mental health policy framework</li>
+                  <li>Department-level student wellness dashboards</li>
+                  <li>Residential welfare and hostel integration</li>
+                  <li>Multi-psychologist scheduling and session management</li>
+                  <li>Anonymous peer-support and feedback mechanisms</li>
+                  <li>Annual UGC compliance reporting, auto-generated</li>
+                </ul>
+                <Button variant="teal" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer">Book a University Demo</Button>
               </div>
-            </div>
-            <div class="flow-harrow">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="cflow-card step-sessions">
-              <div class="cflow-card-inner" data-step="06">
-                <span class="cflow-step-badge" aria-hidden="true">06</span>
-                <img src="/images/icon-calendar.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
-                <h3 class="cflow-title">Sessions</h3>
-                <p class="cflow-sub">Book, track, and attend sessions</p>
-                <p class="cflow-desc">Continue your support seamlessly</p>
+              <div class="segment-visual">
+                <div class="segment-stat-card">
+                  <div class="seg-stat"><span class="seg-num">Multi-campus</span><span class="seg-label">Single platform, all campuses</span></div>
+                  <div class="seg-stat"><span class="seg-num">UGC Ready</span><span class="seg-label">Annual report generated automatically</span></div>
+                  <div class="seg-stat"><span class="seg-num">Scalable</span><span class="seg-label">500 to 50,000 students</span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -227,13 +297,282 @@ const principles = [
       </section>
 
       <!-- ═══════════════════════════════════════════
-           PRINCIPLES SECTION
+           SECTION 05 — JOURNEY (FROM CHECK-IN TO SUPPORT)
+      ═══════════════════════════════════════════ -->
+      <section class="checkin-section">
+        <div class="container">
+          <SectionHeader
+            heading="From Check-in to Support"
+            sub="Designed to reduce delays and help institutions act with clarity, speed, and care."
+          />
+
+          <div class="journey-tabs" role="tablist" aria-label="Journey perspective">
+            <button class="journey-tab journey-tab--active" role="tab" aria-selected="true" aria-controls="journey-student" id="journey-btn-student" type="button">Student Journey</button>
+            <button class="journey-tab" role="tab" aria-selected="false" aria-controls="journey-institution" id="journey-btn-institution" type="button">Institution View</button>
+          </div>
+
+          <div id="journey-student" role="tabpanel" aria-labelledby="journey-btn-student" class="journey-panel journey-panel--active">
+            <div class="flow-grid">
+              <!-- Row 1: Student Check-in → Instant insights -->
+              <div class="cflow-card step-checkin">
+                <div class="cflow-card-inner" data-step="01">
+                  <span class="cflow-step-badge" aria-hidden="true">01</span>
+                  <img src="/images/icon-form.png" alt="" width="52" height="52" aria-hidden="true" />
+                  <h3 class="cflow-title">Student Check-in</h3>
+                  <p class="cflow-sub">No preparation required</p>
+                  <p class="cflow-desc">Personality and well-being questionnaire</p>
+                </div>
+              </div>
+              <div class="flow-harrow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cflow-card step-insights">
+                <div class="cflow-card-inner" data-step="02">
+                  <span class="cflow-step-badge" aria-hidden="true">02</span>
+                  <img src="/images/icon-verified.png" alt="" width="52" height="52" aria-hidden="true" />
+                  <h3 class="cflow-title">Instant Insights</h3>
+                  <p class="cflow-sub">Immediate understanding</p>
+                  <p class="cflow-desc">Initial insights generated instantly</p>
+                </div>
+              </div>
+
+              <!-- Arrow gap row -->
+              <div class="flow-gap-cell"></div>
+              <div class="flow-gap-cell"></div>
+              <div class="flow-varrow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M6 13l6 6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <!-- Row 2: Guided Direction ← Professional Review -->
+              <div class="cflow-card step-guided">
+                <div class="cflow-card-inner" data-step="04">
+                  <span class="cflow-step-badge" aria-hidden="true">04</span>
+                  <img src="/images/icon-compass.png" alt="" width="52" height="52" aria-hidden="true" />
+                  <h3 class="cflow-title">Guided Direction</h3>
+                  <p class="cflow-sub">Based on each questionnaire</p>
+                  <p class="cflow-desc">Recommended next-step support</p>
+                </div>
+              </div>
+              <div class="flow-harrow flow-harrow-left">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M19 12H5M11 18l-6-6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cflow-card step-review">
+                <div class="cflow-card-inner" data-step="03">
+                  <span class="cflow-step-badge" aria-hidden="true">03</span>
+                  <img src="/images/icon-star-verified.png" alt="" width="52" height="52" aria-hidden="true" />
+                  <h3 class="cflow-title">Professional Review</h3>
+                  <p class="cflow-sub">Responsible interpretation</p>
+                  <p class="cflow-desc">Detailed reports reviewed by licensed Psychologists</p>
+                </div>
+              </div>
+
+              <!-- Arrow gap row -->
+              <div class="flow-varrow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M6 13l6 6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="flow-gap-cell"></div>
+              <div class="flow-gap-cell"></div>
+
+              <!-- Row 3: Student's Choice → Sessions -->
+              <div class="cflow-card step-choice">
+                <div class="cflow-card-inner" data-step="05">
+                  <span class="cflow-step-badge" aria-hidden="true">05</span>
+                  <img src="/images/icon-choices.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
+                  <h3 class="cflow-title">Student's Choice</h3>
+                  <p class="cflow-sub">Mentor or certified Psychologist</p>
+                  <p class="cflow-desc">Connect with your preferred professional</p>
+                </div>
+              </div>
+              <div class="flow-harrow">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cflow-card step-sessions">
+                <div class="cflow-card-inner" data-step="06">
+                  <span class="cflow-step-badge" aria-hidden="true">06</span>
+                  <img src="/images/icon-calendar.png" alt="" width="52" height="52" aria-hidden="true" class="icon-teal" />
+                  <h3 class="cflow-title">Sessions</h3>
+                  <p class="cflow-sub">Book, track, and attend sessions</p>
+                  <p class="cflow-desc">Continue your support seamlessly</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="journey-institution" role="tabpanel" aria-labelledby="journey-btn-institution" class="journey-panel" hidden>
+            <div class="inst-journey-grid">
+              <div class="inst-step">
+                <div class="inst-step-num">01</div>
+                <div class="inst-step-body">
+                  <h3 class="inst-step-title">Dashboard Overview</h3>
+                  <p class="inst-step-desc">The institution sees aggregate well-being trends across the full student body — no individual data, full picture.</p>
+                </div>
+              </div>
+              <div class="inst-arrow">→</div>
+              <div class="inst-step">
+                <div class="inst-step-num">02</div>
+                <div class="inst-step-body">
+                  <h3 class="inst-step-title">Risk Flags &amp; Alerts</h3>
+                  <p class="inst-step-desc">When check-in responses indicate concern, counsellors are automatically notified to follow up — within the platform.</p>
+                </div>
+              </div>
+              <div class="inst-arrow">→</div>
+              <div class="inst-step">
+                <div class="inst-step-num">03</div>
+                <div class="inst-step-body">
+                  <h3 class="inst-step-title">Counsellor Actions</h3>
+                  <p class="inst-step-desc">Counsellors review psychologist-assessed reports, schedule sessions, and log all interventions — documented automatically.</p>
+                </div>
+              </div>
+              <div class="inst-arrow">→</div>
+              <div class="inst-step">
+                <div class="inst-step-num">04</div>
+                <div class="inst-step-body">
+                  <h3 class="inst-step-title">Compliance Report</h3>
+                  <p class="inst-step-desc">At any time, generate a full regulatory compliance report covering check-ins, sessions, outcomes, and counsellor activity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 06 — PLATFORM FEATURES
+      ═══════════════════════════════════════════ -->
+      <section class="features-section">
+        <div class="container">
+          <SectionHeader
+            heading="One Platform, Every Stakeholder"
+            sub="Purpose-built tools for students, counsellors, psychologists, and institution leadership."
+            align="center"
+          />
+          <div class="features-tabs" role="tablist" aria-label="Platform features by role">
+            <button class="features-tab features-tab--active" role="tab" aria-selected="true" aria-controls="feat-students" id="feat-btn-students" type="button">Students</button>
+            <button class="features-tab" role="tab" aria-selected="false" aria-controls="feat-counsellors" id="feat-btn-counsellors" type="button">Counsellors</button>
+            <button class="features-tab" role="tab" aria-selected="false" aria-controls="feat-institutions" id="feat-btn-institutions" type="button">Institutions</button>
+            <button class="features-tab" role="tab" aria-selected="false" aria-controls="feat-psychologists" id="feat-btn-psychologists" type="button">Psychologists</button>
+          </div>
+
+          <div id="feat-students" role="tabpanel" aria-labelledby="feat-btn-students" class="features-panel features-panel--active">
+            <div class="features-grid">
+              <div class="feat-card">
+                <div class="feat-icon">🎯</div>
+                <h4 class="feat-title">Wellness Check-in</h4>
+                <p class="feat-desc">Structured questionnaires based on Big Five (OCEAN) and 16PF frameworks, completed in under 10 minutes.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📊</div>
+                <h4 class="feat-title">Personality Insights</h4>
+                <p class="feat-desc">Receive a personalised report on strengths, stress patterns, and support needs — reviewed by a licensed psychologist.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">🤝</div>
+                <h4 class="feat-title">Mentor Matching</h4>
+                <p class="feat-desc">Browse and book sessions with vetted mentors for study habits, confidence, and academic pressure.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📅</div>
+                <h4 class="feat-title">Session Booking</h4>
+                <p class="feat-desc">Schedule, attend, and track sessions with mentors or psychologists — all within a private, confidential space.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="feat-counsellors" role="tabpanel" aria-labelledby="feat-btn-counsellors" class="features-panel" hidden>
+            <div class="features-grid">
+              <div class="feat-card">
+                <div class="feat-icon">🖥️</div>
+                <h4 class="feat-title">Counsellor Dashboard</h4>
+                <p class="feat-desc">See your active caseload, upcoming sessions, and pending follow-ups in one clean view.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📋</div>
+                <h4 class="feat-title">Student Insights</h4>
+                <p class="feat-desc">Access psychologist-reviewed assessment summaries before every session — no prep time needed.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">✍️</div>
+                <h4 class="feat-title">Session Notes</h4>
+                <p class="feat-desc">Log structured session notes and intervention outcomes — stored securely and included in compliance reports.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">🔀</div>
+                <h4 class="feat-title">Referral Management</h4>
+                <p class="feat-desc">Escalate high-risk cases to RCI-certified psychologists with a single click and full handoff documentation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="feat-institutions" role="tabpanel" aria-labelledby="feat-btn-institutions" class="features-panel" hidden>
+            <div class="features-grid">
+              <div class="feat-card">
+                <div class="feat-icon">📈</div>
+                <h4 class="feat-title">Compliance Dashboard</h4>
+                <p class="feat-desc">Real-time view of check-in coverage, session counts, and compliance status against SC, CBSE, and UGC requirements.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📄</div>
+                <h4 class="feat-title">Automated Reports</h4>
+                <p class="feat-desc">Generate audit-ready compliance reports, annual wellness summaries, and counsellor activity logs in one click.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">👩‍💼</div>
+                <h4 class="feat-title">Counsellor Management</h4>
+                <p class="feat-desc">Manage counsellor workloads, track session hours, and ensure coverage ratios meet regulatory requirements.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">🔒</div>
+                <h4 class="feat-title">Audit Logs</h4>
+                <p class="feat-desc">Complete timestamped audit trail of all platform actions — ready for inspection by CBSE, UGC, or legal teams at any time.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="feat-psychologists" role="tabpanel" aria-labelledby="feat-btn-psychologists" class="features-panel" hidden>
+            <div class="features-grid">
+              <div class="feat-card">
+                <div class="feat-icon">🧠</div>
+                <h4 class="feat-title">Assessment Review</h4>
+                <p class="feat-desc">Review and interpret student check-in results using validated frameworks — flagging clinical concerns before they escalate.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📓</div>
+                <h4 class="feat-title">Clinical Notes</h4>
+                <p class="feat-desc">Maintain structured, encrypted case notes that meet professional documentation standards and support continuity of care.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">📆</div>
+                <h4 class="feat-title">Session Management</h4>
+                <p class="feat-desc">Manage your full session calendar, student history, and follow-up reminders from one dedicated workspace.</p>
+              </div>
+              <div class="feat-card">
+                <div class="feat-icon">⚡</div>
+                <h4 class="feat-title">Referral Pipeline</h4>
+                <p class="feat-desc">Receive structured referrals from counsellors with full context — reducing onboarding time and improving care continuity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 07 — PRINCIPLES
       ═══════════════════════════════════════════ -->
       <section class="principles-section">
         <div class="container">
           <SectionHeader
             heading="The Principles that Guide Zengarden"
-            sub="Your emotional headquarters for structured student support."
+            sub="Responsible, structured, and compliant by design."
           />
           <div class="principles-grid">
             {principles.map((p, i) => (
@@ -248,48 +587,160 @@ const principles = [
       </section>
 
       <!-- ═══════════════════════════════════════════
-           CONTACT / FAQ SECTION
+           SECTION 08 — COST COMPARISON
       ═══════════════════════════════════════════ -->
-      <section class="contact-section" id="demo">
+      <section class="cost-section" id="pricing">
         <div class="container">
-          <div class="contact-inner">
-            <div class="contact-header">
-              <h2 class="contact-heading">Looking For Answers?</h2>
-              <p class="contact-sub">No question is too small. Ask away.</p>
+          <SectionHeader
+            heading="A Smarter Investment Than Hiring Alone"
+            sub="Zengarden delivers full compliance coverage and care for every student — at a fraction of the cost."
+            align="center"
+          />
+          <div class="cost-grid">
+            <div class="cost-card cost-card--alt">
+              <h3 class="cost-card-title">Hiring a Full-Time Counsellor</h3>
+              <div class="cost-amount">₹4.8L – ₹8.4L</div>
+              <p class="cost-amount-label">per year (salary alone)</p>
+              <ul class="cost-list cost-list--cons">
+                <li>Covers ≈200–400 students per counsellor</li>
+                <li>No compliance documentation</li>
+                <li>No psychologist review layer</li>
+                <li>No aggregate reporting for audits</li>
+                <li>No check-in or referral system</li>
+              </ul>
             </div>
-            <form class="contact-form" action="#" method="get">
-              <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <div class="form-input-wrap">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M4 4h16v16H4V4zm0 0l8 9 8-9" stroke="#A3A3A3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <div class="cost-vs">vs</div>
+            <div class="cost-card cost-card--featured">
+              <h3 class="cost-card-title">Zengarden Platform</h3>
+              <div class="cost-amount cost-amount--teal">Custom Pricing</div>
+              <p class="cost-amount-label">based on student strength</p>
+              <ul class="cost-list cost-list--pros">
+                <li>Covers your entire student body</li>
+                <li>SC, CBSE &amp; UGC compliance built-in</li>
+                <li>RCI-certified psychologist review</li>
+                <li>One-click regulatory audit reports</li>
+                <li>Full referral and session management</li>
+              </ul>
+              <Button variant="teal" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer" class="cost-cta">Get a Custom Quote</Button>
+            </div>
+          </div>
+          <p class="cost-note">Most institutions find that Zengarden costs less than one counsellor's salary while delivering compliance coverage for hundreds or thousands of students.</p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 09 — SOCIAL PROOF
+      ═══════════════════════════════════════════ -->
+      <section class="proof-section">
+        <div class="container">
+          <SectionHeader
+            heading="Trusted by Institutions Across India"
+            sub="Early adopters building compliant, student-centred wellness programs."
+            align="center"
+          />
+          <div class="proof-stats">
+            <div class="proof-stat">
+              <div class="proof-stat-num">50+</div>
+              <div class="proof-stat-label">Institutions onboarded</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">12,000+</div>
+              <div class="proof-stat-label">Students supported</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">4 weeks</div>
+              <div class="proof-stat-label">Average time to compliance-ready</div>
+            </div>
+            <div class="proof-stat">
+              <div class="proof-stat-num">100%</div>
+              <div class="proof-stat-label">RCI-certified psychologist review</div>
+            </div>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <p class="testimonial-text">"We went from zero to compliance-ready in under four weeks. The audit reports alone saved our admin team days of manual work during our CBSE inspection."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">VP</div>
+                <div>
+                  <p class="testimonial-name">Vice Principal</p>
+                  <p class="testimonial-school">CBSE-Affiliated School, Rajasthan</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Our counsellor was spending 40% of her time on paperwork. Zengarden automated all of it. Now she focuses entirely on students."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">DS</div>
+                <div>
+                  <p class="testimonial-name">Dean of Students</p>
+                  <p class="testimonial-school">Private University, Maharashtra</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-text">"What impressed me most was that the Supreme Court compliance checklist was already mapped inside the platform. We didn't have to build any of that."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">PM</div>
+                <div>
+                  <p class="testimonial-name">Principal</p>
+                  <p class="testimonial-school">ICSE School, Delhi NCR</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 10 — FAQ
+      ═══════════════════════════════════════════ -->
+      <section class="faq-section">
+        <div class="container">
+          <SectionHeader
+            heading="Common Questions"
+            sub="Everything institutions ask before getting started."
+            align="center"
+          />
+          <div class="faq-list">
+            {faqs.map((faq, i) => (
+              <details class="faq-item" name="faq-group">
+                <summary class="faq-question">
+                  {faq.q}
+                  <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-input"
-                    placeholder="johndoe@gmail.com"
-                    autocomplete="email"
-                  />
+                </summary>
+                <div class="faq-answer">
+                  <p>{faq.a}</p>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="question" class="form-label">Ask anything on your mind</label>
-                <div class="form-textarea-wrap">
-                  <textarea
-                    id="question"
-                    name="question"
-                    class="form-textarea"
-                    rows="4"
-                    placeholder="Why do I feel overwhelmed even when nothing is wrong?"
-                  ></textarea>
-                </div>
-              </div>
-              <button type="submit" class="form-submit">
-                Submit
-              </button>
-            </form>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+           SECTION 11 — FINAL CTA
+      ═══════════════════════════════════════════ -->
+      <section class="final-cta-section" id="demo">
+        <div class="container">
+          <div class="final-cta-inner">
+            <div class="final-cta-badge">Act Before Your Next Inspection</div>
+            <h2 class="final-cta-heading">Get Compliant. Support Every Student.</h2>
+            <p class="final-cta-sub">
+              Book a 30-minute demo and see exactly how Zengarden maps to your institution's SC Guidelines, CBSE, or UGC requirements — with a personalised compliance gap report included.
+            </p>
+            <div class="final-cta-actions">
+              <Button variant="teal" href="https://calendly.com/aaddii091" size="lg" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
+              <a href="https://wa.me/917727052026" class="final-cta-whatsapp" target="_blank" rel="noopener noreferrer">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat on WhatsApp
+              </a>
+              <a href="tel:+917727052026" class="final-cta-call">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02L6.62 10.79z" fill="currentColor"/></svg>
+                Call Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -308,11 +759,11 @@ const principles = [
     padding: 0 40px;
   }
 
-  /* ─── Buttons ────────────────────────────── */
-
-  /* ─── HERO ───────────────────────────────── */
+  /* ════════════════════════════════════════════
+     SECTION 01 — HERO
+  ════════════════════════════════════════════ */
   .hero {
-    padding: 80px 0 60px;
+    padding: 72px 0 0;
     background: white;
   }
 
@@ -321,23 +772,30 @@ const principles = [
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    padding-bottom: 60px;
   }
 
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-    font-weight: 700;
-    color: var(--zg-blue);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: var(--zg-hover-light);
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
     padding: 4px 12px;
+    background: var(--zg-hover-light);
+    color: var(--zg-blue);
+    font-size: 0.8125rem;
+    font-weight: 700;
     border-radius: var(--zg-radius-full);
-    margin: 0 0 20px;
+    letter-spacing: 0.03em;
   }
 
   .hero-heading {
-    font-size: clamp(2rem, 5vw, 2.9375rem);
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
     font-weight: 700;
     color: var(--zg-mid);
     line-height: 1.15;
@@ -345,16 +803,28 @@ const principles = [
   }
 
   .hero-desc {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    font-size: clamp(1rem, 1.8vw, 1.1875rem);
     font-weight: 500;
     color: var(--zg-dark);
     line-height: 1.65;
-    margin: 0 0 36px;
-    max-width: 460px;
+    margin: 0 0 32px;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .hero-compliance-btn {
+    font-size: 0.9375rem !important;
   }
 
   .hero-visual {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     position: relative;
@@ -384,146 +854,392 @@ const principles = [
 
   .hero-demo-btn {
     display: inline-flex !important;
-    margin-top: 4px;
   }
 
   .hero-demo-mobile-under {
     display: none;
   }
 
-/* ─── SUPPORT SECTION ────────────────────── */
-  .support-section {
+  /* Trust bar */
+  .hero-trust-bar {
+    background: var(--zg-light-bg);
+    border-top: 1px solid var(--zg-border-light);
+    padding: 20px 0;
+  }
+
+  .trust-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .trust-stat {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--zg-mid);
+    white-space: nowrap;
+  }
+
+  .trust-stat strong {
+    color: var(--zg-blue);
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--zg-border-light);
+    flex-shrink: 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 02 — URGENCY STRIP
+  ════════════════════════════════════════════ */
+  .urgency-section {
+    padding: 72px 0;
+    background: var(--zg-mid);
+  }
+
+  .urgency-label {
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 32px;
+  }
+
+  .urgency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .urgency-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .urgency-card--highlight {
+    background: rgba(60, 80, 224, 0.25);
+    border-color: rgba(60, 80, 224, 0.5);
+  }
+
+  .urgency-card--legal {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .urgency-num {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  .urgency-card--legal .urgency-num {
+    color: #fca5a5;
+  }
+
+  .urgency-desc {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .urgency-source {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 03 — COMPLIANCE COVERAGE
+  ════════════════════════════════════════════ */
+  .compliance-section {
     padding: 80px 0;
     background: white;
   }
 
-  .support-layout {
+  .compliance-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 48px;
-    align-items: start;
-    background: var(--zg-light-bg);
-    border-radius: 20px;
-    padding: 56px 48px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--zg-border-light);
+    border-radius: 16px;
+    overflow: hidden;
   }
 
-  .support-left {
+  .compliance-col {
+    padding: 36px 32px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background: white;
   }
 
-  .support-main-heading {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    font-weight: 700;
-    color: var(--zg-mid);
-    margin: 0;
-    line-height: 1.2;
+  .compliance-col + .compliance-col {
+    border-left: 1px solid var(--zg-border-light);
   }
 
-  .support-main-sub {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    font-weight: 400;
-    color: var(--zg-mid);
-    margin: 0 0 8px;
+  .compliance-col--featured {
+    background: var(--zg-light-bg);
+    position: relative;
   }
 
-  .support-left-header {
+  .compliance-col-header {
     display: flex;
     align-items: center;
     gap: 14px;
   }
 
-  .support-left-title {
-    font-size: clamp(1.35rem, 2.4vw, 1.625rem);
+  .compliance-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: white;
+  }
+
+  .compliance-badge--blue { background: var(--zg-blue); }
+  .compliance-badge--teal { background: var(--zg-teal); }
+
+  .compliance-col-title {
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--zg-mid);
     margin: 0;
   }
 
-  .support-left-body {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    font-weight: 400;
-    color: var(--zg-dark);
-    line-height: 1.65;
+  .compliance-col-sub {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--zg-muted);
     margin: 0;
   }
 
-  /* Button component handles .support-know-more base styles */
-  .support-know-more {
-    align-self: flex-start;
-    font-size: 1.0625rem;
-    margin-top: 4px;
+  .compliance-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
   }
 
-  .support-right {
+  .compliance-list li {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--zg-dark);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .compliance-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--zg-teal);
+    font-weight: 700;
+  }
+
+  .compliance-col-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    background: var(--zg-teal);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: var(--zg-radius-full);
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 04 — SEGMENT SWITCHER
+  ════════════════════════════════════════════ */
+  .segment-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .segment-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    background: white;
+    border: 1px solid var(--zg-border-light);
+    border-radius: var(--zg-radius-full);
+    padding: 5px;
+    width: fit-content;
+  }
+
+  .segment-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: var(--zg-radius-full);
+    border: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zg-muted);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .segment-tab--active,
+  .segment-tab:hover {
+    background: var(--zg-blue);
+    color: white;
+  }
+
+  .segment-panel {
+    display: none;
+  }
+
+  .segment-panel--active {
+    display: block;
+  }
+
+  .segment-content {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: start;
+    background: white;
+    border-radius: 16px;
+    padding: 48px 40px;
+  }
+
+  .segment-heading {
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0 0 14px;
+  }
+
+  .segment-desc {
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: var(--zg-dark);
+    line-height: 1.65;
+    margin: 0 0 20px;
+  }
+
+  .segment-features {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .segment-features li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--zg-dark);
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .segment-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--zg-teal);
+    font-weight: 700;
+  }
+
+  .segment-stat-card {
+    background: var(--zg-light-bg);
+    border-radius: 12px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
-  .support-card {
-    background: white;
-    border-radius: 12px;
-    padding: 24px 22px;
+  .seg-stat {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  }
-
-  .support-card-icon {
-    width: 52px;
-    height: 52px;
-    background: #F0FDF9;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 4px;
-  }
-
-  .support-card-badge-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 4px;
-  }
-
-  .support-card-title {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    font-weight: 700;
-    color: var(--zg-mid);
-    margin: 0;
-  }
-
-  .support-card-tag {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--zg-muted);
-  }
-
-  .support-card-desc {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--zg-dark);
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .support-badge {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--zg-teal);
     gap: 4px;
   }
 
-  /* ─── CHECK-IN SECTION ───────────────────── */
+  .seg-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--zg-blue);
+  }
+
+  .seg-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--zg-muted);
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 05 — JOURNEY
+  ════════════════════════════════════════════ */
   .checkin-section {
     padding: 80px 0;
     background: white;
+  }
+
+  .journey-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 36px;
+    border-bottom: 2px solid var(--zg-border-light);
+  }
+
+  .journey-tab {
+    padding: 10px 24px 12px;
+    border: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zg-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .journey-tab--active {
+    color: var(--zg-blue);
+    border-bottom-color: var(--zg-blue);
+  }
+
+  .journey-panel {
+    display: none;
+  }
+
+  .journey-panel--active {
+    display: block;
   }
 
   /* Snake flow grid: 3 cols [card][arrow][card], 5 rows */
@@ -534,7 +1250,6 @@ const principles = [
     align-items: center;
   }
 
-  /* Horizontal arrow button (between cards in same row) */
   .flow-harrow {
     display: flex;
     align-items: center;
@@ -547,7 +1262,6 @@ const principles = [
     flex-shrink: 0;
   }
 
-  /* Vertical arrow button (between rows) */
   .flow-varrow {
     display: flex;
     align-items: center;
@@ -559,20 +1273,18 @@ const principles = [
     margin: 20px auto;
   }
 
-  /* Empty spacer in arrow gap rows */
   .flow-gap-cell {
     min-height: 92px;
   }
 
-  /* Blue-offset depth card */
   .cflow-card {
     align-self: stretch;
     width: 100%;
   }
 
   .cflow-card-inner {
-      position: relative;
-      z-index: 1;
+    position: relative;
+    z-index: 1;
     background: white;
     border-radius: 10px;
     padding: 18px 20px;
@@ -609,40 +1321,163 @@ const principles = [
     line-height: 1.5;
   }
 
-  /* Convert dark icons to hsl(172, 99%, 37%) = #01BBA1 */
   .icon-teal {
     filter: brightness(0) invert(63%) sepia(87%) saturate(456%) hue-rotate(119deg) brightness(72%) contrast(102%);
   }
 
-    .cflow-cta {
-      display: inline-block;
-      align-self: flex-start;
-    margin-top: auto;
-    padding: 7px 16px;
-    background: var(--zg-teal);
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border-radius: 6px;
+  /* Institution journey */
+  .inst-journey-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 8px 0;
   }
 
-  /* ─── PRINCIPLES SECTION ─────────────────── */
+  .inst-step {
+    background: white;
+    border: 1px solid var(--zg-border-light);
+    border-radius: 12px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inst-step-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--zg-blue);
+    opacity: 0.35;
+    line-height: 1;
+  }
+
+  .inst-step-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .inst-step-desc {
+    font-size: 0.9375rem;
+    color: var(--zg-dark);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .inst-arrow {
+    font-size: 1.5rem;
+    color: var(--zg-blue);
+    align-self: center;
+    padding-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 06 — PLATFORM FEATURES
+  ════════════════════════════════════════════ */
+  .features-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .features-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    background: white;
+    border: 1px solid var(--zg-border-light);
+    border-radius: var(--zg-radius-full);
+    padding: 5px;
+    width: fit-content;
+  }
+
+  .features-tab {
+    padding: 9px 22px;
+    border: none;
+    border-radius: var(--zg-radius-full);
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zg-muted);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .features-tab--active {
+    background: var(--zg-blue);
+    color: white;
+  }
+
+  .features-tab:hover:not(.features-tab--active) {
+    background: var(--zg-hover-light);
+    color: var(--zg-blue);
+  }
+
+  .features-panel {
+    display: none;
+  }
+
+  .features-panel--active {
+    display: block;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .feat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feat-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .feat-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+  }
+
+  .feat-desc {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--zg-dark);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 07 — PRINCIPLES
+  ════════════════════════════════════════════ */
   .principles-section {
     padding: 80px 0;
     background: white;
   }
 
-
   .principles-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .principle-card {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0 40px;
+    padding: 0 32px;
   }
 
   .principle-card:first-child {
@@ -666,152 +1501,487 @@ const principles = [
   }
 
   .principle-title {
-    font-size: clamp(1.35rem, 2.4vw, 1.625rem);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 600;
     color: var(--zg-mid);
     margin: 0;
   }
 
   .principle-desc {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
     font-weight: 400;
     color: var(--zg-dark);
     margin: 0;
     line-height: 1.6;
   }
 
-  /* ─── CONTACT SECTION ────────────────────── */
-  .contact-section {
+  /* ════════════════════════════════════════════
+     SECTION 08 — COST COMPARISON
+  ════════════════════════════════════════════ */
+  .cost-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .cost-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cost-card {
+    padding: 40px 36px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cost-card--alt {
+    background: white;
+    border: 1px solid var(--zg-border-light);
+  }
+
+  .cost-card--featured {
+    background: var(--zg-blue);
+    color: white;
+  }
+
+  .cost-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: inherit;
+    margin: 0;
+  }
+
+  .cost-card--alt .cost-card-title {
+    color: var(--zg-mid);
+  }
+
+  .cost-amount {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--zg-mid);
+    line-height: 1;
+  }
+
+  .cost-card--featured .cost-amount {
+    color: white;
+  }
+
+  .cost-amount--teal {
+    color: var(--zg-teal) !important;
+  }
+
+  .cost-amount-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--zg-muted);
+    margin: 0;
+  }
+
+  .cost-card--featured .cost-amount-label {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cost-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .cost-list li {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .cost-list--cons li { color: var(--zg-muted); }
+  .cost-list--pros li { color: rgba(255,255,255,0.9); }
+
+  .cost-list--cons li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: #9ca3af;
+  }
+
+  .cost-list--pros li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--zg-teal);
+    font-weight: 700;
+  }
+
+  .cost-vs {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--zg-muted);
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .cost-cta {
+    margin-top: 8px;
+    align-self: flex-start;
+  }
+
+  .cost-note {
+    text-align: center;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--zg-muted);
+    margin: 32px auto 0;
+    max-width: 640px;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 09 — SOCIAL PROOF
+  ════════════════════════════════════════════ */
+  .proof-section {
     padding: 80px 0;
     background: white;
   }
 
-  .contact-inner {
-    background: var(--zg-light-bg);
-    border-radius: 20px;
-    padding: 64px 72px;
+  .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+    text-align: center;
   }
 
-  .contact-heading {
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
+  .proof-stat-num {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
-    color: var(--zg-mid);
-    margin: 0 0 8px;
+    color: var(--zg-blue);
+    line-height: 1;
+    margin-bottom: 6px;
   }
 
-  .contact-sub {
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    color: var(--zg-mid);
-    margin: 0 0 40px;
+  .proof-stat-label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--zg-muted);
+    line-height: 1.4;
   }
 
-  .contact-form {
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: var(--zg-light-bg);
+    border-radius: 16px;
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 20px;
   }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .testimonial-text {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--zg-dark);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+    font-style: italic;
   }
 
-  .form-label {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    font-weight: 600;
-    color: var(--zg-mid);
-  }
-
-  .form-input-wrap {
+  .testimonial-author {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: white;
-    border: 1.5px solid var(--zg-input-border);
-    border-radius: 8px;
-    padding: 8px 16px;
+    gap: 12px;
   }
 
-  .form-input-wrap:focus-within {
-    border-color: var(--zg-blue);
-    outline: 2px solid var(--zg-blue-15);
-  }
-
-  .form-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--zg-dark);
-    background: transparent;
-  }
-
-  .form-input::placeholder { color: #A3A3A3; }
-
-  .form-textarea-wrap {
-    background: white;
-    border: 1.5px solid var(--zg-input-border);
-    border-radius: 8px;
-    padding: 12px 16px;
-  }
-
-  .form-textarea-wrap:focus-within {
-    border-color: var(--zg-blue);
-    outline: 2px solid var(--zg-blue-15);
-  }
-
-  .form-textarea {
-    width: 100%;
-    border: none;
-    outline: none;
-    resize: vertical;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--zg-dark);
-    background: transparent;
-    min-height: 100px;
-  }
-
-  .form-textarea::placeholder { color: #A3A3A3; }
-
-  .form-submit {
-    display: block;
-    margin: 0 auto;
-    padding: 12px 48px;
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: var(--zg-blue);
     color: white;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    flex-shrink: 0;
   }
 
-    .form-submit:hover { opacity: 0.88; }
+  .testimonial-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--zg-mid);
+    margin: 0;
+  }
 
-  /* ─── BOTTOM CTA BANNER ──────────────────── */
-  .cta-banner {
-    padding: 48px 0;
+  .testimonial-school {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--zg-muted);
+    margin: 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 10 — FAQ
+  ════════════════════════════════════════════ */
+  .faq-section {
+    padding: 80px 0;
+    background: var(--zg-light-bg);
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
     background: white;
-    text-align: center;
-    border-top: 1px solid #E8ECF5;
+    border: 1px solid var(--zg-border-light);
+    border-radius: 0;
+    overflow: hidden;
   }
 
-  /* ─── RESPONSIVE ─────────────────────────── */
-  @media (max-width: 1024px) {
+  .faq-item:first-child { border-radius: 12px 12px 0 0; }
+  .faq-item:last-child { border-radius: 0 0 12px 12px; }
+  .faq-item + .faq-item { border-top: none; }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--zg-mid);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-question:hover {
+    background: var(--zg-hover-light);
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--zg-muted);
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 24px 20px;
+    border-top: 1px solid var(--zg-border-light);
+  }
+
+  .faq-answer p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--zg-dark);
+    line-height: 1.65;
+    margin: 16px 0 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTION 11 — FINAL CTA
+  ════════════════════════════════════════════ */
+  .final-cta-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .final-cta-inner {
+    background: linear-gradient(135deg, var(--zg-blue) 0%, #2a3abf 100%);
+    border-radius: 24px;
+    padding: 72px 64px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .final-cta-badge {
+    display: inline-flex;
+    padding: 5px 16px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: var(--zg-radius-full);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .final-cta-heading {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .final-cta-sub {
+    font-size: clamp(1rem, 1.8vw, 1.1875rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    max-width: 560px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .final-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .final-cta-whatsapp,
+  .final-cta-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: var(--zg-radius-full);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, opacity 0.15s;
+  }
+
+  .final-cta-whatsapp {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.35);
+  }
+
+  .final-cta-whatsapp:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .final-cta-call {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(255,255,255,0.25);
+  }
+
+  .final-cta-call:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+
+  /* ════════════════════════════════════════════
+     RESPONSIVE
+  ════════════════════════════════════════════ */
+  @media (max-width: 1100px) {
+    .urgency-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .compliance-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .compliance-col + .compliance-col {
+      border-left: none;
+      border-top: 1px solid var(--zg-border-light);
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .principles-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .principle-card {
+      padding: 0 16px;
+    }
+
+    .principle-card:first-child,
+    .principle-card:last-child {
+      padding: 0 16px;
+    }
+
+    .principle-card + .principle-card {
+      border-left: none;
+    }
+
+    .principle-card:nth-child(odd) {
+      padding-left: 0;
+    }
+
+    .principle-card:nth-child(even) {
+      padding-right: 0;
+    }
+
+    .principle-card:nth-child(2) {
+      border-left: 2px solid var(--zg-blue-25);
+    }
+
+    .proof-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cost-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cost-vs {
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .inst-journey-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .inst-arrow {
+      transform: rotate(90deg);
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 900px) {
     .hero-inner {
       grid-template-columns: 1fr;
     }
 
     .hero-visual {
-      display: flex;
-      margin-top: 12px;
+      align-items: center;
     }
 
     .hero-images {
@@ -825,93 +1995,114 @@ const principles = [
       width: 112px;
     }
 
-    .support-layout {
+    .segment-content {
       grid-template-columns: 1fr;
     }
 
-    .principles-grid {
-      grid-template-columns: 1fr 1fr;
+    .segment-tabs {
+      width: 100%;
+      justify-content: center;
     }
-
   }
 
   @media (max-width: 768px) {
     main > section {
-      padding-top: 40px !important;
-      padding-bottom: 40px !important;
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
     }
 
     .container {
-      padding: 0px 15px;
+      padding: 0 16px;
     }
 
     .hero {
-      padding: 36px 0 28px;
+      padding: 36px 0 0;
     }
 
-    .hero-eyebrow {
+    .hero-inner {
+      padding-bottom: 40px;
+    }
+
+    .hero-pills {
+      gap: 6px;
+    }
+
+    .hero-pill {
       font-size: 0.75rem;
-      padding: 3px 10px;
-      margin-bottom: 6px;
-    }
-
-    .hero-desc {
-      margin-bottom: 10px;
-    }
-
-    .hero-visual {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-images {
-      max-width: 320px;
     }
 
     .hero-demo-btn {
       display: none !important;
     }
 
+    .hero-compliance-btn {
+      display: none !important;
+    }
+
     .hero-demo-mobile-under {
-      display: inline-flex;
-      margin: 16px auto 0;
-    }
-
-    .hero-img-mobile {
-      right: -8px;
-      bottom: -12px;
-      width: 92px;
-      border-radius: 14px;
-    }
-
-    .hero-heading {
-      font-size: 2rem;
-    }
-
-    .section-header {
-      margin-bottom: 24px;
-    }
-
-    .support-layout {
-      gap: 24px;
-      padding: 28px 24px;
-    }
-
-    .support-left,
-    .support-right {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
       gap: 10px;
+      width: 100%;
+      margin-top: 20px;
     }
 
-    .support-main-sub {
-      margin: 0 0 4px;
+    .trust-bar-inner {
+      gap: 12px;
     }
 
-    .support-card {
+    .trust-divider {
+      display: none;
+    }
+
+    .trust-stat {
+      font-size: 0.8125rem;
+    }
+
+    .urgency-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .features-tabs {
+      width: 100%;
+      border-radius: var(--zg-radius-lg);
+      flex-wrap: wrap;
       gap: 4px;
     }
 
-    .cflow-card-inner {
-      gap: 3px;
+    .features-tab {
+      flex: 1;
+      text-align: center;
+      font-size: 0.875rem;
+      padding: 8px 12px;
+    }
+
+    .proof-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .final-cta-inner {
+      padding: 40px 24px;
+    }
+
+    .final-cta-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .final-cta-whatsapp,
+    .final-cta-call {
+      width: 100%;
+      justify-content: center;
     }
 
     .flow-grid {
@@ -952,7 +2143,6 @@ const principles = [
       color: var(--zg-blue);
       font-size: 0.75rem;
       font-weight: 700;
-      display: grid;
       place-items: center;
       line-height: 1;
     }
@@ -968,60 +2158,52 @@ const principles = [
       color: white;
     }
 
-    .principle-card {
-      gap: 6px;
-      padding: 0 15px;
-      margin-bottom: 10px;
+    .principles-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
+    .principle-card,
     .principle-card:first-child,
     .principle-card:last-child {
-      padding: 0 15px;
+      padding: 0;
     }
 
     .principle-card + .principle-card {
       border-left: none;
-    }
-
-    .principles-grid {
-      grid-template-columns: 1fr;
+      border-top: 2px solid var(--zg-blue-25);
+      padding-top: 20px;
     }
 
     .section-heading {
       font-size: 1.75rem;
     }
 
-    .contact-inner {
-      padding: 16px 12px;
+    .journey-tabs {
+      gap: 0;
     }
 
-    .contact-sub {
-      margin: 0 0 20px;
+    .journey-tab {
+      font-size: 0.875rem;
+      padding: 10px 16px 12px;
     }
 
-    .contact-form {
-      gap: 14px;
+    .segment-content {
+      padding: 28px 20px;
     }
 
-    .form-group {
-      gap: 4px;
+    .cost-grid {
+      max-width: 100%;
     }
 
-    .form-input-wrap {
-      padding: 8px 16px;
-    }
-
-    .form-textarea-wrap {
-      padding: 12px 16px;
-    }
-
-    .form-submit {
-      padding: 12px 48px;
+    .cost-card {
+      padding: 28px 24px;
     }
   }
 </style>
 
 <script>
+  /* ── Mobile card scroll highlight ── */
   const mobileQuery = window.matchMedia('(max-width: 768px)');
   const flowCards = Array.from(document.querySelectorAll('.flow-grid .cflow-card'));
   let observer: IntersectionObserver | undefined;
@@ -1033,11 +2215,9 @@ const principles = [
 
   const pickCardClosestToCenter = () => {
     if (!flowCards.length) return;
-
     const viewportCenter = window.innerHeight * 0.45;
     let closest = flowCards[0];
     let minDistance = Number.POSITIVE_INFINITY;
-
     flowCards.forEach((card) => {
       const rect = card.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
@@ -1047,51 +2227,56 @@ const principles = [
         closest = card;
       }
     });
-
     clearActiveCards();
     closest.classList.add('is-active');
   };
 
-  const onScrollOrResize = () => {
-    if (!mobileQuery.matches) return;
-    if (rafId) cancelAnimationFrame(rafId);
+  const onScroll = () => {
+    if (rafId !== undefined) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(pickCardClosestToCenter);
   };
 
-  const initMobileCardActivation = () => {
-    if (!flowCards.length) return;
-
-    if (!mobileQuery.matches) {
-      clearActiveCards();
-      if (observer) observer.disconnect();
-      observer = undefined;
-      window.removeEventListener('scroll', onScrollOrResize);
-      window.removeEventListener('resize', onScrollOrResize);
-      return;
-    }
-
-    if (observer) observer.disconnect();
-
-    observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (!visible.length) return;
-        clearActiveCards();
-        visible[0].target.classList.add('is-active');
-      },
-      { threshold: [0.45, 0.65, 0.85], rootMargin: '-10% 0px -30% 0px' },
-    );
-
-    flowCards.forEach((card) => observer.observe(card));
-    flowCards[0].classList.add('is-active');
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    onScrollOrResize();
+  const setupMobile = () => {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    pickCardClosestToCenter();
   };
 
-  initMobileCardActivation();
-  mobileQuery.addEventListener('change', initMobileCardActivation);
+  const teardownMobile = () => {
+    window.removeEventListener('scroll', onScroll);
+    clearActiveCards();
+    if (rafId !== undefined) { cancelAnimationFrame(rafId); rafId = undefined; }
+  };
+
+  if (mobileQuery.matches) setupMobile();
+  mobileQuery.addEventListener('change', (e) => {
+    if (e.matches) setupMobile(); else teardownMobile();
+  });
+
+  /* ── Tab switcher (generic) ── */
+  function initTabs(tabsSelector: string, activeTabClass: string, activePanelClass: string) {
+    const tabs = document.querySelectorAll<HTMLButtonElement>(tabsSelector);
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('aria-controls');
+        if (!targetId) return;
+        tabs.forEach((t) => {
+          t.classList.remove(activeTabClass);
+          t.setAttribute('aria-selected', 'false');
+          const panelId = t.getAttribute('aria-controls');
+          if (panelId) {
+            const panel = document.getElementById(panelId);
+            if (panel) { panel.hidden = true; panel.classList.remove(activePanelClass); }
+          }
+        });
+        tab.classList.add(activeTabClass);
+        tab.setAttribute('aria-selected', 'true');
+        const target = document.getElementById(targetId);
+        if (target) { target.hidden = false; target.classList.add(activePanelClass); }
+      });
+    });
+  }
+
+  initTabs('[role="tab"][aria-controls^="tab-"]', 'segment-tab--active', 'segment-panel--active');
+  initTabs('[role="tab"][aria-controls^="journey-"]', 'journey-tab--active', 'journey-panel--active');
+  initTabs('[role="tab"][aria-controls^="feat-"]', 'features-tab--active', 'features-panel--active');
 </script>
