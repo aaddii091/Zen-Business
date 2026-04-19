@@ -1,0 +1,91 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Responsible Use — Zengarden"
+      description="How Zengarden ensures structured, responsible, and confidential support practices."
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="responsible-page">
+      <div class="responsible-container">
+        <h1>Responsible Use</h1>
+        <p class="lead">Structured, responsible, and confidential support practices for institutions and students.</p>
+        <div class="responsible-card">
+          <p>
+            Zengarden combines AI-assisted workflows with human oversight. Insights are intended to
+            guide support decisions, not replace professional judgment. Sensitive recommendations are
+            reviewed with responsible protocols and qualified experts.
+          </p>
+          <p>
+            Institutions can enable safer support through privacy-aware operations, clear consent
+            controls, and role-based access. Students always remain central to decisions that affect
+            their care journey.
+          </p>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .responsible-page {
+    background: white;
+    padding: 64px 0 80px;
+  }
+
+  .responsible-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+    color: var(--zg-dark);
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: var(--zg-mid);
+  }
+
+  .lead {
+    margin: 0 0 24px;
+    color: var(--zg-mid);
+    font-size: 1rem;
+  }
+
+  .responsible-card {
+    background: var(--zg-light-bg);
+    border-radius: 20px;
+    padding: 32px;
+    display: grid;
+    gap: 14px;
+    line-height: 1.65;
+    font-size: 1rem;
+  }
+
+  .responsible-card p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .responsible-page {
+      padding: 40px 0;
+    }
+
+    .responsible-container {
+      padding: 0 15px;
+    }
+
+    .responsible-card {
+      padding: 16px;
+    }
+  }
+</style>

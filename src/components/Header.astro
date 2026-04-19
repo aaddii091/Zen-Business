@@ -10,15 +10,36 @@
 
     <!-- Nav links -->
     <ul class="zg-nav-links">
-      <li><a href="#clinical">Clinical Oversight</a></li>
+      <li><a href="/responsible-use" target="_blank" rel="noopener noreferrer">Responsible Use</a></li>
       <li><a href="/privacy-policy">Privacy Policy</a></li>
-      <li><a href="#responsible">Responsible Use</a></li>
     </ul>
 
     <!-- CTA buttons -->
     <div class="zg-nav-actions">
-      <a href="/login" class="zg-btn-ghost">Login</a>
-      <a href="#demo" class="zg-btn-primary">Book a Demo</a>
+      <div class="zg-login-dropdown">
+        <button class="zg-btn-ghost zg-login-trigger" aria-haspopup="true" aria-expanded="false" type="button">Login</button>
+        <div class="zg-login-menu" role="menu" aria-label="Login options">
+          <a
+            href="https://client.zengarden.co.in/"
+            class="zg-login-item"
+            role="menuitem"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Login as User
+          </a>
+          <a
+            href="https://control.zengarden.co.in/"
+            class="zg-login-item"
+            role="menuitem"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Login as Psychologist/Mentor
+          </a>
+        </div>
+      </div>
+      <a href="https://calendly.com/aaddii091" class="zg-btn-primary" target="_blank" rel="noopener noreferrer">Book a Demo</a>
     </div>
 
     <!-- Mobile menu toggle -->
@@ -29,11 +50,11 @@
 
   <!-- Mobile drawer -->
   <div class="zg-mobile-menu" id="zg-mobile-menu" hidden>
-    <a href="#clinical">Clinical Oversight</a>
+    <a href="/responsible-use" target="_blank" rel="noopener noreferrer">Responsible Use</a>
     <a href="/privacy-policy">Privacy Policy</a>
-    <a href="#responsible">Responsible Use</a>
-    <a href="/login" class="zg-btn-ghost">Login</a>
-    <a href="#demo" class="zg-btn-primary">Book a Demo</a>
+    <a href="https://client.zengarden.co.in/" class="zg-btn-ghost" target="_blank" rel="noopener noreferrer">Login as User</a>
+    <a href="https://control.zengarden.co.in/" class="zg-btn-ghost" target="_blank" rel="noopener noreferrer">Login as Psychologist/Mentor</a>
+    <a href="https://calendly.com/aaddii091" class="zg-btn-primary" target="_blank" rel="noopener noreferrer">Book a Demo</a>
   </div>
 </header>
 
@@ -117,6 +138,90 @@
     background: #EEEEF9;
   }
 
+  .zg-login-dropdown {
+    position: relative;
+  }
+
+  .zg-login-trigger {
+    box-sizing: border-box;
+    width: 100px;
+    height: 38px;
+    padding: 0 30px 0 0;
+    border: 1px solid #3C50E0;
+    border-radius: 24px;
+    background: #FAFAFA;
+    color: #3C50E0;
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .zg-login-trigger::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid #3C50E0;
+    border-bottom: 2px solid #3C50E0;
+    transform: translateY(-65%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .zg-login-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 260px;
+    background: white;
+    border: 1px solid #DDE2EF;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    padding: 8px;
+    margin-top: 8px;
+    display: none;
+    z-index: 120;
+  }
+
+  .zg-login-menu::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: transparent;
+  }
+
+  .zg-login-dropdown:hover .zg-login-menu,
+  .zg-login-dropdown:focus-within .zg-login-menu {
+    display: block;
+  }
+
+  .zg-login-item {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zg-dark);
+    white-space: nowrap;
+  }
+
+  .zg-login-item:hover {
+    background: #EEEEF9;
+    color: var(--zg-blue);
+  }
+
   .zg-btn-primary {
     padding: 7px 20px;
     font-size: 1rem;
@@ -124,7 +229,7 @@
     color: white;
     background: var(--zg-blue);
     border: 1.5px solid var(--zg-blue);
-    border-radius: 6px;
+    border-radius: 24px;
     transition: opacity 0.15s;
   }
 
