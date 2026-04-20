@@ -80,7 +80,7 @@ const faqs = [
             </p>
             <div class="hero-ctas">
               <Button variant="teal" href="https://calendly.com/aaddii091" size="lg" class="hero-demo-btn" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
-              <Button variant="outline" href="/#compliance" size="lg" class="hero-compliance-btn">Check Your Compliance Score</Button>
+              <Button variant="outline" href="/compliance-score" size="lg" class="hero-compliance-btn" target="_blank" rel="noopener noreferrer">Check Your Compliance Score</Button>
             </div>
           </div>
           <div class="hero-visual">
@@ -104,7 +104,7 @@ const faqs = [
             </div>
             <div class="hero-ctas hero-demo-mobile-under">
               <Button variant="teal" href="https://calendly.com/aaddii091" size="lg" target="_blank" rel="noopener noreferrer">Book a Demo</Button>
-              <Button variant="outline" href="/#compliance" size="lg">Check Compliance Score</Button>
+              <Button variant="outline" href="/compliance-score" size="lg" target="_blank" rel="noopener noreferrer">Check Compliance Score</Button>
             </div>
           </div>
         </div>
@@ -669,60 +669,97 @@ const faqs = [
       ═══════════════════════════════════════════ -->
       <section class="proof-section">
         <div class="container">
+          <p class="proof-label">The student behind the data</p>
           <SectionHeader
-            heading="Trusted by Institutions Across India"
-            sub="Early adopters building compliant, student-centred wellness programs."
+            heading="This is happening in your school right now."
+            sub="Not a headline. A Class 11 student. A pattern every principal has seen. And a system that never connected the dots."
             align="center"
           />
-          <div class="proof-stats">
-            <div class="proof-stat">
-              <div class="proof-stat-num">50+</div>
-              <div class="proof-stat-label">Institutions onboarded</div>
+
+          <div class="story-card">
+            <div class="story-head">
+              <div class="story-avatar">PS</div>
+              <div class="story-meta">
+                <p class="story-name">Priya, 16</p>
+                <p class="story-sub">Class 11 · CBSE-affiliated school, Jaipur</p>
+              </div>
             </div>
-            <div class="proof-stat">
-              <div class="proof-stat-num">12,000+</div>
-              <div class="proof-stat-label">Students supported</div>
+
+            <div class="story-body">
+              <p>
+                Priya was a consistent performer — 82% in Class 10, active in the debate club, never a discipline issue. In July of Class 11, she chose Science stream under pressure from her parents. By September her grades had slipped to under 60%.
+              </p>
+              <p>
+                Her class teacher noticed she had stopped asking questions. Her friends noticed she had stopped coming to lunch. Her parents were told it was "the Class 11 adjustment" at the PTM.
+              </p>
+              <p class="story-pivot">No one had a system to flag what three people had independently noticed.</p>
+              <p>
+                Priya wasn't failing. She was struggling with a career decision she hadn't made herself, in a stream she didn't want, with no one to talk to who wasn't also invested in the outcome.
+              </p>
             </div>
-            <div class="proof-stat">
-              <div class="proof-stat-num">4 weeks</div>
-              <div class="proof-stat-label">Average time to compliance-ready</div>
-            </div>
-            <div class="proof-stat">
-              <div class="proof-stat-num">100%</div>
-              <div class="proof-stat-label">RCI-certified psychologist review</div>
+
+            <div class="story-timeline">
+              <div class="story-timeline-item story-timeline-item--neutral">
+                <p class="story-timeline-month">July</p>
+                <div class="story-timeline-dot" aria-hidden="true"></div>
+                <p class="story-timeline-text">Chooses Science stream. Attends regularly. No visible concern.</p>
+              </div>
+              <div class="story-timeline-item story-timeline-item--amber">
+                <p class="story-timeline-month">September</p>
+                <div class="story-timeline-dot" aria-hidden="true"></div>
+                <p class="story-timeline-text">Grades drop to 58%. Teacher notices withdrawal in class. Friends notice she skips lunch.</p>
+              </div>
+              <div class="story-timeline-item story-timeline-item--red">
+                <p class="story-timeline-month">October — PTM</p>
+                <div class="story-timeline-dot" aria-hidden="true"></div>
+                <p class="story-timeline-text">Parents told it is "adjustment pressure." No counsellor referral. No documentation. No follow-up scheduled.</p>
+              </div>
+              <div class="story-timeline-item story-timeline-item--red">
+                <p class="story-timeline-month">November</p>
+                <div class="story-timeline-dot" aria-hidden="true"></div>
+                <p class="story-timeline-text">Attendance drops to 64%. School has no formal record of concern. Counsellor was never informed. CBSE inspection is next month.</p>
+              </div>
             </div>
           </div>
-          <div class="testimonials-grid">
-            <div class="testimonial-card">
-              <p class="testimonial-text">"We went from zero to compliance-ready in under four weeks. The audit reports alone saved our admin team days of manual work during our CBSE inspection."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">VP</div>
-                <div>
-                  <p class="testimonial-name">Vice Principal</p>
-                  <p class="testimonial-school">CBSE-Affiliated School, Rajasthan</p>
-                </div>
-              </div>
+
+          <div class="proof-divider-label" aria-hidden="true">
+            <span>Without Zengarden</span>
+            <span class="proof-divider-line"></span>
+            <span>With Zengarden</span>
+          </div>
+
+          <div class="proof-compare-grid">
+            <div class="proof-compare-card proof-compare-card--without">
+              <div class="proof-compare-head proof-compare-head--without">Without Zengarden</div>
+              <ul class="proof-compare-list proof-compare-list--without">
+                <li>Three staff members noticed — nothing was connected or escalated</li>
+                <li>No check-in system to surface Priya's academic stress early</li>
+                <li>PTM feedback given verbally — no documented counsellor referral</li>
+                <li>CBSE inspection finds zero student wellness records</li>
+                <li>Career pressure goes unaddressed — stream choice never revisited</li>
+              </ul>
             </div>
-            <div class="testimonial-card">
-              <p class="testimonial-text">"Our counsellor was spending 40% of her time on paperwork. Zengarden automated all of it. Now she focuses entirely on students."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">DS</div>
-                <div>
-                  <p class="testimonial-name">Dean of Students</p>
-                  <p class="testimonial-school">Private University, Maharashtra</p>
-                </div>
-              </div>
+            <div class="proof-compare-card proof-compare-card--with">
+              <div class="proof-compare-head proof-compare-head--with">With Zengarden</div>
+              <ul class="proof-compare-list proof-compare-list--with">
+                <li>16PF check-in in Week 3 flags career-path stress and social withdrawal</li>
+                <li>Counsellor automatically notified — reviews her profile before first session</li>
+                <li>Mentor session addresses stream pressure — parent communication logged</li>
+                <li>Every interaction documented — audit trail ready for CBSE inspection</li>
+                <li>Career counselling pathway opened — SC Guideline XII satisfied</li>
+              </ul>
             </div>
-            <div class="testimonial-card">
-              <p class="testimonial-text">"What impressed me most was that the Supreme Court compliance checklist was already mapped inside the platform. We didn't have to build any of that."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">PM</div>
-                <div>
-                  <p class="testimonial-name">Principal</p>
-                  <p class="testimonial-school">ICSE School, Delhi NCR</p>
-                </div>
-              </div>
-            </div>
+          </div>
+
+          <div class="proof-cta-wrap">
+            <Button variant="teal" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer" class="proof-cta">
+              See how Zengarden catches what your school misses →
+            </Button>
+            <p class="proof-cta-note">20-minute demo. We map it against your school's current compliance gaps — no obligation.</p>
+          </div>
+
+          <div class="proof-note">
+            <p><strong>Note:</strong> Priya is a representative composite, not a real individual. The patterns described — stream pressure, grade drop, social withdrawal, absence of institutional flagging — are documented in Indian school mental health research and reflected in the Supreme Court's July 2025 judgment.</p>
           </div>
         </div>
       </section>
@@ -1872,86 +1909,307 @@ const faqs = [
     background: white;
   }
 
-  .proof-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-bottom: 48px;
+  .proof-label {
     text-align: center;
-  }
-
-  .proof-stat-num {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin: 0 0 10px;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--zg-blue);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .proof-stat-label {
-    font-size: 0.9375rem;
-    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--zg-muted);
-    line-height: 1.4;
   }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .testimonial-card {
-    background: var(--zg-light-bg);
+  .story-card {
+    background: white;
+    border: 1px solid var(--zg-border-light);
     border-radius: 16px;
     padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    margin-bottom: 40px;
   }
 
-  .testimonial-text {
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: var(--zg-dark);
-    line-height: 1.65;
-    margin: 0;
-    flex: 1;
-    font-style: italic;
-  }
-
-  .testimonial-author {
+  .story-head {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--zg-border-light);
+    margin-bottom: 20px;
   }
 
-  .testimonial-avatar {
-    width: 40px;
-    height: 40px;
+  .story-avatar {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--zg-blue);
+    background: #1d9e75;
     color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8125rem;
-    font-weight: 700;
     flex-shrink: 0;
   }
 
-  .testimonial-name {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--zg-mid);
+  .story-name {
     margin: 0;
+    color: var(--zg-mid);
+    font-size: 1rem;
+    font-weight: 700;
   }
 
-  .testimonial-school {
-    font-size: 0.8125rem;
-    font-weight: 500;
+  .story-sub {
+    margin: 2px 0 0;
     color: var(--zg-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .story-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .story-body p {
     margin: 0;
+    font-size: 1.0625rem;
+    color: var(--zg-dark);
+    line-height: 1.8;
+  }
+
+  .story-pivot {
+    color: #3c50e0;
+    font-weight: 700;
+  }
+
+  .story-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 16px;
+  }
+
+  .story-timeline::before {
+    content: "";
+    position: absolute;
+    left: 115px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: #d8dee9;
+  }
+
+  .story-timeline-item {
+    display: grid;
+    grid-template-columns: 90px 18px 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .story-timeline-month {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--zg-mid);
+    line-height: 1.6;
+  }
+
+  .story-timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 7px;
+    background: #9ca3af;
+    justify-self: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-timeline-item--amber .story-timeline-dot {
+    background: #f59e0b;
+  }
+
+  .story-timeline-item--red .story-timeline-dot {
+    background: #ef4444;
+  }
+
+  .story-timeline-text {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--zg-dark);
+    line-height: 1.6;
+  }
+
+  .proof-divider-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--zg-muted);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .proof-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--zg-border-light);
+  }
+
+  .proof-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .proof-compare-card {
+    background: white;
+    border: 1px solid var(--zg-border-light);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .proof-compare-card--without {
+    border-left: 4px solid #ef4444;
+  }
+
+  .proof-compare-card--with {
+    border-left: 4px solid var(--zg-teal);
+  }
+
+  .proof-compare-head {
+    padding: 12px 16px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .proof-compare-head--without {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+
+  .proof-compare-head--with {
+    background: #e6faf8;
+    color: #0f766e;
+  }
+
+  .proof-compare-list {
+    list-style: none;
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .proof-compare-list li {
+    position: relative;
+    padding-left: 16px;
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--zg-dark);
+    line-height: 1.55;
+  }
+
+  .proof-compare-list li::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+
+  .proof-compare-list--without li::before {
+    background: #ef4444;
+  }
+
+  .proof-compare-list--with li::before {
+    background: var(--zg-teal);
+  }
+
+  .proof-pills-strip {
+    background: #eeedfe;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+
+  .proof-pills-label {
+    margin: 0 0 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zg-muted);
+  }
+
+  .proof-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .proof-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--zg-radius-full);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .proof-pill--covered {
+    background: rgba(0, 187, 161, 0.14);
+    color: #0f766e;
+    border: 1px solid rgba(0, 187, 161, 0.28);
+  }
+
+  .proof-pill--neutral {
+    background: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+  }
+
+  .proof-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .proof-cta {
+    width: fit-content;
+  }
+
+  .proof-cta-note {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--zg-muted);
+    text-align: center;
+  }
+
+  .proof-note {
+    background: #faeeda;
+    border: 1px solid #f0d8a8;
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+
+  .proof-note p {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: #92400e;
   }
 
   /* ════════════════════════════════════════════
@@ -2176,12 +2434,12 @@ const faqs = [
       border-left: 2px solid var(--zg-blue-25);
     }
 
-    .proof-stats {
-      grid-template-columns: repeat(2, 1fr);
+    .proof-compare-grid {
+      grid-template-columns: 1fr;
     }
 
-    .testimonials-grid {
-      grid-template-columns: 1fr 1fr;
+    .story-timeline::before {
+      left: 99px;
     }
 
     .cost-grid {
@@ -2316,12 +2574,33 @@ const faqs = [
       padding: 8px 12px;
     }
 
-    .proof-stats {
-      grid-template-columns: repeat(2, 1fr);
+    .story-card {
+      padding: 24px 18px;
     }
 
-    .testimonials-grid {
-      grid-template-columns: 1fr;
+    .story-timeline {
+      padding-left: 0;
+    }
+
+    .story-timeline::before {
+      left: 83px;
+    }
+
+    .story-timeline-item {
+      grid-template-columns: 74px 18px 1fr;
+    }
+
+    .proof-divider-label {
+      font-size: 0.75rem;
+      gap: 8px;
+    }
+
+    .proof-compare-card {
+      border-left-width: 3px;
+    }
+
+    .proof-cta {
+      width: 100%;
     }
 
     .final-cta-inner {

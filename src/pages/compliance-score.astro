@@ -1,0 +1,60 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Compliance Score — Zengarden"
+      description="Compliance score questionnaire page for institutions."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main class="cs-main">
+      <div class="cs-message-wrap">
+        <p class="cs-message">A questionnaire will be taken here to check org compliance</p>
+        <p class="cs-sub">Under construction</p>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .cs-main {
+    min-height: calc(100vh - 240px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+    background: #fff;
+  }
+
+  .cs-message-wrap {
+    text-align: center;
+    max-width: 780px;
+  }
+
+  .cs-message {
+    margin: 0;
+    font-size: clamp(1.125rem, 2.2vw, 1.75rem);
+    font-weight: 600;
+    color: var(--zg-mid);
+    line-height: 1.45;
+  }
+
+  .cs-sub {
+    margin: 12px 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--zg-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+</style>
