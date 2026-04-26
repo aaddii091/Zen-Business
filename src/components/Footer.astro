@@ -1,4 +1,5 @@
 ---
+import Button from './Button.astro';
 const today = new Date();
 ---
 
@@ -20,14 +21,13 @@ const today = new Date();
 
       <!-- Right: actions + contact -->
       <div class="zg-footer-actions">
-        <a
+        <Button
           href="https://calendly.com/aaddii091"
+          size="sm"
           class="zg-footer-cta"
           target="_blank"
           rel="noopener noreferrer"
-        >
-          Book a Demo
-        </a>
+        >Book a Demo</Button>
 
         <div class="zg-footer-contact">
           <a href="mailto:admin@zengarden.co.in" class="zg-footer-contact-item">
@@ -133,25 +133,12 @@ const today = new Date();
     min-width: 0;
   }
 
+  /* Button component override — layout only */
   .zg-footer-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 18px;
-    height: 31px;
-    background: var(--zg-blue);
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: opacity 0.15s;
     align-self: flex-start;
     margin-bottom: 26px;
-  }
-
-  .zg-footer-cta:hover {
-    opacity: 0.88;
+    height: 31px !important;
+    padding: 0 18px !important;
   }
 
   .zg-footer-contact {

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand colors */
   --zg-blue: #3C50E0;
   --zg-teal: #00BBA1;
   --zg-dark: #262626;
@@ -9,6 +10,33 @@
   --zg-light-bg: #F1F3F8;
   --zg-nav-bg: #FAFAFA;
   --zg-white: #FFFFFF;
+
+  /* UI colors */
+  --zg-hover-light: #EEEEF9;
+  --zg-border-light: #E8E8E8;
+  --zg-input-border: #DDE2EF;
+
+  /* Blue opacity utilities */
+  --zg-blue-10: rgba(60, 80, 224, 0.10);
+  --zg-blue-15: rgba(60, 80, 224, 0.15);
+  --zg-blue-25: rgba(60, 80, 224, 0.25);
+  --zg-blue-35: rgba(60, 80, 224, 0.35);
+
+  /* Elevation */
+  --zg-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.05);
+  --zg-shadow-md: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --zg-shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.12);
+
+  /* Border radius */
+  --zg-radius-sm: 6px;
+  --zg-radius-md: 8px;
+  --zg-radius-lg: 12px;
+  --zg-radius-xl: 20px;
+  --zg-radius-pill: 24px;
+  --zg-radius-full: 100px;
+
+  /* Transition */
+  --zg-transition: 0.15s;
 }
 
 *,
