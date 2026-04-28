@@ -48,3 +48,30 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run project CLI commands                         |
 | `npm run astro -- --help` | Show CLI help                                    |
+
+## Compliance Checker Setup
+
+The `/compliance-score` flow uses server APIs for scoring persistence, email, PDF report generation, and admin export.
+
+### Required environment variables
+
+Add these to `.env.local` (and deployment env):
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `SITE_URL`
+
+Optional (admin CSV export endpoint):
+
+- `COMPLIANCE_ADMIN_EXPORT_KEY`
+
+### Database schema
+
+Run the SQL in `supabase/compliance_submissions.sql` against your Supabase database.
+
+### API routes
+
+- `POST /api/compliance/submit`
+- `GET /api/compliance/report/:id.pdf`
+- `GET /api/admin/compliance/export` (requires `x-admin-key` header or `?key=...`)

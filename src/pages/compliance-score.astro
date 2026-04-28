@@ -2,6 +2,8 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/questions';
 ---
 
 <!doctype html>
@@ -9,52 +11,1336 @@ import Footer from '../components/Footer.astro';
   <head>
     <BaseHead
       title="Compliance Score — Zengarden"
-      description="Compliance score questionnaire page for institutions."
+      description="School compliance checker mapped to SC Guidelines and CBSE requirements."
     />
   </head>
   <body>
     <Header />
 
-    <main class="cs-main">
-      <div class="cs-message-wrap">
-        <p class="cs-message">A questionnaire will be taken here to check org compliance</p>
-        <p class="cs-sub">Under construction</p>
-      </div>
+    <main class="cc-main">
+      <section class="cc-section">
+        <div class="container">
+          <SectionHeader
+            heading="Check Your Compliance Score"
+            sub="A structured self-assessment for schools mapped to SC Guidelines and CBSE requirements."
+            align="center"
+          />
+
+          <div id="compliance-app" class="cc-app">
+          <section class="cc-card cc-entry">
+            <p class="cc-eyebrow">Takes 3 minutes · No sign-up required · Free</p>
+            <h1 class="cc-title">Is your school compliant with India's new mental health mandates?</h1>
+            <p class="cc-subtitle">Answer 15–20 questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school is exposed.</p>
+            <button class="cc-btn cc-btn--primary" data-action="start" type="button">Start the check →</button>
+            <p class="cc-micro">Your answers are confidential and used only to generate your compliance report.</p>
+            <div class="cc-bottom-strip">Based on: SC Guidelines (July 25, 2025) · CBSE Affiliation Bye-Laws (January 2026) · CBSE Circular TRG-03/2026 (February 2026)</div>
+          </section>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <script type="module" define:vars={{ questionBank: COMPLIANCE_QUESTIONS, sectionLabels: SECTION_LABELS }}>
+      const app = document.getElementById('compliance-app');
+
+      const answerOptions = [
+        { value: 'no', label: 'No', sub: 'Not in place', score: '1' },
+        { value: 'partially', label: 'Partially', sub: 'In progress', score: '2' },
+        { value: 'yes', label: 'Yes', sub: 'Fully in place', score: '3' },
+      ];
+
+      const state = {
+        screen: 'entry',
+        isCBSE: null,
+        questionIndex: 0,
+        autoAdvancing: false,
+        previewMode: false,
+        answers: {},
+        form: {
+          contactName: '',
+          schoolName: '',
+          email: '',
+          phone: '',
+        },
+        loadingProgress: 0,
+        loadingLine: 1,
+        loadingTimer: null,
+        result: null,
+        submissionId: '',
+        submitError: '',
+        submitting: false,
+      };
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/\"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function getVisibleQuestions() {
+        if (state.isCBSE === null) return [];
+        return questionBank.filter((q) => state.isCBSE || !q.cbseOnly);
+      }
+
+      function getBand(score) {
+        if (score >= 85) return 'green';
+        if (score >= 60) return 'amber';
+        return 'red';
+      }
+
+      function getSectionStatus(score) {
+        if (score >= 75) return 'green';
+        if (score >= 50) return 'amber';
+        return 'red';
+      }
+
+      function buildLocalPreviewResult(payload) {
+        const pointsMap = { yes: 2, partially: 1, no: 0 };
+        const visibleQuestions = getVisibleQuestions();
+        const sectionOrder = ['people', 'systems', 'students', 'records', 'training'];
+        const sectionTotals = new Map();
+        const gaps = [];
+        let totalPoints = 0;
+
+        for (const q of visibleQuestions) {
+          const answer = payload.answers[q.id] || 'no';
+          const points = pointsMap[answer] ?? 0;
+          totalPoints += points;
+
+          const prev = sectionTotals.get(q.section) || { points: 0, maxPoints: 0 };
+          sectionTotals.set(q.section, { points: prev.points + points, maxPoints: prev.maxPoints + 2 });
+
+          if (answer !== 'yes') {
+            gaps.push({
+              questionId: q.id,
+              answer,
+              points,
+              section: q.section,
+              shortTitle: q.shortTitle,
+              question: q.question,
+              regulatoryRef: q.regulatoryRef,
+              legalRisk: q.legalRisk,
+              zengardenCovers: q.zengardenCovers,
+              severityRank: answer === 'no' ? 0 : 1,
+            });
+          }
+        }
+
+        const totalMaxPoints = visibleQuestions.length * 2;
+        const overallScore = totalMaxPoints > 0 ? Math.round((totalPoints / totalMaxPoints) * 100) : 0;
+        const band = getBand(overallScore);
+
+        const sectionScores = sectionOrder.map((id) => {
+          const totals = sectionTotals.get(id) || { points: 0, maxPoints: 0 };
+          const score = totals.maxPoints > 0 ? Math.round((totals.points / totals.maxPoints) * 100) : 0;
+          return {
+            id,
+            label: sectionLabels[id] || id,
+            score,
+            status: getSectionStatus(score),
+            points: totals.points,
+            maxPoints: totals.maxPoints,
+          };
+        });
+
+        const questionOrder = new Map(questionBank.map((q) => [q.id, q.order]));
+        const regRank = (ref) => {
+          const upper = String(ref || '').toUpperCase();
+          if (upper.includes('SC')) return 0;
+          if (upper.includes('CBSE')) return 1;
+          return 2;
+        };
+
+        gaps.sort((a, b) => {
+          if (a.severityRank !== b.severityRank) return a.severityRank - b.severityRank;
+          const rr = regRank(a.regulatoryRef) - regRank(b.regulatoryRef);
+          if (rr !== 0) return rr;
+          return (questionOrder.get(a.questionId) || 999) - (questionOrder.get(b.questionId) || 999);
+        });
+
+        const visibleGaps = gaps.slice(0, 5);
+        const hiddenGapCount = Math.max(0, gaps.length - visibleGaps.length);
+        const topGaps = gaps.slice(0, 3);
+
+        return {
+          schoolName: payload.schoolName,
+          isCBSE: payload.isCBSE,
+          totalPoints,
+          totalMaxPoints,
+          overallScore,
+          band,
+          sectionScores,
+          visibleGaps,
+          hiddenGapCount,
+          topGaps,
+          allGaps: gaps,
+        };
+      }
+
+      function renderEntry() {
+        return `
+          <section class="cc-card cc-entry">
+            <p class="cc-eyebrow">Takes 3 minutes · No sign-up required · Free</p>
+            <h1 class="cc-title">Is your school compliant with India's new mental health mandates?</h1>
+            <p class="cc-subtitle">Answer 15–20 questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's 15 binding guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school is exposed.</p>
+            <button class="cc-btn cc-btn--primary" data-action="start">Start the check →</button>
+            <p class="cc-micro">Your answers are confidential and used only to generate your compliance report.</p>
+            <div class="cc-bottom-strip">Based on: SC Guidelines (July 25, 2025) · CBSE Affiliation Bye-Laws (January 2026) · CBSE Circular TRG-03/2026 (February 2026)</div>
+          </section>
+        `;
+      }
+
+      function renderGate() {
+        const gateValue = state.isCBSE === null ? '' : state.isCBSE ? 'yes' : 'no';
+        const gateNote = gateValue ? 'Answer saved' : 'Choose an answer to continue.';
+
+        return `
+          <section class="cc-card cc-question-shell">
+            <div class="cc-question-top">
+              <div>
+                <p class="cc-question-count">Question 1</p>
+                <p class="cc-trait">School Profile</p>
+              </div>
+              <span class="cc-progress-pill">5%</span>
+            </div>
+            <div class="cc-progress"><div style="width:5%"></div></div>
+
+            <div class="cc-question-stage">
+              <h2 class="cc-question-text cc-question-text--center">Is your school affiliated with CBSE?</h2>
+              <div class="cc-answer-options">
+                <label class="cc-answer-option ${gateValue === 'yes' ? 'is-selected' : ''}">
+                <input type="radio" name="cbse_gate" value="yes" ${gateValue === 'yes' ? 'checked' : ''} />
+                <div>
+                  <strong>Yes</strong>
+                </div>
+              </label>
+              <label class="cc-answer-option ${gateValue === 'no' ? 'is-selected' : ''}">
+                <input type="radio" name="cbse_gate" value="no" ${gateValue === 'no' ? 'checked' : ''} />
+                <div>
+                  <strong>No</strong>
+                </div>
+              </label>
+            </div>
+            </div>
+
+            <div class="cc-question-footer">
+              <button class="cc-btn cc-btn--ghost" data-action="back-to-entry">Back</button>
+              <p class="cc-footer-note">${gateNote}</p>
+              <button class="cc-btn cc-btn--primary" data-action="to-sections" ${state.isCBSE === null ? 'disabled' : ''}>Continue →</button>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderSection() {
+        const questions = getVisibleQuestions();
+        const totalQuestions = questions.length;
+        const question = questions[state.questionIndex];
+        if (!question) {
+          state.screen = 'email';
+          return renderEmailGate();
+        }
+        const selected = state.answers[question.id] || '';
+        const progress = Math.round(((state.questionIndex + 1) / totalQuestions) * 100);
+        const sectionName = sectionLabels[question.section] || 'Compliance';
+        const footerNote = state.autoAdvancing
+          ? 'Saving answer…'
+          : selected
+            ? 'Answer saved'
+            : 'Choose an answer to continue.';
+
+        return `
+          <section class="cc-card cc-question-shell">
+            <div class="cc-question-top">
+              <div>
+                <p class="cc-question-count">Question ${state.questionIndex + 1} of ${totalQuestions}</p>
+                <p class="cc-trait">${escapeHtml(sectionName)}</p>
+              </div>
+              <span class="cc-progress-pill">${progress}%</span>
+            </div>
+            <div class="cc-progress"><div style="width:${progress}%"></div></div>
+
+            <div class="cc-question-stage">
+              <h2 class="cc-question-text cc-question-text--center">${escapeHtml(question.question)}</h2>
+              <div class="cc-answer-options">
+                ${answerOptions.map((opt) => `
+                  <label class="cc-answer-option ${selected === opt.value ? 'is-selected' : ''}">
+                    <input type="radio" name="${question.id}" value="${opt.value}" ${selected === opt.value ? 'checked' : ''} />
+                    <div>
+                      <strong>${opt.label}</strong>
+                      <p>${opt.sub}</p>
+                    </div>
+                  </label>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="cc-question-footer">
+              <button class="cc-btn cc-btn--ghost" data-action="section-back">Back</button>
+              <p class="cc-footer-note">${footerNote}</p>
+              <button class="cc-btn cc-btn--primary" data-action="section-next" ${selected && !state.autoAdvancing ? '' : 'disabled'}>
+                ${state.questionIndex === totalQuestions - 1 ? 'Continue to report details →' : 'Next question →'}
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderEmailGate() {
+        return `
+          <section class="cc-card">
+            <p class="cc-step">Final step before score</p>
+            <h2 class="cc-heading">Your compliance report is ready.</h2>
+            <p class="cc-subcopy">Enter your details below to see your score, section breakdown, and specific compliance gaps.</p>
+
+            <form id="cc-email-form" class="cc-form">
+              <label>
+                Your name
+                <input name="contactName" required value="${escapeHtml(state.form.contactName)}" />
+              </label>
+              <label>
+                School name
+                <input name="schoolName" required value="${escapeHtml(state.form.schoolName)}" />
+              </label>
+              <label>
+                Email address
+                <input name="email" type="email" required value="${escapeHtml(state.form.email)}" />
+              </label>
+              <label>
+                Phone number (optional)
+                <input name="phone" value="${escapeHtml(state.form.phone)}" placeholder="For a follow-up call from our team" />
+              </label>
+
+              ${state.submitError ? `<p class="cc-error">${escapeHtml(state.submitError)}</p>` : ''}
+
+              <button class="cc-btn cc-btn--primary" type="submit" ${state.submitting ? 'disabled' : ''}>
+                ${state.submitting ? 'Generating report…' : 'See my compliance score →'}
+              </button>
+            </form>
+
+            <p class="cc-micro">We will email your full gap report to the address above. We do not share your data with third parties.</p>
+            <p class="cc-privacy">Your answers are stored securely and used only to generate your report and relevant follow-up.</p>
+
+            <div class="cc-actions">
+              <button class="cc-btn cc-btn--ghost" data-action="email-back">Back</button>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderLoading() {
+        const secondLine = state.isCBSE
+          ? "Mapping against CBSE's 2026 affiliation rules..."
+          : 'Mapping your compliance exposure...';
+
+        return `
+          <section class="cc-card cc-loading">
+            <h2 class="cc-heading">Generating your report</h2>
+            <p class="cc-loading-line ${state.loadingLine >= 1 ? 'is-on' : ''}">Checking your answers against 15 SC guidelines...</p>
+            <p class="cc-loading-line ${state.loadingLine >= 2 ? 'is-on' : ''}">${secondLine}</p>
+            <p class="cc-loading-line ${state.loadingLine >= 3 ? 'is-on' : ''}">Generating your personalised gap report...</p>
+            <div class="cc-loading-bar"><span style="width:${state.loadingProgress}%"></span></div>
+          </section>
+        `;
+      }
+
+      function getBandMeta(band) {
+        if (band === 'green') {
+          return {
+            label: 'Compliant',
+            description: 'Your school meets most SC and CBSE requirements. Minor gaps remain.',
+            bg: '#E1F5EE',
+          };
+        }
+        if (band === 'amber') {
+          return {
+            label: 'Partially Compliant',
+            description: 'Your school has significant gaps and regulatory exposure that require urgent attention.',
+            bg: '#FAEEDA',
+          };
+        }
+        return {
+          label: 'Non-Compliant — Significant Exposure',
+          description: 'Your school is currently non-compliant. Immediate action is required to avoid regulatory action and legal liability.',
+          bg: '#FAECE7',
+        };
+      }
+
+      function renderResult() {
+        const result = state.result;
+        const bandMeta = getBandMeta(result.band);
+        const previewNote = state.previewMode
+          ? `<div class="cc-card cc-preview-note"><p>Preview mode: showing locally generated results because backend services are not configured yet.</p></div>`
+          : '';
+
+        return `
+          <section class="cc-result">
+            <div class="cc-score-head" style="background:${bandMeta.bg}">
+              <p class="cc-score-school">${escapeHtml(result.schoolName)}</p>
+              <div class="cc-score-num">${result.overallScore}%</div>
+              <h2 class="cc-score-band">${bandMeta.label}</h2>
+              <p class="cc-score-band-desc">${bandMeta.description}</p>
+            </div>
+            ${previewNote}
+
+            <div class="cc-card cc-result-card">
+              <h3 class="cc-block-title">Where your school stands — section by section</h3>
+              <div class="cc-section-rows">
+                ${result.sectionScores.map((s) => {
+                  const icon = s.status === 'green' ? '✓' : s.status === 'amber' ? '⚠' : '✗';
+                  return `
+                    <div class="cc-section-row">
+                      <p class="cc-section-label">${escapeHtml(s.label)}</p>
+                      <div class="cc-section-bar"><span class="is-${s.status}" style="width:${s.score}%"></span></div>
+                      <p class="cc-section-score">${s.score}% ${icon}</p>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+
+            <div class="cc-card cc-result-card">
+              <h3 class="cc-block-title">Your compliance gaps</h3>
+              <p class="cc-subcopy">These are the specific areas where your school is currently exposed.</p>
+              <div class="cc-gap-list">
+                ${result.visibleGaps.map((gap) => `
+                  <article class="cc-gap-card ${gap.answer === 'no' ? 'is-no' : 'is-partial'}">
+                    <h4>${escapeHtml(gap.shortTitle)}</h4>
+                    <p class="cc-gap-ref">${escapeHtml(gap.regulatoryRef)}</p>
+                    <p>${escapeHtml(gap.legalRisk)}</p>
+                    <a href="#close-gaps-cta">Zengarden covers this →</a>
+                  </article>
+                `).join('')}
+              </div>
+              ${result.hiddenGapCount > 0 ? `<p class="cc-gap-more">+ ${result.hiddenGapCount} more gaps identified — reviewed in your demo</p>` : ''}
+            </div>
+
+            <div class="cc-card cc-result-card" id="close-gaps-cta">
+              <p class="cc-step">The fastest way to close these gaps</p>
+              <h3 class="cc-block-title">Book a 20-minute demo</h3>
+              <p class="cc-subcopy">We'll walk through your specific gaps, show you exactly how Zengarden covers each one, and give you a custom quote for your school size.</p>
+              <a class="cc-btn cc-btn--primary" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer">Book a Demo →</a>
+            </div>
+
+            <div class="cc-card cc-urgency-note">
+              <div class="cc-note-head">
+                <span class="cc-note-icon" aria-hidden="true">!</span>
+                <div>
+                  <p class="cc-note-kicker">Important Note</p>
+                  <h3>A note on timing</h3>
+                </div>
+              </div>
+              <ul class="cc-note-list">
+                <li>The Supreme Court guidelines have been in force since July 25, 2025.</li>
+                <li>CBSE's counsellor mandate is effective from January 2026.</li>
+                <li>District magistrate compliance inspections are already underway in several states.</li>
+                <li>Every week without a compliant system is a week of legal exposure for your institution and its management.</li>
+              </ul>
+            </div>
+          </section>
+        `;
+      }
+
+      function render() {
+        if (!app) return;
+
+        if (state.screen === 'entry') app.innerHTML = renderEntry();
+        if (state.screen === 'gate') app.innerHTML = renderGate();
+        if (state.screen === 'section') app.innerHTML = renderSection();
+        if (state.screen === 'email') app.innerHTML = renderEmailGate();
+        if (state.screen === 'loading') app.innerHTML = renderLoading();
+        if (state.screen === 'result') app.innerHTML = renderResult();
+      }
+
+      function startLoadingAndReveal(resultPayload) {
+        state.screen = 'loading';
+        state.loadingProgress = 0;
+        state.loadingLine = 1;
+        render();
+
+        const duration = 2500;
+        const start = performance.now();
+
+        if (state.loadingTimer) {
+          clearInterval(state.loadingTimer);
+          state.loadingTimer = null;
+        }
+
+        state.loadingTimer = window.setInterval(() => {
+          const elapsed = performance.now() - start;
+          const progress = Math.min(100, Math.round((elapsed / duration) * 100));
+          state.loadingProgress = progress;
+          if (elapsed >= 800) state.loadingLine = 2;
+          if (elapsed >= 1600) state.loadingLine = 3;
+
+          const bar = app?.querySelector('.cc-loading-bar span');
+          const lines = app?.querySelectorAll('.cc-loading-line');
+          if (bar) bar.style.width = `${progress}%`;
+          if (lines?.[0]) lines[0].classList.toggle('is-on', state.loadingLine >= 1);
+          if (lines?.[1]) lines[1].classList.toggle('is-on', state.loadingLine >= 2);
+          if (lines?.[2]) lines[2].classList.toggle('is-on', state.loadingLine >= 3);
+
+          if (elapsed >= duration) {
+            clearInterval(state.loadingTimer);
+            state.loadingTimer = null;
+            state.result = resultPayload;
+            state.screen = 'result';
+            render();
+          }
+        }, 80);
+      }
+
+      async function submitForm(form) {
+        state.submitError = '';
+        state.submitting = true;
+        render();
+
+        const payload = {
+          contactName: form.contactName.trim(),
+          schoolName: form.schoolName.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          isCBSE: state.isCBSE,
+          answers: state.answers,
+        };
+
+        try {
+          const res = await fetch('/api/compliance/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Submission failed');
+
+          state.submitting = false;
+          state.previewMode = false;
+          state.submissionId = data.submissionId;
+          startLoadingAndReveal(data);
+        } catch (err) {
+          state.submitting = false;
+          state.previewMode = true;
+          state.submissionId = '';
+          const fallbackResult = buildLocalPreviewResult(payload);
+          startLoadingAndReveal(fallbackResult);
+        }
+      }
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        const actionEl = target.closest('[data-action]');
+        if (!actionEl) return;
+
+        const action = actionEl.getAttribute('data-action');
+
+        if (action === 'start') {
+          state.screen = 'gate';
+          render();
+        }
+
+        if (action === 'back-to-entry') {
+          state.screen = 'entry';
+          render();
+        }
+
+        if (action === 'to-sections' && state.isCBSE !== null) {
+          state.screen = 'section';
+          state.questionIndex = 0;
+          render();
+        }
+
+        if (action === 'section-back') {
+          if (state.questionIndex === 0) {
+            state.screen = 'gate';
+          } else {
+            state.questionIndex -= 1;
+          }
+          render();
+        }
+
+        if (action === 'section-next') {
+          if (state.autoAdvancing) return;
+          const questions = getVisibleQuestions();
+          const current = questions[state.questionIndex];
+          if (!current || !state.answers[current.id]) {
+            return;
+          }
+          if (state.questionIndex === questions.length - 1) {
+            state.screen = 'email';
+          } else {
+            state.questionIndex += 1;
+          }
+          render();
+        }
+
+        if (action === 'email-back') {
+          state.screen = 'section';
+          state.questionIndex = Math.max(0, getVisibleQuestions().length - 1);
+          render();
+        }
+      });
+
+      document.addEventListener('change', (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+
+        if (target.name === 'cbse_gate') {
+          if (target.value === 'yes') {
+            state.isCBSE = true;
+          }
+          if (target.value === 'no') {
+            state.isCBSE = false;
+          }
+
+          const hiddenIds = questionBank.filter((q) => q.cbseOnly).map((q) => q.id);
+          if (!state.isCBSE) {
+            for (const id of hiddenIds) delete state.answers[id];
+          }
+
+          render();
+          return;
+        }
+
+        const q = questionBank.find((item) => item.id === target.name);
+        if (q && ['yes', 'partially', 'no'].includes(target.value)) {
+          state.answers[target.name] = target.value;
+          if (state.screen === 'section') {
+            const questions = getVisibleQuestions();
+            const current = questions[state.questionIndex];
+            if (current && current.id === target.name && !state.autoAdvancing) {
+              state.autoAdvancing = true;
+              const shell = app?.querySelector('.cc-question-shell');
+              const footerNote = app?.querySelector('.cc-footer-note');
+              if (shell) shell.classList.add('is-advancing');
+              if (footerNote) footerNote.textContent = 'Saving answer…';
+
+              window.setTimeout(() => {
+                state.autoAdvancing = false;
+                if (state.questionIndex === questions.length - 1) {
+                  state.screen = 'email';
+                } else {
+                  state.questionIndex += 1;
+                }
+                render();
+              }, 240);
+              return;
+            }
+          }
+          render();
+        }
+      });
+
+      document.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        if (form.id !== 'cc-email-form') return;
+
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const values = {
+          contactName: String(formData.get('contactName') || ''),
+          schoolName: String(formData.get('schoolName') || ''),
+          email: String(formData.get('email') || ''),
+          phone: String(formData.get('phone') || ''),
+        };
+
+        state.form = values;
+
+        if (!values.contactName.trim() || !values.schoolName.trim() || !values.email.trim()) {
+          state.submitError = 'Please complete all required fields.';
+          render();
+          return;
+        }
+
+        void submitForm(values);
+      });
+
+    </script>
 
     <Footer />
   </body>
 </html>
 
-<style>
-  .cs-main {
-    min-height: calc(100vh - 240px);
-    display: flex;
+<style is:global>
+  .cc-main {
+    background: var(--zg-light-bg);
+  }
+
+  .cc-section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .cc-app {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .cc-card {
+    background: #fff;
+    border: 1px solid var(--zg-border-light);
+    border-radius: 16px;
+    padding: 32px 28px;
+  }
+
+  .cc-entry {
+    text-align: center;
+  }
+
+  .cc-eyebrow {
+    margin: 0 0 10px;
+    color: var(--zg-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cc-title,
+  .cc-heading {
+    margin: 0;
+    color: var(--zg-mid);
+    line-height: 1.2;
+  }
+
+  .cc-title {
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    margin-bottom: 12px;
+  }
+
+  .cc-heading {
+    font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+    margin-bottom: 10px;
+  }
+
+  .cc-subtitle,
+  .cc-subcopy {
+    margin: 0;
+    color: var(--zg-dark);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .cc-subtitle {
+    max-width: 820px;
+    margin: 0 auto 20px;
+  }
+
+  .cc-step {
+    margin: 0 0 10px;
+    color: var(--zg-muted);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cc-btn {
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 15px;
-    background: #fff;
+    transition: opacity 0.15s;
   }
 
-  .cs-message-wrap {
-    text-align: center;
-    max-width: 780px;
+  .cc-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
-  .cs-message {
+  .cc-btn--primary {
+    min-height: 48px;
+    padding: 0 20px;
+    background: var(--zg-teal);
+    color: #fff;
+    border-radius: 6px;
+  }
+
+  #close-gaps-cta .cc-btn--primary {
+    margin-top: 10px;
+  }
+
+  .cc-btn--ghost {
+    min-height: 44px;
+    padding: 0 16px;
+    background: transparent;
+    color: var(--zg-blue);
+    border: 1.5px solid var(--zg-blue);
+    border-radius: 8px;
+  }
+
+  .cc-micro,
+  .cc-privacy,
+  .cc-bottom-strip {
+    color: var(--zg-muted);
+  }
+
+  .cc-micro {
+    margin: 14px 0 0;
+    font-size: 0.875rem;
+  }
+
+  .cc-privacy {
+    margin: 6px 0 0;
+    font-size: 0.875rem;
+  }
+
+  .cc-bottom-strip {
+    margin-top: 20px;
+    border-top: 1px solid var(--zg-border-light);
+    padding-top: 14px;
+    font-size: 0.875rem;
+  }
+
+  .cc-gate-options {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .cc-gate-option {
+    border: 1px solid var(--zg-border-light);
+    border-radius: 12px;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  .cc-gate-option.is-selected {
+    border-color: var(--zg-blue);
+    background: #f4f6ff;
+  }
+
+  .cc-gate-option strong {
+    color: var(--zg-mid);
+    font-size: 1rem;
+  }
+
+  .cc-gate-option p {
+    margin: 4px 0 0;
+    font-size: 0.9375rem;
+    color: var(--zg-dark);
+    line-height: 1.45;
+  }
+
+  .cc-progress {
+    height: 8px;
+    border-radius: var(--zg-radius-full);
+    background: #edf1f7;
+    margin: 14px 0 20px;
+    overflow: hidden;
+  }
+
+  .cc-progress > div {
+    height: 100%;
+    background: var(--zg-blue);
+    transition: width 0.2s;
+  }
+
+  .cc-question-shell {
+    padding: 20px 24px 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .cc-question-shell.is-advancing {
+    opacity: 0.5;
+    transform: translateY(6px);
+  }
+
+  .cc-question-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cc-question-count {
     margin: 0;
-    font-size: clamp(1.125rem, 2.2vw, 1.75rem);
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0a7da3;
+  }
+
+  .cc-trait {
+    margin: 4px 0 0;
+    font-size: 1rem;
+    color: var(--zg-muted);
+  }
+
+  .cc-progress-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #596784;
+    background: #e7edf3;
+  }
+
+  .cc-question-stage {
+    padding: 36px 8px 40px;
+  }
+
+  .cc-question-text {
+    margin: 0;
     color: var(--zg-mid);
     line-height: 1.45;
   }
 
-  .cs-sub {
-    margin: 12px 0 0;
+  .cc-question-text--center {
+    text-align: center;
+    font-size: clamp(1.45rem, 2.7vw, 2rem);
+    font-weight: 700;
+  }
+
+  .cc-answer-options {
+    margin-top: 28px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .cc-answer-option {
+    border: 1px solid var(--zg-border-light);
+    border-radius: 12px;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: start;
+    cursor: pointer;
+    background: #fff;
+  }
+
+  .cc-answer-option.is-selected {
+    border-color: var(--zg-blue);
+    background: var(--zg-hover-light);
+  }
+
+  .cc-answer-option input {
+    margin-top: 2px;
+  }
+
+  .cc-answer-option strong {
+    color: var(--zg-mid);
     font-size: 1rem;
-    font-weight: 600;
+  }
+
+  .cc-answer-option p {
+    margin: 4px 0 0;
+    font-size: 0.9375rem;
+    color: var(--zg-dark);
+    line-height: 1.45;
+  }
+
+  .cc-question-footer {
+    border-top: 1px solid var(--zg-border-light);
+    margin: 0 -24px;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cc-footer-note {
+    margin: 0;
+    text-align: center;
     color: var(--zg-muted);
+    font-size: 1rem;
+  }
+
+  .cc-actions {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .cc-form {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .cc-form label {
+    display: grid;
+    gap: 6px;
+    color: var(--zg-mid);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .cc-form input {
+    min-height: 44px;
+    border-radius: 10px;
+    border: 1px solid var(--zg-input-border);
+    padding: 10px 12px;
+    font: inherit;
+  }
+
+  .cc-error {
+    margin: 0;
+    color: #b91c1c;
+    font-size: 0.875rem;
+  }
+
+  .cc-loading {
+    text-align: center;
+  }
+
+  .cc-loading-line {
+    margin: 8px 0;
+    color: #9ca3af;
+    transition: color 0.15s;
+  }
+
+  .cc-loading-line.is-on {
+    color: var(--zg-mid);
+    font-weight: 600;
+  }
+
+  .cc-loading-bar {
+    margin: 20px auto 0;
+    max-width: 560px;
+    height: 12px;
+    border-radius: var(--zg-radius-full);
+    background: #e9edf5;
+    overflow: hidden;
+  }
+
+  .cc-loading-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--zg-teal);
+    transition: width 0.08s linear;
+  }
+
+  .cc-result {
+    display: grid;
+    gap: 16px;
+  }
+
+  .cc-preview-note {
+    background: #eef2ff;
+    border-color: #dbe3ff;
+    padding: 14px 16px;
+  }
+
+  .cc-preview-note p {
+    margin: 0;
+    color: #394e9b;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .cc-score-head {
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-align: center;
+  }
+
+  .cc-score-school {
+    margin: 0;
+    color: var(--zg-mid);
+    font-weight: 700;
+  }
+
+  .cc-score-num {
+    margin-top: 6px;
+    color: var(--zg-mid);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .cc-score-band {
+    margin: 8px 0 6px;
+    color: var(--zg-mid);
+    font-size: clamp(1.2rem, 2.7vw, 1.8rem);
+  }
+
+  .cc-score-band-desc {
+    margin: 0;
+    color: var(--zg-dark);
+    max-width: 760px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  .cc-result-card {
+    padding: 24px;
+  }
+
+  .cc-block-title {
+    margin: 0;
+    color: var(--zg-mid);
+    font-size: 1.35rem;
+  }
+
+  .cc-section-rows {
+    margin-top: 14px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .cc-section-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 110px;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .cc-section-label,
+  .cc-section-score {
+    margin: 0;
+    color: var(--zg-mid);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .cc-section-bar {
+    height: 10px;
+    border-radius: var(--zg-radius-full);
+    background: #edf1f7;
+    overflow: hidden;
+  }
+
+  .cc-section-bar span {
+    display: block;
+    height: 100%;
+  }
+
+  .cc-section-bar .is-green {
+    background: #16a34a;
+  }
+
+  .cc-section-bar .is-amber {
+    background: #d97706;
+  }
+
+  .cc-section-bar .is-red {
+    background: #dc2626;
+  }
+
+  .cc-gap-list {
+    margin-top: 12px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .cc-gap-card {
+    border: 1px solid var(--zg-border-light);
+    border-left-width: 4px;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  .cc-gap-card.is-no {
+    border-left-color: #ef4444;
+  }
+
+  .cc-gap-card.is-partial {
+    border-left-color: #f59e0b;
+  }
+
+  .cc-gap-card h4 {
+    margin: 0 0 4px;
+    color: var(--zg-mid);
+    font-size: 1rem;
+  }
+
+  .cc-gap-card p {
+    margin: 0;
+    color: var(--zg-dark);
+    line-height: 1.55;
+    font-size: 0.93rem;
+  }
+
+  .cc-gap-card .cc-gap-ref {
+    margin-bottom: 5px;
+    color: var(--zg-muted);
+    font-weight: 700;
+    font-size: 0.78rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  .cc-gap-card a {
+    margin-top: 8px;
+    display: inline-block;
+    color: var(--zg-blue);
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .cc-gap-more {
+    margin: 10px 0 0;
+    color: var(--zg-muted);
+    font-size: 0.875rem;
+  }
+
+  .cc-secondary-actions {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .cc-secondary-actions a {
+    color: var(--zg-blue);
+    font-weight: 700;
+    font-size: 0.93rem;
+    text-decoration: underline;
+  }
+
+  .cc-action-disabled {
+    color: var(--zg-muted);
+    font-weight: 600;
+    font-size: 0.93rem;
+  }
+
+  .cc-urgency-note {
+    background: #fff7e8;
+    border: 1px solid #f0d8a8;
+    border-left: 5px solid #d97706;
+  }
+
+  .cc-note-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .cc-note-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .cc-note-kicker {
+    margin: 0 0 2px;
+    color: #b45309;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cc-urgency-note h3 {
+    margin: 0 0 8px;
+    color: #8a5a00;
+    font-size: 1.15rem;
+  }
+
+  .cc-note-list {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cc-note-list li {
+    margin: 0;
+    color: #7c5a1f;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 900px) {
+    .container {
+      padding: 0 15px;
+    }
+
+    .cc-card,
+    .cc-result-card,
+    .cc-score-head {
+      padding: 20px 15px;
+    }
+
+    .cc-question-shell {
+      padding: 16px 15px 0;
+    }
+
+    .cc-question-count {
+      font-size: 1rem;
+    }
+
+    .cc-trait {
+      font-size: 0.875rem;
+    }
+
+    .cc-question-stage {
+      padding: 24px 4px 28px;
+    }
+
+    .cc-question-text--center {
+      font-size: clamp(1.3rem, 5vw, 1.9rem);
+    }
+
+    .cc-answer-options {
+      margin-top: 20px;
+    }
+
+    .cc-question-footer {
+      margin: 0 -15px;
+      padding: 14px 15px;
+      grid-template-columns: 1fr;
+    }
+
+    .cc-footer-note {
+      order: 3;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .cc-section-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .cc-actions {
+      flex-direction: column;
+    }
+
+    .cc-btn {
+      width: 100%;
+    }
   }
 </style>
