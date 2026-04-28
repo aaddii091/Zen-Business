@@ -2,7 +2,6 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import SectionHeader from '../components/SectionHeader.astro';
 import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/questions';
 ---
 
@@ -14,33 +13,53 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
       description="School compliance checker mapped to SC Guidelines and CBSE requirements."
     />
   </head>
-  <body>
+  <body class="cc-page">
     <Header />
 
     <main class="cc-main">
       <section class="cc-section">
         <div class="container">
-          <SectionHeader
-            heading="Check Your Compliance Score"
-            sub="A structured self-assessment for schools mapped to SC Guidelines and CBSE requirements."
-            align="center"
-          />
-
           <div id="compliance-app" class="cc-app">
           <section class="cc-card cc-entry">
-            <p class="cc-eyebrow">Takes 3 minutes · No sign-up required · Free</p>
             <h1 class="cc-title">Is your school compliant with India's new mental health mandates?</h1>
-            <p class="cc-subtitle">Answer 15–20 questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school is exposed.</p>
+            <p class="cc-subtitle">Answer a short set of questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's binding guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school has gaps, which regulations you're exposed on, and how to fix each one.</p>
             <button class="cc-btn cc-btn--primary" data-action="start" type="button">Start the check →</button>
-            <p class="cc-micro">Your answers are confidential and used only to generate your compliance report.</p>
+            <p class="cc-micro">Confidential · No sign-up required · Free · Results in 3 minutes</p>
             <div class="cc-bottom-strip">Based on: SC Guidelines (July 25, 2025) · CBSE Affiliation Bye-Laws (January 2026) · CBSE Circular TRG-03/2026 (February 2026)</div>
           </section>
           </div>
+
+          <section class="cc-report-includes" id="cc-report-includes">
+            <h2 class="cc-report-heading">What your compliance report includes</h2>
+            <div class="cc-report-grid">
+              <article class="cc-report-item">
+                <div class="cc-report-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 4h12v16H6z" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <h3>Your overall compliance score</h3>
+                <p>A percentage score and compliance band — Compliant, Partially Compliant, or Non-Compliant — mapped against the SC guidelines and CBSE affiliation rules that apply to your school.</p>
+              </article>
+              <article class="cc-report-item">
+                <div class="cc-report-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.8"/></svg>
+                </div>
+                <h3>Your specific gaps</h3>
+                <p>Every area where your school is currently exposed — mapped to the exact SC guideline or CBSE rule you're missing, with the legal risk called out clearly.</p>
+              </article>
+              <article class="cc-report-item">
+                <div class="cc-report-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 18h6l2-4h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m15 7 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>How to fix each gap</h3>
+                <p>For every gap identified, we show you what closing it looks like in practice — so you leave with a clear next step, not just a score.</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
     </main>
 
-    <script type="module" define:vars={{ questionBank: COMPLIANCE_QUESTIONS, sectionLabels: SECTION_LABELS }}>
+    <script type="module" define:vars={{ questionBank: COMPLIANCE_QUESTIONS, sectionLabels: SECTION_LABELS, devMode: import.meta.env.DEV }}>
       const app = document.getElementById('compliance-app');
 
       const answerOptions = [
@@ -183,11 +202,10 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
       function renderEntry() {
         return `
           <section class="cc-card cc-entry">
-            <p class="cc-eyebrow">Takes 3 minutes · No sign-up required · Free</p>
             <h1 class="cc-title">Is your school compliant with India's new mental health mandates?</h1>
-            <p class="cc-subtitle">Answer 15–20 questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's 15 binding guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school is exposed.</p>
+            <p class="cc-subtitle">Answer a short set of questions about your current systems, staff, and processes. We'll map your answers against the Supreme Court's binding guidelines and CBSE's 2026 affiliation rules — and show you exactly where your school has gaps, which regulations you're exposed on, and how to fix each one.</p>
             <button class="cc-btn cc-btn--primary" data-action="start">Start the check →</button>
-            <p class="cc-micro">Your answers are confidential and used only to generate your compliance report.</p>
+            <p class="cc-micro">Confidential · No sign-up required · Free · Results in 3 minutes</p>
             <div class="cc-bottom-strip">Based on: SC Guidelines (July 25, 2025) · CBSE Affiliation Bye-Laws (January 2026) · CBSE Circular TRG-03/2026 (February 2026)</div>
           </section>
         `;
@@ -376,6 +394,10 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
           ? `<div class="cc-card cc-preview-note"><p>Preview mode: showing locally generated results because backend services are not configured yet.</p></div>`
           : '';
 
+        const devAction = devMode
+          ? '<button class="cc-btn cc-btn--ghost cc-dev-btn" data-action="open-dev-report">Dev: Generate Report PDF</button>'
+          : '';
+
         return `
           <section class="cc-result">
             <div class="cc-score-head" style="background:${bandMeta.bg}">
@@ -423,6 +445,7 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
               <h3 class="cc-block-title">Book a 20-minute demo</h3>
               <p class="cc-subcopy">We'll walk through your specific gaps, show you exactly how Zengarden covers each one, and give you a custom quote for your school size.</p>
               <a class="cc-btn cc-btn--primary" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer">Book a Demo →</a>
+              ${devAction}
             </div>
 
             <div class="cc-card cc-urgency-note">
@@ -446,6 +469,10 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
 
       function render() {
         if (!app) return;
+        const reportIncludes = document.getElementById('cc-report-includes');
+        if (reportIncludes) {
+          reportIncludes.hidden = state.screen !== 'entry';
+        }
 
         if (state.screen === 'entry') app.innerHTML = renderEntry();
         if (state.screen === 'gate') app.innerHTML = renderGate();
@@ -530,6 +557,32 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
         }
       }
 
+      async function openDevReportInNewTab() {
+        try {
+          const payload = {
+            contactName: state.form.contactName || 'Dev User',
+            schoolName: state.form.schoolName || 'Demo School',
+            isCBSE: state.isCBSE,
+            answers: state.answers,
+          };
+
+          const res = await fetch('/api/compliance/dev-report', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (!res.ok) throw new Error('Failed to generate dev report');
+
+          const blob = await res.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          window.open(blobUrl, '_blank', 'noopener,noreferrer');
+          window.setTimeout(() => URL.revokeObjectURL(blobUrl), 30000);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
       document.addEventListener('click', (event) => {
         const target = event.target;
         if (!(target instanceof HTMLElement)) return;
@@ -583,6 +636,10 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
           state.screen = 'section';
           state.questionIndex = Math.max(0, getVisibleQuestions().length - 1);
           render();
+        }
+
+        if (action === 'open-dev-report') {
+          void openDevReportInNewTab();
         }
       });
 
@@ -671,16 +728,32 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
 <style is:global>
   .cc-main {
     background: var(--zg-light-bg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cc-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
   }
 
   .cc-section {
     padding: 5rem 0;
+    flex: 1;
+    display: flex;
   }
 
   .container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
+    width: 100%;
+  }
+
+  .cc-page > .zg-footer {
+    margin-top: auto;
   }
 
   .cc-app {
@@ -697,15 +770,6 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
 
   .cc-entry {
     text-align: center;
-  }
-
-  .cc-eyebrow {
-    margin: 0 0 10px;
-    color: var(--zg-muted);
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
 
   .cc-title,
@@ -807,6 +871,58 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
     border-top: 1px solid var(--zg-border-light);
     padding-top: 14px;
     font-size: 0.875rem;
+  }
+
+  .cc-report-includes {
+    margin-top: 28px;
+  }
+
+  .cc-report-heading {
+    margin: 0 0 16px;
+    text-align: center;
+    color: var(--zg-mid);
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .cc-report-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .cc-report-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 18px;
+  }
+
+  .cc-report-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--zg-blue);
+    background: var(--zg-hover-light);
+    margin-bottom: 10px;
+  }
+
+  .cc-report-item h3 {
+    margin: 0 0 6px;
+    color: var(--zg-mid);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .cc-report-item p {
+    margin: 0;
+    color: var(--zg-dark);
+    font-size: 0.9375rem;
+    line-height: 1.55;
   }
 
   .cc-gate-options {
@@ -1292,6 +1408,10 @@ import { COMPLIANCE_QUESTIONS, SECTION_LABELS } from '../lib/compliance/question
     .cc-result-card,
     .cc-score-head {
       padding: 20px 15px;
+    }
+
+    .cc-report-grid {
+      grid-template-columns: 1fr;
     }
 
     .cc-question-shell {
