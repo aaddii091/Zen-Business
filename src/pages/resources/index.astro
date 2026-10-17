@@ -1,0 +1,247 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { GUIDE_NAV, PUBLISHED_GUIDES } from '../../data/guideNav';
+
+const title = 'Resources';
+const description =
+  'Step-by-step guides for everyone who uses Zengarden — teachers, counsellors, school admins and students.';
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={`${title} — Zengarden`} description={description} />
+  </head>
+  <body>
+    <Header />
+
+    <main class="res-main">
+      <header class="res-hero">
+        <p class="res-eyebrow">Resources</p>
+        <h1>The Zengarden manual</h1>
+        <p class="res-lede">
+          Short, screenshot-led guides for every role in your school. Each one walks through a single
+          task from start to finish, using the actual screens your staff will see.
+        </p>
+        <p class="res-count">
+          {PUBLISHED_GUIDES.length} guide{PUBLISHED_GUIDES.length === 1 ? '' : 's'} published · more
+          added each week
+        </p>
+      </header>
+
+      {
+        GUIDE_NAV.map((section) => (
+          <section class="res-section">
+            <div class="res-section-head">
+              <h2>{section.title}</h2>
+              {section.blurb && <p>{section.blurb}</p>}
+            </div>
+
+            <ul class="res-grid">
+              {section.items.map((item) =>
+                item.href ? (
+                  <li class="res-card">
+                    <a href={item.href}>
+                      <h3>{item.label}</h3>
+                      {item.summary && <p>{item.summary}</p>}
+                      <span class="res-cta">Read the guide →</span>
+                    </a>
+                  </li>
+                ) : (
+                  <li class="res-card pending">
+                    <h3>{item.label}</h3>
+                    <span class="res-soon">Coming soon</span>
+                  </li>
+                ),
+              )}
+            </ul>
+          </section>
+        ))
+      }
+
+      <section class="res-help">
+        <h2>Can’t find what you need?</h2>
+        <p>
+          Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a> and we’ll walk you
+          through it — and write the guide you were looking for.
+        </p>
+      </section>
+    </main>
+
+    <Footer />
+
+    <style>
+      .res-main {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 56px 40px 80px;
+      }
+
+      .res-hero {
+        max-width: 720px;
+        margin-bottom: 56px;
+      }
+
+      .res-eyebrow {
+        margin: 0 0 10px;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--zg-blue);
+      }
+
+      .res-hero h1 {
+        margin: 0 0 16px;
+        font-size: 3rem;
+        line-height: 1.1;
+        color: var(--zg-dark);
+      }
+
+      .res-lede {
+        margin: 0;
+        font-size: 1.1875rem;
+        line-height: 1.6;
+        color: var(--zg-muted);
+      }
+
+      .res-count {
+        margin: 18px 0 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--zg-muted);
+      }
+
+      .res-section {
+        margin-bottom: 52px;
+      }
+
+      .res-section-head {
+        margin-bottom: 20px;
+      }
+
+      .res-section-head h2 {
+        margin: 0 0 6px;
+        font-size: 1.5rem;
+        color: var(--zg-dark);
+      }
+
+      .res-section-head p {
+        margin: 0;
+        max-width: 680px;
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: var(--zg-muted);
+      }
+
+      .res-grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+      }
+
+      .res-card {
+        border: 1px solid var(--zg-border-light);
+        border-radius: var(--zg-radius-lg);
+        background: var(--zg-white);
+        transition: border-color var(--zg-transition), box-shadow var(--zg-transition),
+          transform var(--zg-transition);
+      }
+
+      .res-card a {
+        display: block;
+        padding: 22px;
+        height: 100%;
+      }
+
+      .res-card:not(.pending):hover {
+        border-color: var(--zg-blue-35);
+        box-shadow: var(--zg-shadow-sm);
+        transform: translateY(-2px);
+      }
+
+      .res-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.0625rem;
+        line-height: 1.35;
+        color: var(--zg-dark);
+      }
+
+      .res-card p {
+        margin: 0 0 16px;
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: var(--zg-muted);
+      }
+
+      .res-cta {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--zg-blue);
+      }
+
+      .res-card.pending {
+        padding: 22px;
+        background: var(--zg-light-bg);
+        border-style: dashed;
+      }
+
+      .res-card.pending h3 {
+        color: #7A8398;
+        margin-bottom: 10px;
+      }
+
+      .res-soon {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #7A8398;
+        background: var(--zg-white);
+        border-radius: var(--zg-radius-full);
+        padding: 3px 10px;
+      }
+
+      .res-help {
+        padding: 28px;
+        border-radius: var(--zg-radius-lg);
+        background: var(--zg-light-bg);
+      }
+
+      .res-help h2 {
+        margin: 0 0 8px;
+        font-size: 1.25rem;
+        color: var(--zg-dark);
+      }
+
+      .res-help p {
+        margin: 0;
+        color: var(--zg-mid);
+        line-height: 1.7;
+      }
+
+      .res-help a {
+        color: var(--zg-blue);
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .res-main {
+          padding: 40px 24px 64px;
+        }
+
+        .res-hero h1 {
+          font-size: 2.25rem;
+        }
+
+        .res-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>
