@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotWelcome from '../../../assets/guide/09-student-welcome.png';
+import shotHome from '../../../assets/guide/10-student-home.png';
+---
+
+<GuideLayout
+  slug="student-getting-started"
+  title="Getting started"
+  description="Setting up your Zengarden account, joining your school, and finding your way around."
+  audience="For students"
+  readingTime="3 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Create your account</h2>
+      <p>
+        Open the student app and choose <strong>Sign up</strong>. You need a name, an email address
+        and a password. That is all that is asked for.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>Use your school email if you have one.</strong> If your school added you to their
+          list in advance, signing up with that address links you to the school automatically.
+        </p>
+      </div>
+      <figure>
+        <Image
+          src={shotWelcome}
+          alt="The Zengarden student app welcome screen with options to log in or sign up."
+          loading="eager"
+        />
+        <figcaption>The welcome screen. Already have an account? Log in instead.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Join your school</h2>
+      <p>
+        If you were not linked automatically, your school will give you a short
+        <strong>organization code</strong>. Enter it when the app asks, or later from
+        <strong>My Counsellor</strong>.
+      </p>
+      <p>
+        Joining your school is what connects you to a counsellor and to the support your school has
+        set up. Until then the app works, but it is mostly the self-guided parts.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>Find your way around the dashboard</h2>
+      <p>Your home screen gathers everything in one place.</p>
+      <ul>
+        <li>
+          <strong>Next session</strong> at the top: your upcoming appointment, or a button to book
+          one.
+        </li>
+        <li>
+          <strong>Pending quizzes</strong>: anything your counsellor has asked you to complete.
+        </li>
+        <li>
+          <strong>Resource library</strong> down the left: guided exercises, short courses and
+          articles you can use on your own, any time.
+        </li>
+        <li><strong>My Counsellor</strong>: who you have been assigned, and how to reach them.</li>
+      </ul>
+      <figure>
+        <Image
+          src={shotHome}
+          alt="The student dashboard showing a next session card with a Book a Session button, pending quizzes, a career assessment prompt, and a resource library with guided meditations."
+          loading="lazy"
+        />
+        <figcaption>
+          Everything here is yours to use whenever you want. Nothing in the resource library is
+          reported to anyone.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>Meet your counsellor</h2>
+      <p>
+        <strong>Your school assigns your counsellor</strong>, based on your class. You do not pick
+        one, and you do not need to do anything to be matched.
+      </p>
+      <p>
+        If you move class, your counsellor changes to the one assigned to your new class. If you
+        would rather see someone else, that is a conversation to have with your school.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-body">
+      <h2>If you need help right now</h2>
+      <div class="guide-note">
+        <p>
+          <strong>Zengarden is not an emergency service.</strong> If you are in danger or thinking
+          about harming yourself, contact emergency services on <strong>112</strong>, or
+          Tele-MANAS on <strong>14416</strong>, which is free and open 24 hours. Childline on
+          <strong>1098</strong> is there for anyone under 18.
+        </p>
+      </div>
+      <p>
+        The <strong>Urgent Help</strong> panel in the app keeps these numbers one tap away from any
+        screen.
+      </p>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Next</h2>
+    <p>
+      <a href="/resources/guide/student-booking">Book a session with your counsellor</a> walks
+      through getting time in the diary.
+    </p>
+    <p>
+      <a href="/resources/guide/student-privacy">What your school can and cannot see</a> covers who
+      reads what, which is worth knowing before you start writing things down.
+    </p>
+  </div>
+</GuideLayout>

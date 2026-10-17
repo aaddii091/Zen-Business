@@ -9,7 +9,7 @@ interface Props {
   description: string;
   /** Slug of the current guide, e.g. 'refer-a-student'. Marks the sidebar item. */
   slug: string;
-  /** Who the guide is written for — shown as a chip under the title. */
+  /** Who the guide is written for. Shown as a chip under the title. */
   audience?: string;
   /** Rough reading time, e.g. '3 min read'. */
   readingTime?: string;
@@ -20,7 +20,7 @@ const { title, description, slug, audience, readingTime } = Astro.props;
 
 <html lang="en">
   <head>
-    <BaseHead title={`${title} — Zengarden Guide`} description={description} />
+    <BaseHead title={`${title} | Zengarden Guide`} description={description} />
   </head>
   <body>
     <Header />

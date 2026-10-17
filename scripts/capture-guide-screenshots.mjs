@@ -7,7 +7,8 @@
  * student's data, which matters for a page published on the marketing site.
  *
  *   cd "Control Panel" && npx vite --port 5180 --strictPort
- *   cd Homepage && node scripts/capture-guide-screenshots.mjs
+ *   cd UserSide      && npx vite --port 5181 --strictPort
+ *   cd Homepage      && node scripts/capture-guide-screenshots.mjs
  *
  * Writes to Homepage/src/assets/guide/.
  */
@@ -17,6 +18,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const CP = process.env.CP_URL || 'http://localhost:5180';
+const US = process.env.US_URL || 'http://localhost:5181';
 // src/assets, not public/: going through astro:assets means the <Image> component
 // derives width/height from the file itself, so a re-capture at a different clip
 // height can never leave stale dimensions hardcoded in the page.
@@ -71,6 +73,57 @@ const MY_REFERRALS = [
     additionalNotes: [] },
 ];
 
+const TRANSFERS = [
+  {
+    id: 'tr1',
+    status: 'pending',
+    requestedAt: iso(1),
+    reason: 'Moving to the science stream from this term.',
+    student: { id: 'u5', name: 'Rohan Gupta' },
+    studentName: 'Rohan Gupta',
+    fromClassroom: { id: 'c1', name: 'Grade 9', label: 'Grade 9 - A', grade: '9', section: 'A' },
+    toClassroom: { id: 'c2', name: 'Grade 9', label: 'Grade 9 - B', grade: '9', section: 'B' },
+  },
+];
+
+// The counsellor's inbox. One self-flagged case (the student's own screening
+// raised it, no teacher involved) and two filed by teachers.
+const INBOX = [
+  { id: 'i1', status: 'pending', urgency: 'high', urgencyRank: 3, source: 'self_assessment',
+    createdAt: iso(0), student: { id: 'u2', name: 'Ananya Iyer' }, studentName: 'Ananya Iyer',
+    classroomSnapshot: { name: 'Grade 9 - A', grade: '9', section: 'A' }, classroomLabel: '9-A',
+    concernTags: ['anxiety_stress', 'mood_low'], teacher: null, assignedTherapist: null,
+    selfAssessment: { instrument: 'mini_16pf', distressScore: 15, threshold: 12, takenAt: iso(0) },
+    reason: 'Raised automatically: this student completed the Support Recommendation Test and scored 15 on the distress marker (threshold 12).' },
+  { id: 'i2', status: 'pending', urgency: 'medium', urgencyRank: 2, source: 'teacher_manual',
+    createdAt: iso(2), student: { id: 'u1', name: 'Aarav Sharma' }, studentName: 'Aarav Sharma',
+    classroomSnapshot: { name: 'Grade 9 - A', grade: '9', section: 'A' }, classroomLabel: '9-A',
+    concernTags: ['academic_decline', 'withdrawn_isolated'],
+    teacher: { id: 't1', name: 'Rhea Kapoor' }, assignedTherapist: null,
+    reason: 'Aarav has been very quiet in class for about three weeks and has stopped sitting with his usual group at lunch. His last two assignments were handed in incomplete, which is unlike him.' },
+  { id: 'i3', status: 'in_progress', urgency: 'low', urgencyRank: 1, source: 'teacher_manual',
+    createdAt: iso(9), student: { id: 'u3', name: 'Kabir Menon' }, studentName: 'Kabir Menon',
+    classroomSnapshot: { name: 'Grade 9 - A', grade: '9', section: 'A' }, classroomLabel: '9-A',
+    concernTags: ['withdrawn_isolated'], teacher: { id: 't1', name: 'Rhea Kapoor' },
+    assignedTherapist: { id: 'th1', name: 'Dr. Meera Krishnan' },
+    reason: 'Has stopped joining group work and hands in homework late.' },
+];
+
+const ASSIGNED_COUNSELLOR = {
+  therapistUserId: 'th1',
+  displayName: 'Dr. Meera Krishnan',
+  title: 'Consultant Clinical Psychologist',
+  profileType: 'professional_therapist',
+  yearsOfExperience: 12,
+  languages: ['English', 'Hindi', 'Malayalam'],
+  specializations: ['Adolescent anxiety', 'Exam stress'],
+  sessionModes: ['video', 'in_person'],
+  availabilityStatus: 'available',
+  bio: 'I work with secondary-school students on anxiety, exam pressure and the knot of things that sit underneath both.',
+  calendlyUrl: 'https://calendly.com/zengarden/session',
+  calendlyConnected: true,
+};
+
 const API = {
   'classrooms/mine': {
     status: 'success', results: CLASSROOMS.length, data: CLASSROOMS,
@@ -87,7 +140,36 @@ const API = {
     pagination: { page: 1, limit: 20, total: MY_REFERRALS.length, totalPages: 1 },
     data: MY_REFERRALS,
   },
-  'classroom-transfers': { status: 'success', results: 0, data: [] },
+  'classroom-transfers': {
+    status: 'success', results: TRANSFERS.length,
+    pagination: { page: 1, limit: 20, total: TRANSFERS.length, totalPages: 1 },
+    data: TRANSFERS,
+  },
+  'referrals/inbox/counts': {
+    status: 'success',
+    data: { pending: 2, acknowledged: 0, in_progress: 1, closed: 4, open: 3, urgentOpen: 1, unclaimed: 2 },
+  },
+  'referrals/inbox': {
+    status: 'success', results: INBOX.length,
+    pagination: { page: 1, limit: 20, total: INBOX.length, totalPages: 1 },
+    data: INBOX,
+  },
+  'users/assigned-therapist': { status: 'success', data: ASSIGNED_COUNSELLOR },
+  'organizations/my-therapist-roster': {
+    status: 'success',
+    data: {
+      organization: { id: 'o1', name: 'Greenwood Public School' },
+      hasSelectedOrgTherapist: true,
+      assignmentMode: 'school_assigned',
+      selectedTherapistId: 'th1',
+      roster: [ASSIGNED_COUNSELLOR],
+    },
+  },
+  'classrooms/my-classroom': {
+    status: 'success',
+    data: { id: 'c1', name: 'Grade 9', grade: '9', section: 'A', label: 'Grade 9 - A', academicYear: '2026-27' },
+  },
+  'user-info': { status: 'success', data: { primaryConcern: 'stress', languagePref: 'English' } },
   'users/me': {
     status: 'success',
     data: { id: 't1', name: 'Rhea Kapoor', email: 'rhea.kapoor@demoschool.zengarden.in',
@@ -192,6 +274,77 @@ await page.waitForTimeout(800);
 await page.getByText('My Referrals', { exact: false }).first().click();
 await page.waitForTimeout(1800);
 await shoot(page, '05-my-referrals', { clipHeight: 900 });
+
+// 6 — the Transfer Requests tab a home teacher decides from
+await page.getByText('Transfer Requests', { exact: false }).first().click();
+await page.waitForTimeout(1800);
+await shoot(page, '06-transfer-requests', { clipHeight: 820 });
+
+await ctx.close();
+
+/* ------------------------------------------- Control Panel, as a counsellor */
+
+const cctx = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: 2 });
+await cctx.addInitScript(() => {
+  localStorage.setItem('therapist_token', 'guide-capture');
+  localStorage.setItem('therapist_role', 'therapist');
+  localStorage.setItem('therapist_roles', JSON.stringify(['therapist']));
+  localStorage.setItem('therapist_calendly_connected', 'true');
+  localStorage.setItem('therapist_profile_complete', 'true');
+  localStorage.setItem(
+    'therapist_profile',
+    JSON.stringify({
+      displayName: 'Meera Krishnan',
+      name: 'Meera Krishnan',
+      title: 'Consultant Clinical Psychologist',
+    }),
+  );
+});
+await stub(cctx);
+const cpage = await cctx.newPage();
+
+await cpage.goto(`${CP}/referrals`);
+await cpage.waitForTimeout(3000);
+await shoot(cpage, '07-inbox', { clipHeight: 700 });
+
+// Open the first case so the detail view is on screen.
+await cpage.getByText('Aarav Sharma', { exact: false }).first().click().catch(() => {});
+await cpage.waitForTimeout(1800);
+await shoot(cpage, '08-inbox-detail', { clipHeight: 900 });
+
+await cctx.close();
+
+/* --------------------------------------------------- UserSide, as a student */
+
+try {
+  const sctx = await browser.newContext({ viewport: VIEWPORT, deviceScaleFactor: 2 });
+  await sctx.addInitScript(() => {
+    localStorage.setItem('token', 'guide-capture');
+    localStorage.setItem('hasOnboarded', 'true');
+    localStorage.setItem('userId', 'u1');
+    localStorage.setItem('name', 'Aarav Sharma');
+    localStorage.setItem('fullName', 'Aarav Sharma');
+    localStorage.setItem('userName', 'Aarav Sharma');
+    localStorage.setItem('email', 'aarav.sharma@demoschool.zengarden.in');
+    localStorage.setItem('role', 'user');
+  });
+  await stub(sctx);
+  const spage = await sctx.newPage();
+
+  for (const [route, name, clipHeight] of [
+    ['/welcome', '09-student-welcome', null],
+    ['/home', '10-student-home', null],
+    ['/my-therapist', '11-student-counsellor', 1000],
+  ]) {
+    await spage.goto(US + route).catch(() => {});
+    await spage.waitForTimeout(3000);
+    await shoot(spage, name, clipHeight ? { clipHeight } : {});
+  }
+
+  await sctx.close();
+} catch (error) {
+  console.log(`  ! UserSide skipped: ${error.message.split('\n')[0]}`);
+}
 
 await browser.close();
 console.log(`\nwrote ${shots.length} screenshot(s) to src/assets/guide/\n`);
