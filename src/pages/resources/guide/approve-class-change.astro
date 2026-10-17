@@ -1,0 +1,120 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotTransfers from '../../../assets/guide/06-transfer-requests.png';
+---
+
+<GuideLayout
+  slug="approve-class-change"
+  title="Approve a class change request"
+  description="Students ask to move class. As the home teacher of the class they are leaving, the decision is yours."
+  audience="For teachers"
+  readingTime="2 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Know where the request came from</h2>
+      <p>
+        You do not move a student yourself. The <strong>student</strong> raises the request from
+        their own app, picking the class they want to move to. It then waits for the home teacher of
+        the class they are currently in, which is where you come in.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>One open request at a time.</strong> A student cannot stack up requests, so there
+          is never more than one pending move per student to decide on.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Open Transfer Requests</h2>
+      <p>
+        From <strong>Classrooms</strong>, switch to the <strong>Transfer Requests</strong> tab. The
+        count on the tab is how many are waiting on you.
+      </p>
+      <p>
+        Each card shows who is asking, the class they are leaving, the class they want, the reason
+        they gave, and when they asked.
+      </p>
+      <figure>
+        <Image
+          src={shotTransfers}
+          alt="The Transfer Requests tab showing one pending request from Rohan Gupta to move from Grade 9 - A to Grade 9 - B, with Approve transfer and Reject buttons."
+          loading="eager"
+        />
+        <figcaption>
+          You only see requests to leave a class where you are the home teacher.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>Approve or reject</h2>
+      <p>
+        <strong>Approve transfer</strong> moves the student immediately. <strong>Reject</strong>
+        asks you for a short note first, which the student sees, so a refusal does not land as
+        silence.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>If a class has no home teacher</strong>, any teacher of that class can decide
+          instead. That fallback exists so a request cannot get stuck forever waiting on a role
+          nobody holds.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>What changes when you approve</h2>
+      <ul>
+        <li>The student joins the new class straight away.</li>
+        <li>
+          <strong>Their counsellor changes with them</strong>, to whoever is assigned to the new
+          class. Counsellors are assigned per class, so moving class moves the counsellor.
+        </li>
+        <li>
+          Any open referral stays with the teacher who filed it, and the counsellor working the case
+          is told the student has moved.
+        </li>
+        <li>
+          Referrals already filed keep the old class on their record, so the history reads correctly.
+        </li>
+      </ul>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>Think before approving a student mid-case.</strong> If the student has an open
+          referral, a move changes who counsels them. That is sometimes exactly right and sometimes
+          disruptive. If you are unsure, ask the counselling team before you decide.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Things worth knowing</h2>
+    <p>
+      <strong>Students can cancel their own request</strong> while it is still pending, so a request
+      that disappears before you got to it was most likely withdrawn rather than lost.
+    </p>
+    <p>
+      <strong>You cannot move a student into a class you do not teach</strong> and you cannot start
+      a transfer on a student's behalf. Both are deliberate: the request has to come from the
+      student, and the decision has to come from the class they are leaving.
+    </p>
+    <p>
+      Stuck? Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a>.
+    </p>
+  </div>
+</GuideLayout>

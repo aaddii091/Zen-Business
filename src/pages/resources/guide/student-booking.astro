@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotCounsellor from '../../../assets/guide/11-student-counsellor.png';
+---
+
+<GuideLayout
+  slug="student-booking"
+  title="Book a session with your counsellor"
+  description="Finding a time, what happens after you book, and how to reach your counsellor between sessions."
+  audience="For students"
+  readingTime="2 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Open My Counsellor</h2>
+      <p>
+        Tap <strong>My Counsellor</strong> from your dashboard. This page shows who you have been
+        assigned, what they specialise in, which languages they speak, and whether they see students
+        by video, in person, or both.
+      </p>
+      <p>
+        The <strong>Assigned</strong> badge next to their name means your school has matched you
+        already. There is nothing to choose.
+      </p>
+      <figure>
+        <Image
+          src={shotCounsellor}
+          alt="The My Counsellor page showing an assigned counsellor with their title, years of experience, specialisms, languages and a Book Session button."
+          loading="eager"
+        />
+        <figcaption>
+          Your class is shown here too, because that is what your counsellor is assigned to.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Press Book Session</h2>
+      <p>
+        <strong>Book Session</strong> opens your counsellor's calendar in a new tab, showing the
+        times they have free. Pick one that works and confirm.
+      </p>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>Your name and email go to the booking calendar</strong> so your counsellor knows
+          who is coming and can send you the joining link. That is the only thing shared at this
+          step, and it is filled in for you so you do not have to type it.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>What happens next</h2>
+      <ul>
+        <li>The session appears under <strong>Upcoming Sessions</strong> on this page.</li>
+        <li>Your dashboard shows it at the top as your next session.</li>
+        <li>
+          If it is a video session, the joining link comes through on the booking confirmation.
+        </li>
+        <li>
+          Need to change it? Use the reschedule or cancel link on the same confirmation rather than
+          booking a second slot.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>Message instead, if that is easier</h2>
+      <p>
+        <strong>Send Message</strong> opens a private thread with your counsellor. Some things are
+        easier to type than to say out loud, and starting there is completely normal.
+      </p>
+      <p>
+        If you message outside your counsellor's working hours you will get an automatic reply
+        telling you when they are back, along with helpline numbers you can call straight away. Your
+        message is still waiting for them when they return.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>Messages are not watched in real time.</strong> Your counsellor reads them during
+          their working hours. If something cannot wait, call Tele-MANAS on <strong>14416</strong>
+          or emergency services on <strong>112</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Things worth knowing</h2>
+    <p>
+      <strong>You do not have to prepare anything.</strong> Turning up with "I do not really know
+      where to start" is a completely normal way to begin a first session.
+    </p>
+    <p>
+      <strong>Your teachers are not told that you booked.</strong> See
+      <a href="/resources/guide/student-privacy">what your school can and cannot see</a> for the
+      detail of who reads what.
+    </p>
+    <p>
+      If no counsellor is showing on this page yet, your school has not finished setting up your
+      class. Ask your class teacher.
+    </p>
+  </div>
+</GuideLayout>

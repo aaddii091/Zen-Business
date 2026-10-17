@@ -1,0 +1,129 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotMyReferrals from '../../../assets/guide/05-my-referrals.png';
+---
+
+<GuideLayout
+  slug="track-your-referrals"
+  title="Track a referral you have filed"
+  description="Once a referral is with the counselling team, My Referrals is where you see what is happening without having to chase anyone."
+  audience="For teachers"
+  readingTime="2 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Open My Referrals</h2>
+      <p>
+        From <strong>Classrooms</strong>, switch to the <strong>My Referrals</strong> tab. The
+        number on the tab is how many of your referrals are still open.
+      </p>
+      <p>
+        This list is yours alone. You will not see referrals filed by other teachers, even for
+        students in your own class, and they will not see yours.
+      </p>
+      <figure>
+        <Image
+          src={shotMyReferrals}
+          alt="The My Referrals tab showing two referrals: one in progress for Kabir Menon and one closed for Saanvi Reddy."
+          loading="eager"
+        />
+        <figcaption>
+          Filters across the top let you narrow to open cases when the list gets long.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Read the status</h2>
+      <p>The status moves on its own as the counselling team works through the case.</p>
+      <ul>
+        <li><strong>Pending</strong>: filed, and nobody has picked it up yet.</li>
+        <li><strong>Acknowledged</strong>: a counsellor has taken it on.</li>
+        <li><strong>In progress</strong>: they are actively working with the student.</li>
+        <li><strong>Closed</strong>: the case is finished.</li>
+      </ul>
+      <p>
+        If something has been sitting at <strong>Pending</strong> longer than you expected and the
+        situation has changed, raise it with your counselling team directly rather than filing a
+        second referral.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>Open one to see what you wrote</h2>
+      <p>
+        Click any row to expand it. You will see the description you submitted, the concerns you
+        tagged, the class the student was in at the time, and the date you filed it.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>The class is frozen at filing time.</strong> A referral you filed in September
+          still reads "Grade 9-A" after the student moves class or moves up a year, so the record
+          stays true to when you raised it.
+        </p>
+      </div>
+      <p>
+        If you have more to add after filing, use the note box on the expanded referral rather than
+        starting a new one. It keeps everything on one thread for the counsellor.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>What you get back when it closes</h2>
+      <p>
+        A closed referral may carry a short summary from the counsellor. It is deliberately brief:
+        enough for you to keep supporting the student in class, without handing over what was said in
+        their sessions.
+      </p>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>You will not see counselling notes.</strong> The counsellor keeps a separate
+          clinical record that teachers have no access to. The closing summary is the one thing they
+          choose to pass back to you, and they write it knowing you will read it.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-body">
+      <h2>Withdraw one you filed by mistake</h2>
+      <p>
+        While a referral is still <strong>Pending</strong>, you can withdraw it from the expanded
+        view. Once a counsellor has acknowledged it, the withdraw option goes away: at that point
+        somebody has already read it and started acting on it, and quietly deleting the record would
+        leave them working on something the system says never happened.
+      </p>
+      <p>If you need a case stopped after that point, speak to the counsellor directly.</p>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Things worth knowing</h2>
+    <p>
+      <strong>Some cases appear without a teacher.</strong> If a student's own check-in flags
+      distress, the counselling team gets a case automatically. Those never show up in your list or
+      on your class roster, because they are the student's own result and not yours to see.
+    </p>
+    <p>
+      <strong>A referral survives a class change.</strong> If the student transfers mid-term, the
+      referral stays with you as the person who filed it, and the counsellor is told about the move.
+    </p>
+    <p>
+      Stuck? Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a>.
+    </p>
+  </div>
+</GuideLayout>

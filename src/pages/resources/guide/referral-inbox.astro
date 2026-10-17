@@ -1,0 +1,178 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotInbox from '../../../assets/guide/07-inbox.png';
+import shotInboxDetail from '../../../assets/guide/08-inbox-detail.png';
+---
+
+<GuideLayout
+  slug="referral-inbox"
+  title="Work the referral inbox"
+  description="Every concern raised at your school lands in one queue, ordered so the most urgent and longest-waiting cases sit at the top."
+  audience="For counsellors"
+  readingTime="4 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Open Referrals</h2>
+      <p>
+        <strong>Referrals</strong> in the sidebar is your queue. It covers every school whose
+        roster you are on, so a counsellor working across two schools sees both in one place.
+      </p>
+      <p>The three counts at the top are the ones worth watching:</p>
+      <ul>
+        <li><strong>Unclaimed</strong>: nobody has taken these on yet.</li>
+        <li><strong>Urgent</strong>: a teacher marked these as needing attention now.</li>
+        <li><strong>In progress</strong>: cases somebody is actively working.</li>
+      </ul>
+      <figure>
+        <Image
+          src={shotInbox}
+          alt="The referral inbox showing three cases: Ananya Iyer flagged by self-assessment and marked urgent, Aarav Sharma referred by a teacher, and Kabir Menon already in progress with a counsellor assigned."
+          loading="eager"
+        />
+        <figcaption>
+          Sorted urgent first, then longest-waiting, so the top of the list is always the next thing
+          to look at.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Tell the two kinds of case apart</h2>
+      <p>Cases arrive by two routes, and the difference matters.</p>
+      <ul>
+        <li>
+          <strong>A teacher referral</strong> names the teacher who filed it. Someone has noticed
+          something in class and written down what they saw.
+        </li>
+        <li>
+          <strong>A self-assessment flag</strong> carries a <strong>Self-assessment</strong> chip
+          and no teacher. The student's own check-in scored past the distress threshold and raised
+          the case automatically.
+        </li>
+      </ul>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>Self-assessment flags are invisible to teachers.</strong> They never appear on a
+          class roster or in any teacher's list. The student's own screening result is between them
+          and you, so when you follow one up, be aware the student's teachers do not know it exists.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>Narrow the queue</h2>
+      <p>
+        The filters along the top cut the list down by status, by who it is assigned to, and by
+        urgency. <strong>Unacknowledged</strong> is the useful one at the start of a day: it is
+        everything nobody has picked up.
+      </p>
+      <p>
+        The search box matches on student name within the schools you are rostered to, and nothing
+        beyond them.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>Open a case and read it</h2>
+      <p>
+        Click any row. The panel shows the student, their class, who referred them and when, the
+        concerns tagged, and the referring teacher's description in their own words.
+      </p>
+      <p>
+        For a self-assessment flag you get the screening snapshot instead: the instrument used, the
+        score, and the threshold it crossed. That snapshot is frozen, so a later retake does not
+        rewrite the evidence you acted on.
+      </p>
+      <figure>
+        <Image
+          src={shotInboxDetail}
+          alt="A referral opened in the side panel, showing the class, the referring teacher, the quoted description of what the teacher observed, the concern tags, and a Claim button."
+          loading="lazy"
+        />
+        <figcaption>
+          Opening a case is recorded, so the school can always answer who looked at a student's
+          record and when.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-body">
+      <h2>Claim it</h2>
+      <p>
+        <strong>Claim</strong> assigns the case to you and moves it to acknowledged. From that
+        point it is clearly yours, and it drops out of everyone else's unclaimed count.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>Two counsellors cannot claim the same case.</strong> If a colleague got there
+          first, you will be told who holds it rather than silently taking it from them.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">6</div>
+    <div class="step-body">
+      <h2>Move it along, and close it properly</h2>
+      <p>
+        Set the case to <strong>In progress</strong> once you are working with the student. When you
+        close it, you record an outcome and you get two separate note fields. The difference between
+        them is the important part of this screen.
+      </p>
+      <ul>
+        <li>
+          <strong>Closure note</strong>: yours. Clinical detail, kept on the case. No teacher ever
+          sees this.
+        </li>
+        <li>
+          <strong>Summary for the teacher</strong>: short, and written knowing the referring teacher
+          will read it. Enough for them to keep supporting the student in class, and no more.
+        </li>
+      </ul>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>Leave the teacher summary blank and the teacher gets nothing.</strong> That is a
+          valid choice when there is genuinely nothing shareable, but a teacher who filed a careful
+          referral and hears nothing back tends to stop filing them. A single sentence is usually
+          the right amount.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Things worth knowing</h2>
+    <p>
+      <strong>One open case per student per school.</strong> If two teachers notice the same child,
+      they converge on one thread rather than creating duplicates you would have to reconcile.
+    </p>
+    <p>
+      <strong>A student who changes class stays on your case.</strong> The case is flagged with the
+      move so you know it happened, but it does not jump to another counsellor underneath you.
+    </p>
+    <p>
+      <strong>A referral is not an emergency channel.</strong> Even an urgent one is a queue. If a
+      student is in immediate danger, the school's emergency protocol is what applies.
+    </p>
+    <p>
+      Stuck? Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a>.
+    </p>
+  </div>
+</GuideLayout>

@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+// Captured from the real Control Panel by scripts/capture-guide-screenshots.mjs.
+// Imported rather than referenced from public/ so astro:assets derives the
+// dimensions and emits a responsive, optimised image.
+import shotClassrooms from '../../../assets/guide/01-classrooms.png';
+import shotRoster from '../../../assets/guide/02-roster.png';
+import shotFormEmpty from '../../../assets/guide/03-refer-modal-empty.png';
+import shotFormFilled from '../../../assets/guide/04-refer-modal-filled.png';
+import shotMyReferrals from '../../../assets/guide/05-my-referrals.png';
+---
+
+<GuideLayout
+  slug="refer-a-student"
+  title="Refer a student to the counselling team"
+  description="When you notice a student struggling, a referral puts them in front of your school's counselling team. It takes about a minute."
+  audience="For teachers"
+  readingTime="3 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Open Classrooms</h2>
+      <p>
+        Sign in to the Control Panel and you will land on <strong>Classrooms</strong>. Every class
+        you teach is here, with the number of students and any referrals that are still open.
+      </p>
+      <p>
+        The <strong>Home teacher</strong> badge marks the classes where you are the home teacher.
+        Those are the classes where you also approve transfers in and out.
+      </p>
+      <figure>
+        <Image
+          src={shotClassrooms}
+          alt="The Classrooms screen showing three class cards: Grade 9 - A with one open referral and a Home teacher badge, Grade 9 - B, and Grade 10 - A."
+          loading="eager"
+        />
+        <figcaption>
+          Your classes. The count under each name is the number of students; open referrals are
+          flagged on the card.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Open the class and find the student</h2>
+      <p>
+        Click a class to see its roster. The <strong>Referral</strong> column tells you where each
+        student already stands, so you are never guessing whether someone has been flagged.
+      </p>
+      <ul>
+        <li><strong>—</strong> means nobody has referred this student.</li>
+        <li>
+          <strong>Referred</strong> with a status means there is already an open case. If you filed
+          it, you will see <strong>View</strong> instead of <strong>Refer</strong>.
+        </li>
+      </ul>
+      <p>
+        In a hurry, use the search box at the top right. It searches every student across all the
+        classes you teach, and nothing beyond them.
+      </p>
+      <figure>
+        <Image
+          src={shotRoster}
+          alt="The Grade 9 - A roster listing six students. Kabir Menon shows a Referred, In progress chip and a View button; the rest show a dash and a Refer button."
+          loading="lazy"
+        />
+        <figcaption>
+          Kabir Menon already has an open referral, so his row offers <strong>View</strong>. The
+          others offer <strong>Refer</strong>.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>Click Refer</h2>
+      <p>
+        The referral form opens with the student's name and class already filled in. There are three
+        things to give it, and all three are quick.
+      </p>
+      <figure>
+        <Image
+          src={shotFormEmpty}
+          alt="The empty referral form titled Refer to the help group, for Aarav Sharma in Grade 9 - A, with a What have you noticed field, concern chips, and three urgency options."
+          loading="lazy"
+        />
+        <figcaption>
+          The form opens on the student you picked, so you cannot refer the wrong child by accident.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>Describe what you have seen</h2>
+      <p>
+        <strong>What have you noticed?</strong> is the part that matters most. Write what you
+        actually observed and roughly when it started. Twenty characters is the minimum; two or
+        three sentences is usually right.
+      </p>
+
+      <div class="guide-note">
+        <p>
+          <strong>Describe behaviour, not diagnosis.</strong> "Has stopped sitting with his usual
+          group and handed in two incomplete assignments" is useful to a counsellor. "Has anxiety"
+          is not. That is a clinical judgement, and it is theirs to make.
+        </p>
+      </div>
+
+      <p>
+        Then pick up to four <strong>concerns</strong> and set <strong>how soon</strong> it needs
+        looking at:
+      </p>
+      <ul>
+        <li><strong>Routine</strong>: reviewed within a week.</li>
+        <li><strong>Soon</strong>: reviewed in a day or two.</li>
+        <li>
+          <strong>Urgent</strong>: goes to the top of the counselling team's queue. Use it when you
+          mean it, so it keeps working.
+        </li>
+      </ul>
+
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>Who sees this.</strong> The counselling team sees the student's name, class and
+          exactly what you write. Other teachers do not. If a student is in immediate danger, file
+          the referral <em>and</em> follow your school's emergency protocol. A referral is not an
+          emergency alarm.
+        </p>
+      </div>
+
+      <figure>
+        <Image
+          src={shotFormFilled}
+          alt="The referral form completed: a three-sentence description of what the teacher noticed, the Academic decline and Withdrawn / isolated concerns selected, and Soon chosen for urgency."
+          loading="lazy"
+        />
+        <figcaption>
+          A good referral: concrete observations, a rough start date, two concerns, and an honest
+          urgency. Then press <strong>Send referral</strong>.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-body">
+      <h2>Follow it up under My Referrals</h2>
+      <p>
+        Everything you have filed lives under <strong>My Referrals</strong>, with its current status.
+        You do not need to chase anyone. The status moves as the counselling team picks it up.
+      </p>
+      <ul>
+        <li><strong>Pending</strong>: filed, not yet picked up.</li>
+        <li><strong>Acknowledged</strong>: a counsellor has it.</li>
+        <li><strong>In progress</strong>: they are working with the student.</li>
+        <li><strong>Closed</strong>: the case is finished.</li>
+      </ul>
+      <p>
+        When a case closes you may get a short summary from the counsellor. That summary is
+        deliberately brief: it tells you what you need in order to support the student in class,
+        without handing over the contents of their sessions.
+      </p>
+      <figure>
+        <Image
+          src={shotMyReferrals}
+          alt="The My Referrals tab listing two referrals: one in progress for Kabir Menon, and one closed for Saanvi Reddy with a short summary from the counsellor."
+          loading="lazy"
+        />
+        <figcaption>
+          Your own referrals only. You will not see referrals filed by other teachers, even for
+          students you teach.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>Things worth knowing</h2>
+    <p>
+      <strong>One open referral per student.</strong> If a colleague has already referred the same
+      student, you will be told rather than creating a duplicate. Two teachers noticing the same
+      child should land on one case, not two.
+    </p>
+    <p>
+      <strong>A referral follows the student.</strong> If they move class mid-term, the referral stays
+      with you as the person who filed it, and the counsellor is told about the move.
+    </p>
+    <p>
+      <strong>You cannot see a student's counselling notes</strong>, and that is on purpose. You see
+      the status of your referral and whatever summary the counsellor chooses to share with you.
+    </p>
+    <p>
+      Stuck? Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a>.
+    </p>
+  </div>
+</GuideLayout>

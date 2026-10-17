@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # local AI/tooling settings (may contain tokens)
 .claude/settings.local.json
+
+# graphify tool output
+graphify-out/

@@ -25,6 +25,46 @@ const principles = [
   },
 ];
 
+const reviews = [
+  {
+    name: 'Soha Khan',
+    grade: 'Class 12',
+    school: 'Shri Agrasen Public School',
+    quote: "The application has been helpful to me personally by giving me a chance to hit pause and take a break from all the things that cause me to think excessively, like school work and life. Their guided meditation feature caught my eye instantly. I followed the instructions word-by-word and benefitted from it. Every student in 12th Grade has an enormous amount of stress they don't usually share openly. Zengarden gives us a chance to take a break from that stress and only be in the moment with ourselves.",
+  },
+  {
+    name: 'Ayaan Modi',
+    grade: 'Class 11',
+    school: 'Jayshree Periwal Global School',
+    quote: "The meditation audios were really good. I didn't think I would enjoy them as much as I did. I would use this app for stress relief. I feel that my school does not provide anything similar at the moment, which is a lack. Students have so much going on and having a chance to do something about it, rather than just continue to go through it, is important.",
+  },
+  {
+    name: 'Samyak Agarwal',
+    grade: 'Class 10',
+    school: 'Jayshree Periwal Global School',
+    quote: "What I liked most is that if students are using this app, the school gets to understand what's actually stressing us out. And then maybe they can do something about it. Most of the time it's studies and exams, and nobody really asks us how we're dealing with it. But Zengarden does. I want this app at my school.",
+  },
+  {
+    name: 'Jiyansh Balani',
+    grade: 'Class 10',
+    school: 'Neerja Modi School',
+    quote: "From Class 9 onwards, the pressure just doesn't stop. You're expected to study all the time, and it gets really stressful. If Zengarden was available at my school, I would definitely use it. The meditation exercises are something I'd actually come back to, not just once but whenever things get overwhelming.",
+  },
+  {
+    name: 'Saanvi Bhatia',
+    grade: 'Class 10',
+    school: 'St. Xavier Sr. Sec. School',
+    quote: "I would genuinely listen to the audios on a stressful day. There are so many students around me who I feel really need something like this. I'd want to tell every one of them about Zengarden.",
+  },
+];
+
+const getReviewInitials = (name: string) =>
+  name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2);
+
 const faqs = [
   {
     q: 'How does Zengarden help schools meet SC Guidelines?',
@@ -749,6 +789,43 @@ const faqs = [
             </div>
           </div>
 
+          <div class="reviews-block">
+            <div class="reviews-header">
+              <p class="reviews-eyebrow">Student Reviews</p>
+              <h3 class="reviews-heading">What students say after using Zengarden</h3>
+              <p class="reviews-sub">The compliance case matters to institutions. These are the student outcomes behind it.</p>
+            </div>
+
+            <div class="reviews-marquee">
+              <div class="reviews-track">
+                {[0, 1].map((copyIndex) => (
+                  <div class="reviews-set" aria-hidden={copyIndex === 1 ? 'true' : undefined}>
+                    {reviews.map((review) => (
+                      <article class="review-card">
+                        <div class="review-card-top">
+                          <div class="review-card-person">
+                            <div class="review-avatar" aria-hidden="true">
+                              {getReviewInitials(review.name)}
+                            </div>
+                            <div class="review-meta">
+                              <p class="review-name">{review.name}</p>
+                              <p class="review-sub">{review.grade} · {review.school}</p>
+                            </div>
+                          </div>
+                          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                        </div>
+
+                        <blockquote class="review-quote">
+                          <p>{review.quote}</p>
+                        </blockquote>
+                      </article>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div class="proof-cta-wrap">
             <Button variant="teal" href="https://calendly.com/aaddii091" target="_blank" rel="noopener noreferrer" class="proof-cta">
               See how Zengarden catches what your school misses →
@@ -756,8 +833,8 @@ const faqs = [
             <p class="proof-cta-note">20-minute demo. We map it against your school's current compliance gaps — no obligation.</p>
           </div>
 
-          <div class="proof-note">
-            <p><strong>Note:</strong> Priya is a representative composite, not a real individual. The patterns described — stream pressure, grade drop, social withdrawal, absence of institutional flagging — are documented in Indian school mental health research and reflected in the Supreme Court's July 2025 judgment.</p>
+          <div class="proof-note" hidden>
+            <p><strong>Note:</strong> The Priya example above is a representative composite, not a real individual. The patterns described — stream pressure, grade drop, social withdrawal, absence of institutional flagging — are documented in Indian school mental health research and reflected in the Supreme Court's July 2025 judgment.</p>
           </div>
         </div>
       </section>
@@ -2185,6 +2262,172 @@ const faqs = [
     margin-bottom: 20px;
   }
 
+  .reviews-block {
+    margin: 0 0 32px;
+  }
+
+  .reviews-header {
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+
+  .reviews-eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--zg-muted);
+  }
+
+  .reviews-heading {
+    margin: 0 0 10px;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--zg-mid);
+  }
+
+  .reviews-sub {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--zg-muted);
+  }
+
+  .reviews-marquee {
+    overflow: hidden;
+    margin: 0 -8px;
+    padding: 8px;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+  }
+
+  .reviews-track {
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    animation: reviews-marquee-scroll 42s linear infinite;
+    will-change: transform;
+  }
+
+  .reviews-marquee:hover .reviews-track,
+  .reviews-marquee:focus-within .reviews-track {
+    animation-play-state: paused;
+  }
+
+  .reviews-set {
+    display: flex;
+    gap: 20px;
+  }
+
+  .review-card {
+    background: var(--zg-light-bg);
+    border: 1px solid var(--zg-border-light);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: clamp(280px, 31vw, 380px);
+    flex: 0 0 auto;
+  }
+
+  .review-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .review-card-person {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--zg-blue) 0%, #6579ff 100%);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .review-meta {
+    min-width: 0;
+  }
+
+  .review-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--zg-mid);
+  }
+
+  .review-sub {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--zg-muted);
+  }
+
+  .review-stars {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: var(--zg-radius-full);
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #d97706;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .review-quote {
+    margin: 0;
+    padding-left: 18px;
+    border-left: 3px solid rgba(0, 187, 161, 0.28);
+  }
+
+  .review-quote p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--zg-dark);
+  }
+
+  @keyframes reviews-marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-50% - 10px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-track {
+      animation: none;
+    }
+  }
+
   .proof-cta {
     width: fit-content;
   }
@@ -2489,6 +2732,10 @@ const faqs = [
       width: 100%;
       justify-content: center;
     }
+
+    .review-card {
+      width: min(360px, calc(100vw - 72px));
+    }
   }
 
   @media (max-width: 768px) {
@@ -2595,6 +2842,16 @@ const faqs = [
 
     .proof-compare-card {
       border-left-width: 3px;
+    }
+
+    .review-card {
+      padding: 20px;
+      width: min(320px, calc(100vw - 56px));
+    }
+
+    .review-card-top {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .proof-cta {

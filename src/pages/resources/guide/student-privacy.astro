@@ -1,0 +1,180 @@
+---
+import { Image } from 'astro:assets';
+import GuideLayout from '../../../layouts/GuideLayout.astro';
+
+import shotCounsellor from '../../../assets/guide/11-student-counsellor.png';
+---
+
+<GuideLayout
+  slug="student-privacy"
+  title="What your school can and cannot see"
+  description="Who reads your messages, who finds out you booked a session, and what your teachers are shown. Worth knowing before you start writing things down."
+  audience="For students"
+  readingTime="4 min read"
+>
+  <div class="step">
+    <div class="step-number">1</div>
+    <div class="step-body">
+      <h2>Your counsellor sees your side of Zengarden</h2>
+      <p>
+        The counsellor your school assigned to you can see the things you would expect the person
+        supporting you to see:
+      </p>
+      <ul>
+        <li>Your name, your email and your class.</li>
+        <li>Messages between the two of you.</li>
+        <li>Sessions you have booked with them.</li>
+        <li>Any check-in or assessment they asked you to complete, and your answers.</li>
+        <li>Concerns a teacher has raised about you, and what the teacher wrote.</li>
+        <li>What you told the app when you set up your profile.</li>
+      </ul>
+      <p>
+        <strong>Only your counsellor.</strong> Other counsellors at your school cannot open your
+        record. The system checks that you are actually assigned to someone before it shows them
+        anything about you.
+      </p>
+      <figure>
+        <Image
+          src={shotCounsellor}
+          alt="The My Counsellor page showing the one counsellor assigned to the student, with an Assigned badge."
+          loading="eager"
+        />
+        <figcaption>
+          One assigned counsellor, shown on your My Counsellor page. That is the person with access.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">2</div>
+    <div class="step-body">
+      <h2>Your messages are encrypted</h2>
+      <p>
+        Messages between you and your counsellor are encrypted where they are stored. They are not
+        sitting in a database as plain readable text that anyone poking around could scroll through.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>Encrypted is not the same as secret from your counsellor.</strong> They can read
+          your thread, because that is the point of it. What encryption stops is everyone else.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">3</div>
+    <div class="step-body">
+      <h2>What your teachers see, exactly</h2>
+      <p>This is the part students usually want pinned down. A teacher of your class can see:</p>
+      <ul>
+        <li>Your name on their class list.</li>
+        <li>
+          Whether there is an open referral about you, and what stage it is at. They see that a
+          concern exists, not what is in it.
+        </li>
+        <li>
+          The full text of a referral <strong>only if they wrote it themselves</strong>. A teacher
+          cannot read a colleague's referral about you.
+        </li>
+        <li>
+          A short closing summary when a case finishes, if your counsellor chooses to write one.
+        </li>
+      </ul>
+      <p>A teacher cannot see:</p>
+      <ul>
+        <li>Your messages with your counsellor.</li>
+        <li>Your counsellor's notes.</li>
+        <li>Your answers to any assessment or check-in.</li>
+        <li>That you booked a session, or when.</li>
+        <li>Anything about students who are not in their own classes.</li>
+      </ul>
+      <div class="guide-note guide-privacy">
+        <p>
+          <strong>If your own check-in flags that you are struggling</strong>, that goes to the
+          counselling team and <strong>never appears to any teacher</strong>. It does not show on
+          the class list and it is not in any teacher's referral list. Your own result stays between
+          you and your counsellor.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">4</div>
+    <div class="step-body">
+      <h2>The resource library is not monitored</h2>
+      <p>
+        Guided exercises, articles and short courses are yours to use. Nobody is sent a report
+        because you opened a breathing exercise at midnight or read the same article four times.
+      </p>
+      <p>
+        Your counsellor can see assessments <strong>they assigned you</strong>. Material you browse
+        on your own is not part of that.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">5</div>
+    <div class="step-body">
+      <h2>When your counsellor may involve someone else</h2>
+      <p>
+        Counselling is confidential, but it is not absolute, and you should know where the line sits
+        before you need it rather than after.
+      </p>
+      <p>
+        If your counsellor believes you or someone else is at serious risk of harm, they can take it
+        to your school so your parents or guardians can be involved. When that happens they pass on
+        what the school needs in order to act. Their session notes do not travel with it.
+      </p>
+      <div class="guide-note">
+        <p>
+          <strong>A good counsellor will tell you</strong> when they think something needs to go
+          further, and why. If you are worried about this, ask them directly at the start of a
+          session what would and would not stay between you. It is a completely reasonable question
+          and they will have a clear answer.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-number">6</div>
+    <div class="step-body">
+      <h2>Your data and your rights</h2>
+      <p>
+        Your school decides who is on its counselling team and which counsellor is assigned to your
+        class. Zengarden stores the information above so that support can work.
+      </p>
+      <p>
+        If you want to know what is held about you, or you want it corrected or removed, ask your
+        school first, since they run the account. You can also email
+        <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a> directly.
+      </p>
+      <p>
+        Our full <a href="/privacy-policy">privacy policy</a> covers how information is handled and
+        who it is shared with.
+      </p>
+    </div>
+  </div>
+
+  <div class="guide-footer">
+    <h2>The short version</h2>
+    <p>
+      <strong>Your counsellor sees your support.</strong> Your teachers see that a concern exists
+      and nothing of its content unless they raised it themselves. Your own check-in results are
+      never shown to teachers. Your messages are encrypted. Browsing the resource library is not
+      tracked back to you.
+    </p>
+    <p>
+      <strong>The exception is serious risk of harm</strong>, where your counsellor can involve your
+      school and your family.
+    </p>
+    <p>
+      Anything here unclear? Email <a href="mailto:admin@zengarden.co.in">admin@zengarden.co.in</a>
+      and we will answer plainly.
+    </p>
+  </div>
+</GuideLayout>
